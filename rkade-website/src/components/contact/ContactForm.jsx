@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 // 2. Set the form's destination email to hello@rkade.co
 // 3. Copy the endpoint URL Formspree gives you (looks like
 //    https://formspree.io/f/xxxxxxx) and paste it below.
-const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+const FORM_ENDPOINT = 'https://formspree.io/f/mzdnppbe';
 
 export default function ContactForm() {
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
