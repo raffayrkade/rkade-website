@@ -7,12 +7,12 @@ const problems = [
   {
     icon: Repeat,
     title: 'Repetitive work eats the day',
-    text: 'Copy-paste, data entry, follow-ups — hours your team will never get back.',
+    text: 'Copy-paste, data entry, follow-ups: hours your team will never get back.',
   },
   {
     icon: Clock,
     title: 'Manual processes slow everything',
-    text: 'Every handoff waits on a human. Throughput is capped by attention, not ability.',
+    text: 'Every handoff waits on a human. If your response time drops from 5 minutes to 10 minutes, your odds of qualifying the lead decrease by 400%.',
   },
   {
     icon: Users,
@@ -34,7 +34,7 @@ export default function Problem() {
           <SectionHeading
             label="The Problem"
             title="Your team isn't slow. Your process is manual."
-            description="Most businesses don't have a talent problem. They have a leverage problem — smart people doing work a system should be doing."
+            description="Most businesses don't have a talent problem. They have a leverage problem: smart people doing work a system should be doing."
           />
         </Reveal>
         <div className="mt-14 grid gap-px overflow-hidden rounded-xl border border-divider bg-divider sm:grid-cols-2 lg:grid-cols-4">

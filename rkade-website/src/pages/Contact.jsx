@@ -11,7 +11,7 @@ export default function Contact() {
       <PageHeader
         label="Contact"
         title="Let's find your leverage."
-        description="Three ways to reach us. Pick whichever is fastest — we respond like operators, not a support queue."
+        description="Three ways to reach us. Pick whichever is fastest. We respond like operators, not a support queue."
       />
 
       <section className="bg-cream py-24 md:py-28">
@@ -60,7 +60,7 @@ export default function Contact() {
                 <div>
                   <h3 className="font-heading text-lg font-semibold text-ink">Free Audit</h3>
                   <p className="mt-1 text-sm text-warmgrey">Grab a slot and we'll map where automation pays off for you.</p>
-                  <p className="mt-2 text-xs text-warmgrey">Pick a time that works for you — 30 minutes, no pitch.</p>
+                  <p className="mt-2 text-xs text-warmgrey">Pick a time that works for you: 30 minutes, no pitch.</p>
                 </div>
               </a>
 

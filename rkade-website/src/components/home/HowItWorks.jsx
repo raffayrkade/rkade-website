@@ -3,8 +3,8 @@ import Reveal from '@/components/common/Reveal';
 import SectionHeading from '@/components/common/SectionHeading';
 
 const steps = [
-  { n: '01', title: 'Discover', text: 'We map your workflows and find where automation pays off fastest.' },
-  { n: '02', title: 'Design', text: 'We architect the system — inputs, logic, outputs — around your reality.' },
+  { n: '01', title: 'Discovery', text: 'We map your workflows and find where automation pays off fastest.' },
+  { n: '02', title: 'Design', text: "We architect the system's inputs, logic, and outputs around your reality." },
   { n: '03', title: 'Build', text: 'We build and ship it, integrated into the tools you already use.' },
   { n: '04', title: 'Manage', text: 'We monitor, maintain, and improve it so it keeps earning its keep.' },
 ];

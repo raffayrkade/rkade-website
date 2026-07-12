@@ -8,7 +8,7 @@ const points = [
   {
     icon: Wrench,
     title: 'Operators, not talkers',
-    text: 'We ship working systems — not slide decks about them. Everything we recommend, we can build.',
+    text: 'We build working systems, not slide decks about them. Everything we recommend, we can build.',
   },
   {
     icon: Boxes,
@@ -39,8 +39,8 @@ export default function WhyRkade() {
           <Reveal>
             <SectionHeading
               label="Why RKADE"
-              title="Built by people who build the thing."
-              description="We're not AI consultants who talk about automation. We're operators who have shipped it — and we approach every engagement the same way: understand the work, then build the system that does it."
+              title="We build the system. You close the clients."
+              description="We're not AI consultants who talk about automation. We're operators who have built it, and we approach every engagement the same way: understand the work, then build the system that does it."
             />
           </Reveal>
           <div className="mt-10 space-y-6">

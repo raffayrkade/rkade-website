@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, MessageCircle, ArrowRight } from 'lucide-react';
+import { Calendar, ArrowRight } from 'lucide-react';
 import Reveal from '@/components/common/Reveal';
-import { WHATSAPP_LINK, CALENDAR_LINK } from '@/components/common/CTAButtons';
+import { CALENDAR_LINK } from '@/components/common/CTAButtons';
 
 export default function CTASection() {
   return (
@@ -28,7 +28,7 @@ export default function CTASection() {
             Stop paying people to do what a system can.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-warmgrey">
-            Start with a free audit. We'll show you exactly where automation pays off — no
+            Start with a free audit. We'll show you exactly where automation pays off. No
             commitment, no fluff.
           </p>
           <div className="mt-9 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
@@ -40,15 +40,6 @@ export default function CTASection() {
             >
               <Calendar className="h-4 w-4" />
               Free Audit
-            </a>
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-md border border-divider bg-ink/5 px-6 text-sm font-medium text-ink transition-colors hover:border-gold/60 hover:bg-ink/5"
-            >
-              <MessageCircle className="h-4 w-4" />
-              Chat on WhatsApp
             </a>
             <Link
               to="/contact"

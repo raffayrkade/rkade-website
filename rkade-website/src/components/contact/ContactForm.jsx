@@ -110,7 +110,7 @@ export default function ContactForm() {
 
       {status === 'error' && (
         <p className="text-sm text-red-400">
-          Something went wrong sending that — try again, or email us directly at hello@rkade.co.
+          Something went wrong sending that. Try again, or email us directly at hello@rkade.co.
         </p>
       )}
 
