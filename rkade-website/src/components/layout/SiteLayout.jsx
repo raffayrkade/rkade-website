@@ -44,7 +44,7 @@ export default function SiteLayout() {
               to="/contact"
               className="inline-flex min-h-[44px] items-center rounded-md bg-gold px-5 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5"
             >
-              Book a Free Audit
+              Free Audit
             </Link>
           </div>
 
@@ -75,7 +75,7 @@ export default function SiteLayout() {
                 className="inline-flex min-h-[44px] items-center justify-center rounded-md bg-gold px-5 text-sm font-medium text-ink"
                 onClick={() => setMenuOpen(false)}
               >
-                Book a Free Audit
+                Free Audit
               </Link>
             </div>
           </div>
