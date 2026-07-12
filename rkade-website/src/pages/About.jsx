@@ -11,12 +11,12 @@ const founders = [
   {
     icon: Terminal,
     role: 'Raffay Ali',
-    text: 'Hands-on automation experience — the one who actually designs and ships the systems. Lives in the tools, the APIs, and the edge cases, and has built working automation before selling it to anyone.',
+    text: 'Hands-on automation experience: the one who actually designs and ships the systems. Lives in the tools, the APIs, and the edge cases, and has built working automation before selling it to anyone.',
   },
   {
     icon: Handshake,
     role: 'Kushan Naresh',
-    text: 'Deal and operations experience — the one who understands how businesses run, where the money leaks, and how to turn a messy process into something worth automating. Translates business problems into systems.',
+    text: 'Deal and operations experience: the one who understands how businesses run, where the money leaks, and how to turn a messy process into something worth automating. Translates business problems into systems.',
   },
 ];
 
@@ -26,7 +26,7 @@ export default function About() {
       <PageHeader
         label="About"
         title="Operators building for operators."
-        description="RKADE is built by two founders with complementary backgrounds — one who builds the systems, one who understands the business they serve."
+        description="RKADE is built by two founders with complementary backgrounds: one who builds the systems, one who understands the business they serve."
       />
 
       <section className="bg-cream py-24 md:py-28">
@@ -61,13 +61,13 @@ export default function About() {
             <Reveal delay={0.1}>
               <div className="mt-6 space-y-4 text-base leading-relaxed text-warmgrey">
                 <p>
-                  RKADE comes from <span className="text-ink">arcade</span> — and arcade comes
+                  RKADE comes from <span className="text-ink">arcade</span>, and arcade comes
                   from the Latin for <span className="text-ink">arch</span>: a structure that
                   holds up a passageway.
                 </p>
                 <p>
                   That's how we see automation. Not a gimmick bolted on top, but structural
-                  infrastructure — the arches that carry the weight of your business so your team
+                  infrastructure: the arches that carry the weight of your business so your team
                   can move through it faster.
                 </p>
                 <p className="border-l-2 border-gold pl-5 text-ink">

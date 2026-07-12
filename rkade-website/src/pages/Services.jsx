@@ -45,11 +45,11 @@ const tiers = [
 ];
 
 const faqs = [
-  { q: 'Do I have to start with the Audit?', a: "It's the fastest way to know where the leverage is — but if you already know what you want built, we can start there." },
+  { q: 'Do I have to start with the Audit?', a: "It's the fastest way to know where the leverage is, but if you already know what you want built, we can start there." },
   { q: 'How long does a build take?', a: 'It depends on scope. Most first systems ship in weeks, not months. The audit gives you a clear timeline before anything is committed.' },
   { q: 'Which tools do you work with?', a: 'We build around your existing stack rather than forcing a new one. If it has an API or an interface, we can usually automate it.' },
   { q: 'What happens after a system is built?', a: 'You can run it yourself, or move to Managed and let us monitor and improve it so it keeps earning its keep.' },
-  { q: 'Is this a fit for a small team?', a: "Yes. Smaller teams often get the most out of automation — it's the difference between hiring and simply getting more done." },
+  { q: 'Is this a fit for a small team?', a: "Yes. Smaller teams often get the most out of automation. It's the difference between hiring and simply getting more done." },
 ];
 
 export default function Services() {

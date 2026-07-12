@@ -9,19 +9,19 @@ const tiers = [
     icon: ScanSearch,
     tag: 'Tier 1',
     name: 'Audit',
-    text: 'A focused assessment of where automation saves the most time and money — delivered as a concrete report with prioritized recommendations you can act on immediately.',
+    text: 'A focused assessment of where automation saves the most time and money, delivered as a concrete report with prioritized recommendations you can act on immediately.',
   },
   {
     icon: Hammer,
     tag: 'Tier 2',
     name: 'Build',
-    text: 'Custom AI and automation systems built and shipped for your specific workflow — outreach engines, data pipelines, internal tools. Designed around how you actually operate.',
+    text: 'Custom AI and automation systems built and shipped for your specific workflow: outreach engines, data pipelines, internal tools. Designed around how you actually operate.',
   },
   {
     icon: InfinityIcon,
     tag: 'Tier 3',
     name: 'Managed',
-    text: 'Ongoing management, monitoring, and iteration of the systems we build — so they keep working, keep improving, and you never have to touch the technical side.',
+    text: 'Ongoing management, monitoring, and iteration of the systems we build, so they keep working, keep improving, and you never have to touch the technical side.',
   },
 ];
 
@@ -33,7 +33,7 @@ export default function ServiceTiers() {
           <SectionHeading
             label="What We Do"
             title="Three tiers. One progression."
-            description="Start with a map. Build the systems. Keep them running. Take what you need — or the whole path."
+            description="Start with a map. Build the systems. Keep them running. Take what you need, or the whole path."
           />
         </Reveal>
         <div className="mt-4">

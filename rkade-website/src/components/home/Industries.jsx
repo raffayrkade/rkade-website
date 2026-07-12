@@ -27,7 +27,7 @@ export default function Industries() {
           <SectionHeading
             label="Industries We Work With"
             title="Different businesses. Same manual work."
-            description="Automation isn't vertical-specific. If your team runs repetitive processes, there's leverage to build — wherever you operate."
+            description="Automation isn't vertical-specific. If your team runs repetitive processes, there's leverage to build, wherever you operate."
           />
         </Reveal>
         <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-divider bg-divider sm:grid-cols-3">

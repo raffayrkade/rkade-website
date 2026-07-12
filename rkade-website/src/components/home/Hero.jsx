@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, MessageCircle, ArrowRight } from 'lucide-react';
-import { WHATSAPP_LINK, CALENDAR_LINK } from '@/components/common/CTAButtons';
+import { Calendar, ArrowRight } from 'lucide-react';
+import { CALENDAR_LINK } from '@/components/common/CTAButtons';
 
 export default function Hero() {
   return (
@@ -18,7 +18,7 @@ export default function Hero() {
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-warmgrey">
             Custom automations that make your team faster, cut the manual work, and let you get
-            more done with fewer people. Free up time and headcount — put it toward what actually
+            more done with fewer people. Free up time and headcount. Put it toward what actually
             grows the business.
           </p>
           <div className="mt-9 flex flex-col flex-wrap justify-start gap-3 sm:flex-row">
@@ -30,15 +30,6 @@ export default function Hero() {
             >
               <Calendar className="h-4 w-4" />
               Free Audit
-            </a>
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-md border border-divider bg-ink/5 px-6 text-sm font-medium text-ink transition-colors hover:border-gold/60 hover:bg-ink/5"
-            >
-              <MessageCircle className="h-4 w-4" />
-              Chat on WhatsApp
             </a>
             <Link
               to="/contact"
