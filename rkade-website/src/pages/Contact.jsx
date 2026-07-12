@@ -58,7 +58,7 @@ export default function Contact() {
                   <Calendar className="h-5 w-5 text-gold" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-ink">Book a Free Audit</h3>
+                  <h3 className="font-heading text-lg font-semibold text-ink">Free Audit</h3>
                   <p className="mt-1 text-sm text-warmgrey">Grab a slot and we'll map where automation pays off for you.</p>
                   <p className="mt-2 text-xs text-warmgrey">Pick a time that works for you — 30 minutes, no pitch.</p>
                 </div>

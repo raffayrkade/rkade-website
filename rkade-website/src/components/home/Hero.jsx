@@ -29,7 +29,7 @@ export default function Hero() {
               className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-md bg-gold px-6 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5"
             >
               <Calendar className="h-4 w-4" />
-              Book a Free Audit
+              Free Audit
             </a>
             <a
               href={WHATSAPP_LINK}
