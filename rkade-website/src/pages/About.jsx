@@ -10,13 +10,13 @@ const VAULT_IMG = 'https://media.base44.com/images/public/6a51e4127f3378ab464394
 const founders = [
   {
     icon: Terminal,
-    role: 'Raffay Ali',
-    text: 'Hands-on automation experience: the one who actually designs and ships the systems. Lives in the tools, the APIs, and the edge cases, and has built working automation before selling it to anyone.',
+    role: 'Automation background',
+    text: 'Leans into the build side: lives in the tools, the APIs, and the edge cases, and turns a scoped process into a working system.',
   },
   {
     icon: Handshake,
-    role: 'Kushan Naresh',
-    text: 'Deal and operations experience: the one who understands how businesses run, where the money leaks, and how to turn a messy process into something worth automating. Translates business problems into systems.',
+    role: 'Operations background',
+    text: 'Background in deals and operations: sourcing and closing acquisitions, standardizing diligence process at a private equity firm. Leans into client conversations and scoping, turning a messy process into something worth automating.',
   },
 ];
 
@@ -31,6 +31,12 @@ export default function About() {
 
       <section className="bg-cream py-24 md:py-28">
         <div className="mx-auto max-w-[1400px] px-[6vw] md:px-[8vw]">
+          <Reveal>
+            <p className="mb-10 max-w-2xl text-base leading-relaxed text-warmgrey md:mb-12">
+              We both build. We both sit with clients. These are where we naturally spend more of
+              our time.
+            </p>
+          </Reveal>
           <div className="grid gap-px overflow-hidden rounded-xl border border-divider bg-divider md:grid-cols-2">
             {founders.map((f, i) => (
               <Reveal key={f.role} delay={i * 0.1}>
