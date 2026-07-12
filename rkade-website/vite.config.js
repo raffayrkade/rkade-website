@@ -9,4 +9,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  ssgOptions: {
+    includedRoutes: async () => ['/', '/services', '/about', '/contact'],
+  },
 })
