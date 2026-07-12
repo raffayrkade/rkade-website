@@ -28,7 +28,7 @@ const problems = [
 
 export default function Problem() {
   return (
-    <section className="border-t border-white/10 bg-graphite py-24 md:py-28">
+    <section className="border-t border-divider bg-cream py-24 md:py-28">
       <div className="mx-auto max-w-[1400px] px-[6vw] md:px-[8vw]">
         <Reveal>
           <SectionHeading
@@ -37,13 +37,13 @@ export default function Problem() {
             description="Most businesses don't have a talent problem. They have a leverage problem — smart people doing work a system should be doing."
           />
         </Reveal>
-        <div className="mt-14 grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-px overflow-hidden rounded-xl border border-divider bg-divider sm:grid-cols-2 lg:grid-cols-4">
           {problems.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.05}>
-              <div className="h-full bg-graphite p-8 transition-colors hover:bg-graphite-elevated">
-                <p.icon className="h-6 w-6 text-cobalt" />
-                <h3 className="mt-5 font-heading text-lg font-semibold text-white">{p.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-cool-gray">{p.text}</p>
+              <div className="h-full bg-cream p-8 transition-colors hover:bg-cream-elevated">
+                <p.icon className="h-6 w-6 text-gold" />
+                <h3 className="mt-5 font-heading text-lg font-semibold text-ink">{p.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-warmgrey">{p.text}</p>
               </div>
             </Reveal>
           ))}

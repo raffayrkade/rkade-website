@@ -11,7 +11,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="border-t border-white/10 bg-graphite py-24 md:py-28">
+    <section id="how-it-works" className="border-t border-divider bg-cream py-24 md:py-28">
       <div className="mx-auto max-w-[1400px] px-[6vw] md:px-[8vw]">
         <Reveal>
           <SectionHeading
@@ -21,16 +21,16 @@ export default function HowItWorks() {
           />
         </Reveal>
         <div className="relative mt-16">
-          <div className="absolute left-0 right-0 top-6 hidden h-px bg-white/10 md:block"></div>
+          <div className="absolute left-0 right-0 top-6 hidden h-px bg-divider md:block"></div>
           <div className="grid gap-10 md:grid-cols-4">
             {steps.map((s, i) => (
               <Reveal key={s.n} delay={i * 0.05}>
                 <div className="relative">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-cobalt/40 bg-graphite font-heading text-sm font-bold text-cobalt">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-cream font-heading text-sm font-bold text-gold">
                     {s.n}
                   </div>
-                  <h3 className="mt-6 font-heading text-xl font-bold text-white">{s.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-cool-gray">{s.text}</p>
+                  <h3 className="mt-6 font-heading text-xl font-bold text-ink">{s.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-warmgrey">{s.text}</p>
                 </div>
               </Reveal>
             ))}

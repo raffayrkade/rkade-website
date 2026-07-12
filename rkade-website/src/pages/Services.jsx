@@ -61,24 +61,24 @@ export default function Services() {
         description="Three tiers that stack into one system. Take what you need, or the whole path from assessment to fully managed automation."
       />
 
-      <section className="bg-graphite py-24 md:py-28">
-        <div className="mx-auto max-w-[1400px] space-y-px overflow-hidden rounded-xl border border-white/10 bg-white/10 px-0 md:mx-[8vw]">
+      <section className="bg-cream py-24 md:py-28">
+        <div className="mx-auto max-w-[1400px] space-y-px overflow-hidden rounded-xl border border-divider bg-divider px-0 md:mx-[8vw]">
           {tiers.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.05}>
-              <div className="grid gap-8 bg-graphite p-9 md:grid-cols-3 md:p-12">
+              <div className="grid gap-8 bg-cream p-9 md:grid-cols-3 md:p-12">
                 <div>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-md border border-cobalt/30 bg-cobalt/5">
-                    <t.icon className="h-6 w-6 text-cobalt" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-md border border-gold/30 bg-gold/10">
+                    <t.icon className="h-6 w-6 text-gold" />
                   </div>
-                  <p className="mt-6 text-xs font-medium uppercase tracking-[0.2em] text-cobalt">{t.tag}</p>
-                  <h2 className="mt-2 font-heading text-3xl font-bold text-white">{t.name}</h2>
+                  <p className="mt-6 text-xs font-medium uppercase tracking-[0.2em] text-gold">{t.tag}</p>
+                  <h2 className="mt-2 font-heading text-3xl font-bold text-ink">{t.name}</h2>
                 </div>
                 <div className="md:col-span-2">
-                  <p className="text-lg leading-relaxed text-white/90">{t.text}</p>
+                  <p className="text-lg leading-relaxed text-ink">{t.text}</p>
                   <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                     {t.deliverables.map((d) => (
-                      <li key={d} className="flex items-start gap-3 text-sm text-cool-gray">
-                        <Check className="mt-0.5 h-4 w-4 flex-none text-cobalt" />
+                      <li key={d} className="flex items-start gap-3 text-sm text-warmgrey">
+                        <Check className="mt-0.5 h-4 w-4 flex-none text-gold" />
                         {d}
                       </li>
                     ))}
@@ -90,17 +90,17 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="border-t border-white/10 bg-graphite py-24 md:py-28">
+      <section className="border-t border-divider bg-cream py-24 md:py-28">
         <div className="mx-auto max-w-[1400px] px-[6vw] md:px-[8vw]">
           <Reveal>
             <SectionHeading label="FAQ" title="How engagements work." />
           </Reveal>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 md:grid-cols-2">
+          <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-divider bg-divider md:grid-cols-2">
             {faqs.map((f, i) => (
               <Reveal key={f.q} delay={i * 0.05}>
-                <div className="h-full bg-graphite p-8">
-                  <h3 className="font-heading text-lg font-semibold text-white">{f.q}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-cool-gray">{f.a}</p>
+                <div className="h-full bg-cream p-8">
+                  <h3 className="font-heading text-lg font-semibold text-ink">{f.q}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-warmgrey">{f.a}</p>
                 </div>
               </Reveal>
             ))}

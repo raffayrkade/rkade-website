@@ -27,7 +27,7 @@ const tiers = [
 
 export default function ServiceTiers() {
   return (
-    <section id="services" className="border-t border-white/10 bg-graphite py-24 md:py-28">
+    <section id="services" className="border-t border-divider bg-cream py-24 md:py-28">
       <div className="mx-auto max-w-[1400px] px-[6vw] md:px-[8vw]">
         <Reveal>
           <SectionHeading
@@ -37,23 +37,23 @@ export default function ServiceTiers() {
           />
         </Reveal>
         <div className="mt-4">
-          <Link to="/services" className="text-sm font-medium text-cobalt hover:underline">
+          <Link to="/services" className="text-sm font-medium text-gold hover:underline">
             Full services breakdown →
           </Link>
         </div>
-        <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 md:grid-cols-3">
+        <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-divider bg-divider md:grid-cols-3">
           {tiers.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.05}>
-              <div className="group relative h-full overflow-hidden bg-graphite p-9 transition-colors hover:bg-graphite-elevated">
+              <div className="group relative h-full overflow-hidden bg-cream p-9 transition-colors hover:bg-cream-elevated">
                 <div className="flex items-center justify-between">
-                  <t.icon className="h-7 w-7 text-cobalt" />
-                  <span className="font-heading text-4xl font-bold text-white/[0.06]">
+                  <t.icon className="h-7 w-7 text-gold" />
+                  <span className="font-heading text-4xl font-bold text-ink/10">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
-                <p className="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-cobalt">{t.tag}</p>
-                <h3 className="mt-2 font-heading text-2xl font-bold text-white">{t.name}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-cool-gray">{t.text}</p>
+                <p className="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-gold">{t.tag}</p>
+                <h3 className="mt-2 font-heading text-2xl font-bold text-ink">{t.name}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-warmgrey">{t.text}</p>
               </div>
             </Reveal>
           ))}

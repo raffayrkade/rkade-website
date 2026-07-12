@@ -15,15 +15,15 @@ html {
 }
 
 body {
-  background-color: #0A0A0F;
-  color: #ffffff;
+  background-color: #F5F0E8;
+  color: #2C2218;
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: #1E5EFF;
-  color: #fff;
+  background: #C9A84C;
+  color: #2C2218;
 }
 
 .font-heading { font-family: var(--font-heading); }

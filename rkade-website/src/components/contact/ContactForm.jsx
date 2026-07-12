@@ -37,9 +37,9 @@ export default function ContactForm() {
 
   if (status === 'sent') {
     return (
-      <div className="rounded-xl border border-cobalt/30 bg-cobalt/5 p-7">
-        <h3 className="font-heading text-lg font-semibold text-white">Message sent.</h3>
-        <p className="mt-2 text-sm text-cool-gray">
+      <div className="rounded-xl border border-gold/30 bg-gold/10 p-7">
+        <h3 className="font-heading text-lg font-semibold text-ink">Message sent.</h3>
+        <p className="mt-2 text-sm text-warmgrey">
           We'll get back to you shortly. Talk soon.
         </p>
       </div>
@@ -49,8 +49,8 @@ export default function ContactForm() {
   return (
     <form className="space-y-7" onSubmit={handleSubmit}>
       <div className="relative">
-        <label htmlFor="name" className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-cool-gray">
-          Name <span className="text-cobalt">*</span>
+        <label htmlFor="name" className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-warmgrey">
+          Name <span className="text-gold">*</span>
         </label>
         <input
           id="name"
@@ -59,13 +59,13 @@ export default function ContactForm() {
           required
           value={values.name}
           onChange={handleChange}
-          className="w-full border-0 border-b border-white/15 bg-transparent pb-3 text-base text-white outline-none transition-colors placeholder:text-white/25 focus:border-cobalt"
+          className="w-full border-0 border-b border-divider bg-transparent pb-3 text-base text-ink outline-none transition-colors placeholder:text-warmgrey/70 focus:border-gold"
           placeholder="Your name"
         />
       </div>
       <div className="relative">
-        <label htmlFor="email" className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-cool-gray">
-          Email <span className="text-cobalt">*</span>
+        <label htmlFor="email" className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-warmgrey">
+          Email <span className="text-gold">*</span>
         </label>
         <input
           id="email"
@@ -74,12 +74,12 @@ export default function ContactForm() {
           required
           value={values.email}
           onChange={handleChange}
-          className="w-full border-0 border-b border-white/15 bg-transparent pb-3 text-base text-white outline-none transition-colors placeholder:text-white/25 focus:border-cobalt"
+          className="w-full border-0 border-b border-divider bg-transparent pb-3 text-base text-ink outline-none transition-colors placeholder:text-warmgrey/70 focus:border-gold"
           placeholder="Your email"
         />
       </div>
       <div className="relative">
-        <label htmlFor="company" className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-cool-gray">
+        <label htmlFor="company" className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-warmgrey">
           Company
         </label>
         <input
@@ -88,13 +88,13 @@ export default function ContactForm() {
           type="text"
           value={values.company}
           onChange={handleChange}
-          className="w-full border-0 border-b border-white/15 bg-transparent pb-3 text-base text-white outline-none transition-colors placeholder:text-white/25 focus:border-cobalt"
+          className="w-full border-0 border-b border-divider bg-transparent pb-3 text-base text-ink outline-none transition-colors placeholder:text-warmgrey/70 focus:border-gold"
           placeholder="Your company"
         />
       </div>
       <div>
-        <label htmlFor="message" className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-cool-gray">
-          What do you want to automate? <span className="text-cobalt">*</span>
+        <label htmlFor="message" className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-warmgrey">
+          What do you want to automate? <span className="text-gold">*</span>
         </label>
         <textarea
           id="message"
@@ -103,7 +103,7 @@ export default function ContactForm() {
           rows={4}
           value={values.message}
           onChange={handleChange}
-          className="w-full resize-none border-0 border-b border-white/15 bg-transparent pb-3 text-base text-white outline-none transition-colors placeholder:text-white/25 focus:border-cobalt"
+          className="w-full resize-none border-0 border-b border-divider bg-transparent pb-3 text-base text-ink outline-none transition-colors placeholder:text-warmgrey/70 focus:border-gold"
           placeholder="Tell us where the manual work is piling up."
         />
       </div>
@@ -117,7 +117,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-md bg-cobalt px-6 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60 sm:w-auto"
+        className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-md bg-gold px-6 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5 disabled:opacity-60 sm:w-auto"
       >
         {status === 'sending' ? 'Sending...' : 'Send message'}
       </button>

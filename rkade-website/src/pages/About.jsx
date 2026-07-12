@@ -29,17 +29,17 @@ export default function About() {
         description="RKADE is built by two founders with complementary backgrounds — one who builds the systems, one who understands the business they serve."
       />
 
-      <section className="bg-graphite py-24 md:py-28">
+      <section className="bg-cream py-24 md:py-28">
         <div className="mx-auto max-w-[1400px] px-[6vw] md:px-[8vw]">
-          <div className="grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 md:grid-cols-2">
+          <div className="grid gap-px overflow-hidden rounded-xl border border-divider bg-divider md:grid-cols-2">
             {founders.map((f, i) => (
               <Reveal key={f.role} delay={i * 0.1}>
-                <div className="h-full bg-graphite p-10">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-md border border-cobalt/30 bg-cobalt/5">
-                    <f.icon className="h-6 w-6 text-cobalt" />
+                <div className="h-full bg-cream p-10">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-md border border-gold/30 bg-gold/10">
+                    <f.icon className="h-6 w-6 text-gold" />
                   </div>
-                  <h3 className="mt-6 font-heading text-2xl font-bold text-white">{f.role}</h3>
-                  <p className="mt-4 text-base leading-relaxed text-cool-gray">{f.text}</p>
+                  <h3 className="mt-6 font-heading text-2xl font-bold text-ink">{f.role}</h3>
+                  <p className="mt-4 text-base leading-relaxed text-warmgrey">{f.text}</p>
                 </div>
               </Reveal>
             ))}
@@ -47,10 +47,10 @@ export default function About() {
         </div>
       </section>
 
-      <section className="border-t border-white/10 bg-graphite py-24 md:py-28">
+      <section className="border-t border-divider bg-cream py-24 md:py-28">
         <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-[6vw] md:grid-cols-2 md:px-[8vw]">
           <Reveal>
-            <div className="overflow-hidden rounded-2xl border border-white/10">
+            <div className="overflow-hidden rounded-2xl border border-divider">
               <img src={VAULT_IMG} alt="Abstract vaulted ceiling with repeating arches" className="h-full w-full object-cover" />
             </div>
           </Reveal>
@@ -59,10 +59,10 @@ export default function About() {
               <SectionHeading label="The Name" title="Why RKADE." />
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="mt-6 space-y-4 text-base leading-relaxed text-cool-gray">
+              <div className="mt-6 space-y-4 text-base leading-relaxed text-warmgrey">
                 <p>
-                  RKADE comes from <span className="text-white">arcade</span> — and arcade comes
-                  from the Latin for <span className="text-white">arch</span>: a structure that
+                  RKADE comes from <span className="text-ink">arcade</span> — and arcade comes
+                  from the Latin for <span className="text-ink">arch</span>: a structure that
                   holds up a passageway.
                 </p>
                 <p>
@@ -70,7 +70,7 @@ export default function About() {
                   infrastructure — the arches that carry the weight of your business so your team
                   can move through it faster.
                 </p>
-                <p className="border-l-2 border-cobalt pl-5 text-white">
+                <p className="border-l-2 border-gold pl-5 text-ink">
                   Our mission: build the systems that let good businesses grow on output, not
                   headcount.
                 </p>

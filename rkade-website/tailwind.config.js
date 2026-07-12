@@ -5,10 +5,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        graphite: '#0A0A0F',
-        'graphite-elevated': '#14141A',
-        cobalt: '#1E5EFF',
-        'cool-gray': '#8A8A93',
+        cream: '#F5F0E8',
+        'cream-elevated': '#EDE4D3',
+        ink: '#2C2218',
+        gold: '#C9A84C',
+        warmgrey: '#8A7060',
+        divider: '#D4C5A9',
+        offcream: '#C4B5A0',
       },
       fontFamily: {
         heading: ['var(--font-heading)'],

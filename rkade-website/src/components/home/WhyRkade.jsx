@@ -24,10 +24,10 @@ const points = [
 
 export default function WhyRkade() {
   return (
-    <section className="border-t border-white/10 bg-graphite py-24 md:py-28">
+    <section className="border-t border-divider bg-cream py-24 md:py-28">
       <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-[6vw] md:grid-cols-2 md:px-[8vw]">
         <Reveal>
-          <div className="overflow-hidden rounded-2xl border border-white/10">
+          <div className="overflow-hidden rounded-2xl border border-divider">
             <img
               src="https://media.base44.com/images/public/6a51e4127f3378ab46439447/15dc1ba51_generated_345bc685.png"
               alt="Abstract data nodes connecting in a grid"
@@ -47,12 +47,12 @@ export default function WhyRkade() {
             {points.map((p, i) => (
               <Reveal key={p.title} delay={i * 0.05}>
                 <div className="flex gap-4">
-                  <div className="flex h-11 w-11 flex-none items-center justify-center rounded-md border border-cobalt/30 bg-cobalt/5">
-                    <p.icon className="h-5 w-5 text-cobalt" />
+                  <div className="flex h-11 w-11 flex-none items-center justify-center rounded-md border border-gold/30 bg-gold/10">
+                    <p.icon className="h-5 w-5 text-gold" />
                   </div>
                   <div>
-                    <h3 className="font-heading text-base font-semibold text-white">{p.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-cool-gray">{p.text}</p>
+                    <h3 className="font-heading text-base font-semibold text-ink">{p.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-warmgrey">{p.text}</p>
                   </div>
                 </div>
               </Reveal>
@@ -62,7 +62,7 @@ export default function WhyRkade() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 to="/about"
-                className="inline-flex min-h-[44px] items-center justify-center rounded-md border border-white/15 px-6 text-sm font-medium text-white/80 transition-colors hover:text-white hover:border-white/40"
+                className="inline-flex min-h-[44px] items-center justify-center rounded-md border border-divider px-6 text-sm font-medium text-ink/80 transition-colors hover:text-ink hover:border-offcream"
               >
                 Meet the founders
               </Link>
