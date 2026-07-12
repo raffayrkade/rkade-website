@@ -10,12 +10,12 @@ const VAULT_IMG = 'https://media.base44.com/images/public/6a51e4127f3378ab464394
 const founders = [
   {
     icon: Terminal,
-    role: 'Raffay Ali',
+    role: 'The Builder',
     text: 'Hands-on automation experience — the one who actually designs and ships the systems. Lives in the tools, the APIs, and the edge cases, and has built working automation before selling it to anyone.',
   },
   {
     icon: Handshake,
-    role: 'Kushan Naresh',
+    role: 'The Operator',
     text: 'Deal and operations experience — the one who understands how businesses run, where the money leaks, and how to turn a messy process into something worth automating. Translates business problems into systems.',
   },
 ];

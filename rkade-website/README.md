@@ -1,6 +1,6 @@
 # RKADE Website
 
-Standalone React + Vite site for RKADE, exported from Base44 and rebuilt for free hosting on Netlify.
+Standalone React + Vite site for RKADE, exported from Base44 and rebuilt for free hosting on Vercel.
 
 ## Before deploying
 
@@ -20,6 +20,6 @@ npm run dev
 ## Deploy (free)
 
 1. Push this repo to GitHub.
-2. Go to app.netlify.com, sign in with GitHub, "Add new site" → "Import an existing project," select this repo, deploy.
-3. In Netlify site settings → Domain management, add `rkade.co` and follow the DNS
+2. Go to vercel.com, sign in with GitHub, "Add New Project," select this repo, deploy.
+3. In Vercel project settings → Domains, add `rkade.co` and follow the DNS
    instructions it gives you (add those records in GoDaddy's DNS management).
