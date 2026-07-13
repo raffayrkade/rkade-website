@@ -3,6 +3,7 @@ import { Terminal, Handshake } from 'lucide-react';
 import PageHeader from '@/components/common/PageHeader';
 import Reveal from '@/components/common/Reveal';
 import SectionHeading from '@/components/common/SectionHeading';
+import Parallax from '@/components/common/Parallax';
 import CTASection from '@/components/home/CTASection';
 
 const VAULT_IMG = 'https://media.base44.com/images/public/6a51e4127f3378ab46439447/3a092b520_generated_7262eee4.png';
@@ -56,9 +57,9 @@ export default function About() {
       <section className="border-t border-divider bg-cream py-24 md:py-28">
         <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-[6vw] md:grid-cols-2 md:px-[8vw]">
           <Reveal>
-            <div className="overflow-hidden rounded-2xl border border-divider">
+            <Parallax speed={0.12} className="overflow-hidden rounded-2xl border border-divider">
               <img src={VAULT_IMG} alt="Abstract vaulted ceiling with repeating arches" className="h-full w-full object-cover" />
-            </div>
+            </Parallax>
           </Reveal>
           <div>
             <Reveal>

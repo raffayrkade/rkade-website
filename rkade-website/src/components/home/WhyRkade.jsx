@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Wrench, Boxes, ChartLine } from 'lucide-react';
 import Reveal from '@/components/common/Reveal';
 import SectionHeading from '@/components/common/SectionHeading';
+import Parallax from '@/components/common/Parallax';
 
 const points = [
   {
@@ -27,13 +28,13 @@ export default function WhyRkade() {
     <section className="border-t border-divider bg-cream py-24 md:py-28">
       <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-[6vw] md:grid-cols-2 md:px-[8vw]">
         <Reveal>
-          <div className="overflow-hidden rounded-2xl border border-divider">
+          <Parallax speed={0.12} className="overflow-hidden rounded-2xl border border-divider">
             <img
               src="https://media.base44.com/images/public/6a51e4127f3378ab46439447/15dc1ba51_generated_345bc685.png"
               alt="Abstract data nodes connecting in a grid"
               className="h-full w-full object-cover"
             />
-          </div>
+          </Parallax>
         </Reveal>
         <div>
           <Reveal>

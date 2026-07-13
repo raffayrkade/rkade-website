@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import Reveal from '@/components/common/Reveal';
 import SectionHeading from '@/components/common/SectionHeading';
+import Marquee from '@/components/common/Marquee';
 
 const industries = [
   { icon: ShoppingCart, label: 'Ecommerce' },
@@ -30,17 +31,22 @@ export default function Industries() {
             description="Automation isn't vertical-specific. If your team runs repetitive processes, there's leverage to build, wherever you operate."
           />
         </Reveal>
-        <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-divider bg-divider sm:grid-cols-3">
-          {industries.map((ind, i) => (
-            <Reveal key={ind.label} delay={i * 0.03}>
-              <div className="flex h-full items-center gap-4 bg-cream p-7 transition-colors hover:bg-cream-elevated">
-                <ind.icon className="h-6 w-6 flex-none text-gold" />
-                <span className="font-heading text-base font-medium text-ink">{ind.label}</span>
-              </div>
-            </Reveal>
-          ))}
-        </div>
       </div>
+      <Reveal delay={0.1}>
+        <div className="mt-14 border-y border-divider py-8">
+          <Marquee durationSeconds={26}>
+            {industries.map((ind) => (
+              <div key={ind.label} className="flex flex-none items-center gap-3 px-8">
+                <ind.icon className="h-5 w-5 flex-none text-gold" />
+                <span className="whitespace-nowrap font-heading text-lg font-medium text-ink">
+                  {ind.label}
+                </span>
+                <span className="ml-8 h-1.5 w-1.5 flex-none rounded-full bg-divider" />
+              </div>
+            ))}
+          </Marquee>
+        </div>
+      </Reveal>
     </section>
   );
 }
