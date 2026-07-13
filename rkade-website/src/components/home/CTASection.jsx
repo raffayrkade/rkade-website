@@ -8,23 +8,25 @@ import { CALENDAR_LINK } from '@/components/common/CTAButtons';
 export default function CTASection() {
   return (
     <section className="relative overflow-hidden border-t border-divider bg-cream py-28 md:py-32">
-      <Parallax speed={0.1} className="pointer-events-none absolute -top-px left-1/2 h-40 w-[900px] max-w-full -translate-x-1/2">
-        <svg
-          className="h-full w-full"
-          viewBox="0 0 400 200"
-          fill="none"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M0 200 L0 120 Q0 0 200 0 Q400 0 400 120 L400 200"
-            stroke="#C9A84C"
-            strokeOpacity="0.3"
-            strokeWidth="1.2"
-            vectorEffect="non-scaling-stroke"
-          />
-        </svg>
-      </Parallax>
+      <div className="pointer-events-none absolute -top-px left-1/2 h-40 w-[900px] max-w-full -translate-x-1/2">
+        <Parallax speed={0.1} className="h-full w-full">
+          <svg
+            className="h-full w-full"
+            viewBox="0 0 400 200"
+            fill="none"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M0 200 L0 120 Q0 0 200 0 Q400 0 400 120 L400 200"
+              stroke="#C9A84C"
+              strokeOpacity="0.3"
+              strokeWidth="1.2"
+              vectorEffect="non-scaling-stroke"
+            />
+          </svg>
+        </Parallax>
+      </div>
       <div className="mx-auto max-w-3xl px-[6vw] text-center md:px-[8vw]">
         <Reveal>
           <h2 className="font-heading text-3xl font-bold leading-tight text-ink sm:text-4xl md:text-5xl">

@@ -4,23 +4,25 @@ import Parallax from '@/components/common/Parallax';
 export default function PageHeader({ label, title, description }) {
   return (
     <section className="relative overflow-hidden border-b border-divider bg-cream pt-[72px]">
-      <Parallax speed={0.08} className="pointer-events-none absolute -bottom-px left-1/2 h-32 w-[800px] max-w-full -translate-x-1/2">
-        <svg
-          className="h-full w-full"
-          viewBox="0 0 400 200"
-          fill="none"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M0 200 L0 120 Q0 0 200 0 Q400 0 400 120 L400 200"
-            stroke="#C9A84C"
-            strokeOpacity="0.25"
-            strokeWidth="1.2"
-            vectorEffect="non-scaling-stroke"
-          />
-        </svg>
-      </Parallax>
+      <div className="pointer-events-none absolute -bottom-px left-1/2 h-32 w-[800px] max-w-full -translate-x-1/2">
+        <Parallax speed={0.08} className="h-full w-full">
+          <svg
+            className="h-full w-full"
+            viewBox="0 0 400 200"
+            fill="none"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M0 200 L0 120 Q0 0 200 0 Q400 0 400 120 L400 200"
+              stroke="#C9A84C"
+              strokeOpacity="0.25"
+              strokeWidth="1.2"
+              vectorEffect="non-scaling-stroke"
+            />
+          </svg>
+        </Parallax>
+      </div>
       <div className="mx-auto max-w-[1400px] px-[6vw] py-24 md:px-[8vw] md:py-28">
         <div className="max-w-3xl">
           <span className="mb-5 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-gold">
