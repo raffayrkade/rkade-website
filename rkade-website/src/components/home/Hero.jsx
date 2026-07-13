@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { CALENDAR_LINK } from '@/components/common/CTAButtons';
+import HeroArt from '@/components/home/HeroArt';
 
 export default function Hero() {
   return (
@@ -41,14 +42,7 @@ export default function Hero() {
           </div>
         </div>
         <div className="relative">
-          <div className="relative overflow-hidden rounded-2xl border border-divider">
-            <img
-              src="https://media.base44.com/images/public/6a51e4127f3378ab46439447/34c8df738_generated_97089f11.png"
-              alt="Structural arch of matte steel and glowing blue fibers"
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-cream/80 via-transparent to-transparent"></div>
-          </div>
+          <HeroArt />
         </div>
       </div>
     </section>

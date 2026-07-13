@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { Menu, X, Linkedin, Twitter, Github, Mail } from 'lucide-react';
 import { WHATSAPP_LINK, CALENDAR_LINK, CONTACT_EMAIL } from '@/components/common/CTAButtons';
+import ScrollProgress from '@/components/common/ScrollProgress';
 
 function Wordmark({ size = 'text-2xl' }) {
   return (
@@ -25,6 +26,7 @@ export default function SiteLayout() {
   return (
     <div className="min-h-screen bg-cream text-ink">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-divider bg-cream/70 backdrop-blur-xl transition-all duration-300">
+        <ScrollProgress />
         <nav className="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between px-[6vw] md:px-[8vw]">
           <Link to="/" className="flex items-center">
             <Wordmark />
