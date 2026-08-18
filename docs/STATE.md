@@ -9,38 +9,39 @@ Last updated: 18-08-2026
 ## Status
 
 ```
-Right now:     Phase 1 is BUILT AND VERIFIED LOCALLY, on a branch, not pushed.
+Right now:     Phases 1 and 2 are BUILT AND VERIFIED LOCALLY, on a branch,
+               not pushed.
                rkade.co still serves the OLD site. Nothing has been deployed.
 To see it:     cd rkade-website && npm run dev
 Local link:    http://localhost:5173
 Live link:     https://rkade.co  (Netlify, repo raffayrkade/rkade-website)
 Last deployed: 12-07-2026, commit 88da91d, arch parallax centering fix
-Since you last looked: Phase 1 landed. The site now uses the real brand
-               typefaces, the corrected token set, 2px corners and the brand
-               type roles. A contrast checker gates the build. The arch mark
-               is traced and waiting on sign-off. The dead duplicate folder is
-               retired. All four routes build, prerender and render correctly
-               at 390px and 1440px.
+Since you last looked: Phase 1 fixed the ground: real typefaces, corrected
+               tokens, 2px corners, a contrast checker gating the build. Phase
+               2 built the arch system every later phase assembles from, plus
+               a dev-only /kit route. No real page changed in phase 2, which
+               was the point. The arch mark is traced and waiting on sign-off.
 ```
 
 ## Progress
 
 ```
-PHASE    [###                 ]  Phase 1 of 7 done   (14%)
-TASKS    [###                 ]  15 of ~70 done
+PHASE    [######              ]  Phase 2 of 7 done   (29%)
+TASKS    [######              ]  25 of ~70 done
 ```
 
-Phase 1 took one session. That is one measured unit, so the estimate stays
-"not enough history yet" rather than being invented. `docs/history/timings.md`
-has the entry.
+Phases 1 and 2 each took one session. Two measured units is still well under
+the ten needed, so the estimate stays "not enough history yet" rather than
+being invented. `docs/history/timings.md` has both entries.
 
 ## Next up
 
 1. **Approve the arch mark.** Open `docs/brand/arch-mark-trace-comparison.png`.
    If it is right, say so and `Logo.jsx` flips `showMark` to true by default.
-2. Phase 2, the arch system. It only needed phase 1, so it can start now.
-3. Phase 1 is committed locally and **not pushed**. It goes to a branch, PR and
-   Netlify preview when you type `deploy`.
+2. Phase 3, the homepage. It needed phase 2, so it can start now. Phase 4 also
+   unblocked, and the two are independent of each other.
+3. Everything is committed locally and **not pushed**. It goes to a branch, PR
+   and Netlify preview when you type `deploy`.
 
 ## Blockers
 
@@ -69,6 +70,11 @@ Two things need Raffay, neither blocking:
   a 40.4 radius arc internally tangent at the apex. Full reasoning is in the
   SVG's own comment.
 - **Node and npm work.** The project `CLAUDE.md` no longer claims otherwise.
+- **There is a component kit now.** `/kit` in dev renders every arch and motion
+  primitive in both tones. It is the fastest way to see a change, and it is
+  where all three of phase 2's bugs were caught.
+- **`<Section>` owns tone.** No page picks a background by hand any more, and
+  two same-tone sections touching warns in dev.
 
 ## Known, deliberately left for phase 3
 

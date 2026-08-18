@@ -4,6 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { Menu, X, Linkedin, Instagram, Mail } from 'lucide-react';
 import { WHATSAPP_LINK, CALENDAR_LINK, CONTACT_EMAIL, INSTAGRAM_LINK, LINKEDIN_LINK } from '@/components/common/CTAButtons';
 import ScrollProgress from '@/components/common/ScrollProgress';
+import { HeaderToneProvider, useHeaderTone } from './HeaderTone';
 
 
 const navLinks = [
@@ -19,15 +20,30 @@ const socialLinks = [
 ].filter((link) => link.href !== 'PLACEHOLDER');
 
 export default function SiteLayout() {
+  // The provider has to sit above both the header and the page, because a page
+  // cannot hand context upward to its own parent.
+  return (
+    <HeaderToneProvider>
+      <SiteChrome />
+    </HeaderToneProvider>
+  );
+}
+
+function SiteChrome() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const header = useHeaderTone();
 
   return (
     <div className="min-h-screen bg-cream text-ink">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-line-strong bg-cream/70 backdrop-blur-xl transition-all duration-300">
+      <header
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+          menuOpen ? 'border-line-strong bg-cream' : header.surface
+        }`}
+      >
         <ScrollProgress />
         <nav className="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between px-[6vw] md:px-[8vw]">
           <Link to="/" className="flex items-center">
-            <Wordmark />
+            <Wordmark tone={menuOpen ? 'light' : header.wordmark} />
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
@@ -35,7 +51,7 @@ export default function SiteLayout() {
               <Link
                 key={l.label}
                 to={l.href}
-                className="text-sm font-medium text-muted transition-colors hover:text-ink"
+                className={`text-sm font-medium transition-colors ${menuOpen ? 'text-muted hover:text-ink' : header.link}`}
               >
                 {l.label}
               </Link>
@@ -51,7 +67,7 @@ export default function SiteLayout() {
           </div>
 
           <button
-            className="flex h-11 w-11 items-center justify-center text-ink md:hidden"
+            className={`flex h-11 w-11 items-center justify-center md:hidden ${menuOpen ? 'text-ink' : header.icon}`}
             aria-label="Toggle menu"
             onClick={() => setMenuOpen((v) => !v)}
           >

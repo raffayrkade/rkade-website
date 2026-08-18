@@ -60,7 +60,7 @@ Phase 1 ──┬── Phase 2 ──┬── Phase 3 ──┐
 | Phase | Status |
 |---|---|
 | 1 | **Done, uncommitted to `main`.** Built and verified locally 18-08-2026 |
-| 2 | Not started |
+| 2 | **Done, uncommitted to `main`.** Built and verified locally 18-08-2026 |
 | 3 | Not started |
 | 4 | Not started |
 | 5 | Not started |

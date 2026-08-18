@@ -207,6 +207,38 @@ All six open items closed the same day. These are his calls, not defaults.
   routes the brand guide explicitly allows on cream, so the accent survives
   while the contrast becomes legal.
 
+- **[18-08-2026] The system trio is `ArchTrio`, not a second `ArchMark`.**
+  `docs/plan/phase-02.md` asked for `src/components/arch/ArchMark.jsx`, but
+  `src/components/brand/ArchMark.jsx` already exists and holds the traced logo.
+  Two components with one name is an import footgun whose failure mode is an
+  unapproved mark appearing in the header. Renamed to `ArchTrio`. Reverse by
+  renaming the file and its two imports.
+
+- **[18-08-2026] The measured arch geometry supersedes the plan's numbers.**
+  Phase 2 quotes half-spans 98.5 / 65.75 / 33, gap 15.75, pitch 32.75. Pixel
+  sampling gives exactly 33 / 66 / 99, gap 16, pitch 33. The plan's figures
+  were a first pass with rounding error. `geometry.js` uses the measured ones
+  and says so.
+
+- **[18-08-2026] Arches are filled paths, drawn on by a mask.**
+  The plan called for `drawProgress` to drive `stroke-dasharray`. A tapered
+  arch changes width along its length, so it cannot be a stroke at all. Both
+  variants are filled, and `drawProgress` sweeps a mask along the centreline
+  with `pathLength="1"`. This works identically for tapered and untapered
+  arches, and needs no runtime path measurement.
+
+- **[18-08-2026] `Reveal` drops its clip path once it settles.**
+  A resting clip path, even at a 2px round, still creates a clipping context
+  and shifted antialiasing on images. That broke phase 2's rule that no real
+  page may change. `onAnimationComplete` now removes the clip entirely, so the
+  resting render is pixel-identical to phase 1.
+
+- **[18-08-2026] The nav restyle was reverted out of phase 2.**
+  Wiring the header tone also changed the cream bar from `/70` to `/80` and the
+  nav links to `text-button`. Both are arguably more correct, and both are
+  phase 3's call, not phase 2's. Reverted so the cream state is unchanged.
+  Only the new dark state is new.
+
 ## Open, needs Raffay
 
 Nothing is blocking. Two things to do when convenient:

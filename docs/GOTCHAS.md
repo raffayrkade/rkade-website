@@ -92,3 +92,32 @@ count before going hunting.
 slash into `C:/Program Files/Git/`, and the first route fails with "no
 prerendered file". Prefix with `MSYS_NO_PATHCONV=1` and quote the argument, or
 just run the script with no arguments and let it use its default list.
+
+## A bare `margin: '-60px'` on useInView insets all four sides
+
+framer-motion's `useInView` and `whileInView` pass `margin` straight through to
+IntersectionObserver's `rootMargin`, and a single value applies to **all four
+sides**. On a 390px viewport `-60px` shrinks the detection root to 270px wide.
+A narrow element sitting in the `6vw` gutter then never intersects it, and
+whatever it was meant to trigger never fires.
+
+This stranded a `<Counter>` at 0 permanently on mobile, while its wider
+siblings on the same row worked, which made it look like a race condition
+rather than geometry. Always write the vertical inset explicitly:
+
+```js
+useInView(ref, { once: true, margin: '-60px 0px' })
+```
+
+The same applies to `viewport={{ margin: ... }}` on `whileInView`.
+
+## Fast programmatic scrolling outruns IntersectionObserver
+
+Scripted `window.scrollTo` in 250px steps will skip reveal and counter triggers
+even when the components are correct, because the observer samples per frame
+and Lenis is easing the position underneath. This shows up as "the counter is
+broken" when it is not.
+
+To capture a screenshot, scroll each triggering element into view with
+`scrollIntoView({ block: 'center' })` and wait, rather than stepping past it.
+Confirm the real behaviour that way before changing any component.
