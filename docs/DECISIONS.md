@@ -261,14 +261,31 @@ All six open items closed the same day. These are his calls, not defaults.
   3 only required removing the homepage one. The About page's was removed in
   the same pass rather than leaving a known dependency behind for phase 5.
 
+- **[18-08-2026] The arch mark trace is APPROVED and shipping.** Raffay said
+  yes against `docs/brand/arch-mark-trace-comparison.png`. `Logo.jsx` now
+  defaults `showMark` to true, the header and footer carry the full lockup, and
+  the favicon is the mark rather than the RK letters, which is what the guide
+  calls the icon. The SVG was handed to `rkade-crm`, closing its open item O.1,
+  blocked since 16-08-2026. If a master AI file ever turns up it replaces the
+  trace, no questions.
+
+- **[18-08-2026] Two case-study numbers from the plan were dropped, not
+  softened.** The plan credited the lead platform with "six data providers";
+  its own STATE.md names four free-derivation providers and does not support
+  six. It also gave the storefront a phase count its folder does not confirm.
+  The rule is that an unverifiable number does not ship, including a flattering
+  one. Everything that did ship carries its source in a comment.
+
+- **[18-08-2026] Section tone is computed, not hardcoded, where a list drives
+  it.** The Work index alternates row tones, so its closing block derives its
+  tone from the row count. Adding a sixth study therefore cannot silently put
+  two cream sections next to each other. The same applies on a detail page when
+  a study has no stats band.
+
 ## Open, needs Raffay
 
 Nothing is blocking. Two things to do when convenient:
 
-1. **Approve the traced arch mark.** The side-by-side is built and saved at
-   `docs/brand/arch-mark-trace-comparison.png`: reference, trace, and a
-   difference blend that comes out essentially black. Until you say yes,
-   `Logo.jsx` renders the wordmark alone. Approving it is a one-line change,
-   flipping `showMark` to default true.
+1. ~~Approve the traced arch mark.~~ **Done, 18-08-2026.** It ships.
 2. **Paste in the Instagram and LinkedIn URLs** when those pages exist. Nothing
    breaks in the meantime, the icons simply do not render.

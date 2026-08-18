@@ -79,3 +79,18 @@ Built and verified locally. Not pushed, not deployed.
 
 Still open: Selected Work needs phase 4's case studies, and the hero's "See the
 work" link points at /work, which phase 4 creates.
+
+## 18-08-2026, arch mark approved, and phase 4
+
+- **Arch mark approved by Raffay.** The full lockup now ships in the header and
+  footer, the favicon is the mark, and the SVG was handed to rkade-crm, closing
+  its open item O.1 which had been blocked since 16-08-2026.
+- **Phase 4 units A, B and C.** `src/data/work.js` holds five anonymised case
+  studies, each number sourced to a project folder in a comment that never
+  renders. `/work` is a set of full-width editorial rows on alternating tones,
+  not a card grid. `/work/:slug` is one template, five instances.
+- Every status was checked against that project's own STATE.md on the day: two
+  of the five are not deployed and both say so.
+- Prerendering extended from 4 routes to 10. Verified: zero client names, zero
+  logos, zero financial figures in the rendered HTML.
+- Unit D, imagery, is not started. No money was spent.

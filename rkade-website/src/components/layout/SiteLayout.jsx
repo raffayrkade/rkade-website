@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Wordmark from '../brand/Wordmark';
+import Logo from '../brand/Logo';
 import { Link, Outlet } from 'react-router-dom';
 import { Menu, X, Linkedin, Instagram, Mail } from 'lucide-react';
 import { WHATSAPP_LINK, CALENDAR_LINK, CONTACT_EMAIL, INSTAGRAM_LINK, LINKEDIN_LINK } from '@/components/common/CTAButtons';
@@ -8,6 +8,7 @@ import { HeaderToneProvider, useHeaderTone } from './HeaderTone';
 
 
 const navLinks = [
+  { label: 'Work', href: '/work' },
   { label: 'Services', href: '/services' },
   { label: 'About', href: '/about' },
   { label: 'Process', href: '/#how-it-works' },
@@ -43,7 +44,7 @@ function SiteChrome() {
         <ScrollProgress />
         <nav className="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between px-[6vw] md:px-[8vw]">
           <Link to="/" className="flex items-center">
-            <Wordmark tone={menuOpen ? 'light' : header.wordmark} />
+            <Logo tone={menuOpen ? 'light' : header.wordmark} />
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
@@ -125,7 +126,7 @@ function SiteChrome() {
         <div className="mx-auto max-w-[1400px] px-[6vw] py-16 md:px-[8vw]">
           <div className="grid gap-10 md:grid-cols-4">
             <div className="md:col-span-2">
-              <Wordmark size="text-3xl" />
+              <Logo size="text-3xl" />
               <p className="mt-4 max-w-sm text-body text-muted">
                 AI automation systems that do the work of extra employees. We build the
                 infrastructure, so your team ships more with less.
@@ -136,6 +137,7 @@ function SiteChrome() {
                 Company
               </h4>
               <ul className="space-y-3 text-sm">
+                <li><Link className="text-muted hover:text-ink transition-colors" to="/work">Work</Link></li>
                 <li><Link className="text-muted hover:text-ink transition-colors" to="/services">Services</Link></li>
                 <li><Link className="text-muted hover:text-ink transition-colors" to="/about">About</Link></li>
                 <li><Link className="text-muted hover:text-ink transition-colors" to="/contact">Contact</Link></li>

@@ -9,8 +9,8 @@ Last updated: 18-08-2026
 ## Status
 
 ```
-Right now:     Phases 1, 2 and most of 3 are BUILT AND VERIFIED LOCALLY,
-               on a branch, not pushed.
+Right now:     Phases 1 to 4 are BUILT AND VERIFIED LOCALLY, on a branch,
+               not pushed. Phase 4's imagery unit is not started.
                rkade.co still serves the OLD site. Nothing has been deployed.
 To see it:     cd rkade-website && npm run dev
 Local link:    http://localhost:5173
@@ -26,8 +26,8 @@ Since you last looked: Phase 1 fixed the ground: real typefaces, corrected
 ## Progress
 
 ```
-PHASE    [##########          ]  Phase 3 of 7 mostly done   (43%)
-TASKS    [##########          ]  37 of ~70 done
+PHASE    [#############       ]  Phases 1 to 4 done   (60%)
+TASKS    [#############       ]  49 of ~70 done
 ```
 
 Phases 1 and 2 each took one session. Two measured units is still well under
@@ -36,11 +36,13 @@ being invented. `docs/history/timings.md` has both entries.
 
 ## Next up
 
-1. **Approve the arch mark.** Open `docs/brand/arch-mark-trace-comparison.png`.
-   If it is right, say so and `Logo.jsx` flips `showMark` to true by default.
-2. **Phase 4, the Work page.** It is the last thing blocking phase 3 from being
-   finished, and it is the biggest single gap on the site.
-3. Everything is committed locally and **not pushed**. It goes to a branch, PR
+1. **Phase 5**: Services, About and Contact. They are the last three pages
+   still carrying the old shape.
+2. **Phase 3's Selected Work section** on the homepage. Phase 4's case studies
+   now exist, so it is unblocked.
+3. **Phase 4 unit D, imagery.** Screenshots of the real systems first, then
+   generate only what cannot be photographed. USD 20 hard cap, nothing spent.
+4. Everything is committed locally and **not pushed**. It goes to a branch, PR
    and Netlify preview when you type `deploy`.
 
 ## Blockers
@@ -51,7 +53,6 @@ Two things need Raffay, neither blocking:
 
 | Thing | Effect while it waits |
 |---|---|
-| Approve the traced arch mark | Site ships the wordmark alone. No arch anywhere |
 | Paste Instagram and LinkedIn URLs | Footer renders no social icons. No dead links |
 | Repoint Formspree delivery to contact@rkade.co | Form still mails the old inbox. See `docs/SETUP.md` |
 
@@ -78,11 +79,10 @@ Two things need Raffay, neither blocking:
 
 ## Known, still open
 
-- **`/work` does not exist yet**, and the hero's "See the work" button points at
-  it. Phase 4 creates it. Until then that one link 404s locally. Nothing is
-  deployed, so nothing is broken for anyone.
-- **Selected Work**, homepage section 5, is not built. It needs phase 4's case
-  studies.
+- **Selected Work**, homepage section 5, is still not built. Phase 4's case
+  studies now exist, so nothing blocks it.
+- **Every case study has `image: null`.** Phase 4 unit D is not started. The
+  pages read fine without imagery, they are just plainer than they will be.
 
 ## Known, deliberately left for later
 

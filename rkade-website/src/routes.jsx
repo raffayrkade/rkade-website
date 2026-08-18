@@ -6,6 +6,8 @@ import About from '@/pages/About';
 import Contact from '@/pages/Contact';
 import NotFound from '@/pages/NotFound';
 import Kit from '@/pages/Kit';
+import Work from '@/pages/Work';
+import WorkDetail from '@/pages/WorkDetail';
 
 const routes = [
   {
@@ -15,6 +17,8 @@ const routes = [
         element: <SiteLayout />,
         children: [
           { path: '/', element: <Home /> },
+          { path: '/work', element: <Work /> },
+          { path: '/work/:slug', element: <WorkDetail /> },
           { path: '/services', element: <Services /> },
           { path: '/about', element: <About /> },
           { path: '/contact', element: <Contact /> },

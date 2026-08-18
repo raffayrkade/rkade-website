@@ -62,7 +62,7 @@ Phase 1 ──┬── Phase 2 ──┬── Phase 3 ──┐
 | 1 | **Done, uncommitted to `main`.** Built and verified locally 18-08-2026 |
 | 2 | **Done, uncommitted to `main`.** Built and verified locally 18-08-2026 |
 | 3 | **Units A, B, C done.** Unit D's Selected Work waits on phase 4 |
-| 4 | Not started |
+| 4 | **Units A, B, C done.** Unit D, imagery, not started |
 | 5 | Not started |
 | 6 | Not started |
 | 7 | Not started |
