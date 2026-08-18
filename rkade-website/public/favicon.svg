@@ -1,4 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#2C2218"/>
-  <text x="32" y="41" text-anchor="middle" font-family="Space Grotesk, ui-sans-serif, system-ui, sans-serif" font-size="26" font-weight="700" fill="#C9A84C">RK</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>RKade</title>
+  <!-- The arch mark, gold on ink. Same geometry as public/brand/arch-mark.svg,
+       traced from the brand guide and approved 18-08-2026. Scaled to 44px
+       tall inside the 64px box and centred. Corners are 2px, matching the site.
+       The previous favicon set "RK" in Space Grotesk, a font that appears
+       nowhere in the brand guide. -->
+  <rect width="64" height="64" rx="2" fill="#2C2218"/>
+  <g transform="translate(11.675 10.000) scale(0.223350)" fill="#C9A84C">
+    <path d="M74.5 197V107.5a33 33 0 0 1 66 0V197" fill="none" stroke="#C9A84C" stroke-width="17"/>
+    <path d="M41.5 197V107.5a66 66 0 0 1 132 0V197" fill="none" stroke="#C9A84C" stroke-width="17"/>
+    <path d="M0 197V107.5A107.5 107.5 0 0 1 107.5 0a40.4 40.4 0 0 1 37.4 25.08A90.5 90.5 0 0 0 17 107.5V197Z"/>
+  </g>
 </svg>

@@ -1,61 +1,46 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Calendar, ArrowRight } from 'lucide-react';
-import Reveal from '@/components/common/Reveal';
-import Parallax from '@/components/common/Parallax';
-import { CALENDAR_LINK } from '@/components/common/CTAButtons';
+import ArchTrio from '@/components/arch/ArchTrio'
+import useArchDraw from '@/hooks/useArchDraw'
+import FreeAuditLink from '@/components/common/FreeAuditLink'
 
+/**
+ * The close. On ink, and the whole section sits inside one large arch, which
+ * is the decorative idea the old version already had, scaled up until it is
+ * structure rather than ornament.
+ *
+ * One CTA, one destination. The audit is genuinely free, so the button says
+ * exactly that and nothing softens it.
+ *
+ * Reused verbatim on /services and /about, so it takes no props and depends on
+ * nothing above it.
+ */
 export default function CTASection() {
+  const { ref, drawProgress } = useArchDraw({ mode: 'once' })
+
   return (
-    <section className="relative overflow-hidden border-t border-divider bg-cream py-28 md:py-32">
-      <div className="pointer-events-none absolute -top-px left-1/2 h-40 w-[900px] max-w-full -translate-x-1/2">
-        <Parallax speed={0.1} className="h-full w-full">
-          <svg
-            className="h-full w-full"
-            viewBox="0 0 400 200"
-            fill="none"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M0 200 L0 120 Q0 0 200 0 Q400 0 400 120 L400 200"
-              stroke="#C9A84C"
-              strokeOpacity="0.3"
-              strokeWidth="1.2"
-              vectorEffect="non-scaling-stroke"
-            />
-          </svg>
-        </Parallax>
+    <section ref={ref} data-header-tone="dark" className="relative overflow-hidden bg-ink text-cream">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center text-gold opacity-[0.11]"
+      >
+        <ArchTrio drawProgress={drawProgress} className="h-auto w-[min(140%,1500px)]" />
       </div>
-      <div className="mx-auto max-w-3xl px-[6vw] text-center md:px-[8vw]">
-        <Reveal>
-          <h2 className="font-heading text-3xl font-bold leading-tight text-ink sm:text-4xl md:text-5xl">
-            Stop paying people to do what a system can.
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-warmgrey">
-            Start with a free audit. We'll show you exactly where automation pays off. No
-            commitment, no fluff.
-          </p>
-          <div className="mt-9 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
-            <a
-              href={CALENDAR_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-md bg-gold px-6 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5"
-            >
-              <Calendar className="h-4 w-4" />
-              Free Audit
-            </a>
-            <Link
-              to="/contact"
-              className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-md border border-divider px-6 text-sm font-medium text-ink/80 transition-colors hover:text-ink hover:border-offcream"
-            >
-              Get in Touch
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-          </div>
-        </Reveal>
+
+      <div className="relative mx-auto max-w-[1400px] px-[6vw] py-32 text-center md:px-[8vw] md:py-44">
+        <h2 className="mx-auto max-w-[18ch] font-display text-section text-cream">
+          Stop paying people to do <em className="italic text-gold">what a system can.</em>
+        </h2>
+        <p className="mx-auto mt-6 max-w-lg text-body-lg text-muted-on-ink">
+          Start with the audit. We map exactly where automation pays off, and tell you the order to
+          do it in. It costs nothing and there is no pitch.
+        </p>
+        <div className="mt-11 flex justify-center">
+          <FreeAuditLink
+        className="inline-flex min-h-[52px] items-center rounded bg-gold px-8 text-button uppercase text-ink transition-transform duration-300 ease-passage hover:-translate-y-0.5"
+      >
+            Free Audit
+          </FreeAuditLink>
+        </div>
       </div>
     </section>
-  );
+  )
 }

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /kit
+
+Sitemap: https://rkade.co/sitemap.xml
