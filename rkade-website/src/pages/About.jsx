@@ -5,8 +5,7 @@ import Reveal from '@/components/common/Reveal';
 import SectionHeading from '@/components/common/SectionHeading';
 import Parallax from '@/components/common/Parallax';
 import CTASection from '@/components/home/CTASection';
-
-const VAULT_IMG = 'https://media.base44.com/images/public/6a51e4127f3378ab46439447/3a092b520_generated_7262eee4.png';
+import ArchFrame from '@/components/arch/ArchFrame';
 
 const founders = [
   {
@@ -56,10 +55,15 @@ export default function About() {
 
       <section className="border-t border-line-strong bg-cream py-28 md:py-36">
         <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-[6vw] md:grid-cols-2 md:px-[8vw]">
+          {/* The base44 image that was here was generic AI art on a
+              third-party CDN nobody at RKade controls. The real arches say it
+              better. Phase 5 gives this section its proper treatment. */}
           <Reveal>
-            <Parallax speed={0.12} className="overflow-hidden rounded border border-line-strong">
-              <img src={VAULT_IMG} alt="Abstract vaulted ceiling with repeating arches" className="h-full w-full object-cover" />
-            </Parallax>
+            <ArchFrame scale={0.8} opacity={0.12} className="min-h-[300px] py-10">
+              <p className="mx-auto max-w-xs text-center font-display text-card text-ink">
+                An arcade is a run of arches that holds a building up while making a way through it.
+              </p>
+            </ArchFrame>
           </Reveal>
           <div>
             <Reveal>

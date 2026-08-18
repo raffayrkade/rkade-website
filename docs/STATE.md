@@ -9,8 +9,8 @@ Last updated: 18-08-2026
 ## Status
 
 ```
-Right now:     Phases 1 and 2 are BUILT AND VERIFIED LOCALLY, on a branch,
-               not pushed.
+Right now:     Phases 1, 2 and most of 3 are BUILT AND VERIFIED LOCALLY,
+               on a branch, not pushed.
                rkade.co still serves the OLD site. Nothing has been deployed.
 To see it:     cd rkade-website && npm run dev
 Local link:    http://localhost:5173
@@ -26,8 +26,8 @@ Since you last looked: Phase 1 fixed the ground: real typefaces, corrected
 ## Progress
 
 ```
-PHASE    [######              ]  Phase 2 of 7 done   (29%)
-TASKS    [######              ]  25 of ~70 done
+PHASE    [##########          ]  Phase 3 of 7 mostly done   (43%)
+TASKS    [##########          ]  37 of ~70 done
 ```
 
 Phases 1 and 2 each took one session. Two measured units is still well under
@@ -38,8 +38,8 @@ being invented. `docs/history/timings.md` has both entries.
 
 1. **Approve the arch mark.** Open `docs/brand/arch-mark-trace-comparison.png`.
    If it is right, say so and `Logo.jsx` flips `showMark` to true by default.
-2. Phase 3, the homepage. It needed phase 2, so it can start now. Phase 4 also
-   unblocked, and the two are independent of each other.
+2. **Phase 4, the Work page.** It is the last thing blocking phase 3 from being
+   finished, and it is the biggest single gap on the site.
 3. Everything is committed locally and **not pushed**. It goes to a branch, PR
    and Netlify preview when you type `deploy`.
 
@@ -76,19 +76,26 @@ Two things need Raffay, neither blocking:
 - **`<Section>` owns tone.** No page picks a background by hand any more, and
   two same-tone sections touching warns in dev.
 
-## Known, deliberately left for phase 3
+## Known, still open
 
-Phase 1 changed type without touching layout, which was the instruction. These
-broke and are phase 3's job, not bugs to fix now:
+- **`/work` does not exist yet**, and the hero's "See the work" button points at
+  it. Phase 4 creates it. Until then that one link 404s locally. Nothing is
+  deployed, so nothing is broken for anyone.
+- **Selected Work**, homepage section 5, is not built. It needs phase 4's case
+  studies.
+
+## Known, deliberately left for later
+
+The homepage is rebuilt. Services, About and Contact are not, and they still
+carry the phase 1 problems:
 
 - **`PageHeader` eats the whole first screen.** On Contact at 1440x769 the
   heading and intro fill the viewport and every piece of real content starts
-  below the fold.
-- **The hero headline wraps to five lines** at 1440 and crowds `HeroArt`.
-- **Every section is still cream.** The art direction wants dark/light
-  alternation, the passage. Nothing alternates yet.
-- **`HeroArt`'s background gradient was flattened to `fill-ink`**, because the
-  guide bans gradient fills and it carried two raw hex values.
+  below the fold. Phase 5.
+- **Services, About and Contact are still all cream**, with no alternation and
+  none of the arch system on them. Phase 5.
+- **The header bar over a mid-page dark section** reads as a washed light bar.
+  It is correct and consistent, but phase 6 should look at it.
 
 ## Session protocol for this project
 

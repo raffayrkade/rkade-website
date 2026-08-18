@@ -239,6 +239,28 @@ All six open items closed the same day. These are his calls, not defaults.
   phase 3's call, not phase 2's. Reverted so the cream state is unchanged.
   Only the new dark state is new.
 
+- **[18-08-2026] The tier centrepiece is a sticky visual beside flowing copy,
+  not a pinned block.** The first build pinned the whole two-column block in a
+  centred `min-h-screen` box. At 1440x900 the copy was taller than the
+  viewport, so the heading went under the fixed header and tier 3 was cut off
+  the bottom: exactly metro-jewellers-website's round 9 failure. A sticky arch
+  column beside text that flows normally cannot clip at any height. The arch
+  column is also deliberately shorter than the viewport, because a sticky
+  element only stays pinned for its parent's height minus its own.
+
+- **[18-08-2026] The proof strip publishes four numbers, not the five planned.**
+  "5 systems shipped" was dropped: the project folders do not support a clean
+  count of shipped versus archived versus survey, and the rule is that an
+  unsourceable number does not go up. The four that remain each carry their
+  source in a code comment. The plan's "rows migrated and audited" was also
+  corrected to "order rows audited", because crm-audit is a survey and
+  extraction project and nothing was migrated.
+
+- **[18-08-2026] Both base44 images are deleted, including the About page's.**
+  Generic AI art served from a third-party CDN nobody at RKade controls. Phase
+  3 only required removing the homepage one. The About page's was removed in
+  the same pass rather than leaving a known dependency behind for phase 5.
+
 ## Open, needs Raffay
 
 Nothing is blocking. Two things to do when convenient:

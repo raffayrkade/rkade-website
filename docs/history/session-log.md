@@ -58,3 +58,24 @@ Three real bugs, all found by looking at the rendered kit:
 2. `ArchFrame` was sized off container width, so it overflowed its own section
    and bled into the one above.
 3. A `1 1` dash pattern left a one-pixel tick at draw progress 0.
+
+## 18-08-2026, phase 3: homepage
+
+Built and verified locally. Not pushed, not deployed.
+
+- The homepage is a passage now: ink hero, ink proof strip, cream problem, ink
+  tiers, cream why, cream industries, ink-deep process, ink close. Two of those
+  adjacencies share a tone on purpose, because the strip is the hero's evidence
+  and industries is a footnote to why, not new arguments.
+- Hero is dark for the first time, with the arch trio full bleed behind it on
+  three parallax layers. The old HeroArt tile is gone.
+- The proof strip publishes four numbers, each sourced to a project folder in a
+  comment. A fifth was dropped rather than guessed.
+- The tier centrepiece: the mark builds itself one arch at a time as you scroll,
+  each arch labelling one tier, and the free audit says so on the first arch.
+- The problem is rows with large numerals, not a card grid.
+- How it works is on ink-deep, used exactly once, with a gold rail that draws.
+- Both base44 CDN images deleted. Zero third-party images remain.
+
+Still open: Selected Work needs phase 4's case studies, and the hero's "See the
+work" link points at /work, which phase 4 creates.

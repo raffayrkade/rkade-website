@@ -25,6 +25,8 @@ export default function Counter({
   prefix = '',
   suffix = '',
   decimals = 0,
+  // Optional. For large numbers that need a thousands separator.
+  format,
   className = '',
 }) {
   const ref = useRef(null)
@@ -36,6 +38,8 @@ export default function Counter({
   // which is what made it look like a race rather than a geometry bug.
   const inView = useInView(ref, { once: true, margin: '-60px 0px' })
   const [display, setDisplay] = useState(from)
+
+  const render = (v) => (format ? format(Math.round(v)) : v.toFixed(decimals))
 
   useEffect(() => {
     if (reducedMotion) {
@@ -58,11 +62,11 @@ export default function Counter({
       ref={ref}
       className={`font-display text-stat tabular-nums ${className}`}
       // The final value is what assistive tech should hear, not every tick.
-      aria-label={`${prefix}${to.toFixed(decimals)}${suffix}`}
+      aria-label={`${prefix}${render(to)}${suffix}`}
     >
       <span aria-hidden="true">
         {prefix}
-        {display.toFixed(decimals)}
+        {render(display)}
         {suffix}
       </span>
     </span>

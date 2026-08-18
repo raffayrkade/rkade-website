@@ -1,50 +1,79 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Calendar, ArrowRight } from 'lucide-react';
-import { CALENDAR_LINK } from '@/components/common/CTAButtons';
-import HeroArt from '@/components/home/HeroArt';
+import { Link } from 'react-router-dom'
+import { ArrowUpRight } from 'lucide-react'
+import { CALENDAR_LINK } from '@/components/common/CTAButtons'
+import Parallax from '@/components/common/Parallax'
+import ArchTrio from '@/components/arch/ArchTrio'
+import useArchDraw from '@/hooks/useArchDraw'
+
+/**
+ * The hero. Dark, and the first time the site has ever used the brand's dark
+ * version. You should feel like you have walked into somewhere expensive.
+ *
+ * The old HeroArt is gone. Its nested-arch idea was right and its execution
+ * was a dark tile floating in a cream page. The whole section is ink now, so
+ * the arches live full-bleed in the background where they belong, keeping the
+ * three-layer parallax that was the good part.
+ */
 
 export default function Hero() {
+  const { ref, drawProgress } = useArchDraw({ mode: 'once', offset: ['start 1', 'end 0.2'] })
+
   return (
-    <section className="relative overflow-hidden bg-cream pt-[72px]">
-      <div className="mx-auto grid max-w-[1400px] items-center gap-12 px-[6vw] py-20 md:grid-cols-2 md:px-[8vw] md:py-36 lg:py-32">
-        <div>
-          <span className="mb-6 inline-flex items-center gap-2 rounded border border-line-strong bg-ink/5 px-4 py-1.5 text-label uppercase text-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-gold"></span>
-            AI Automation Consultancy
-          </span>
-          <h1 className="font-display text-hero text-ink">
-            We build AI systems that do the work of{' '}
-            <span className="italic">extra employees.</span>
-          </h1>
-          <p className="mt-6 max-w-xl text-body-lg text-muted">
-            Custom automations that make your team faster, cut the manual work, and let you get
-            more done with fewer people. Free up time and headcount. Put it toward what actually
-            grows the business.
-          </p>
-          <div className="mt-9 flex flex-col flex-wrap justify-start gap-3 sm:flex-row">
-            <a
-              href={CALENDAR_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded bg-gold px-6 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5"
-            >
-              <Calendar className="h-4 w-4" />
-              Free Audit
-            </a>
-            <Link
-              to="/contact"
-              className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded border border-line-strong px-6 text-sm font-medium text-ink/80 transition-colors hover:text-ink hover:border-gold-dark"
-            >
-              Get in Touch
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </Link>
+    <section ref={ref} className="relative isolate overflow-hidden bg-ink pt-[72px] text-cream">
+      {/* Three depth layers, speeds 0.05 / 0.15 / 0.3, per docs/ART-DIRECTION.md. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <Parallax speed={0.05} className="absolute inset-0">
+          <div className="absolute -right-[18%] top-[6%] h-[125%] w-[85%] text-gold opacity-[0.07]">
+            <ArchTrio drawProgress={drawProgress} className="h-full w-auto" />
           </div>
-        </div>
-        <div className="relative">
-          <HeroArt />
+        </Parallax>
+        <Parallax speed={0.15} className="absolute inset-0 hidden md:block">
+          <div className="absolute -left-[22%] bottom-0 h-[95%] w-[60%] text-gold opacity-[0.06]">
+            <ArchTrio drawProgress={drawProgress} className="h-full w-auto" />
+          </div>
+        </Parallax>
+        <Parallax speed={0.3} className="absolute inset-0">
+          <div className="absolute -right-[6%] bottom-[-14%] h-[70%] w-[45%] text-gold opacity-[0.13]">
+            <ArchTrio drawProgress={drawProgress} className="h-full w-auto" />
+          </div>
+        </Parallax>
+        {/* A single soft pool of light at the vanishing point. Not a gradient
+            fill across a surface, which the brand guide bans. */}
+        <div className="absolute left-1/2 top-[38%] h-[420px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/[0.10] blur-[120px]" />
+      </div>
+
+      <div className="relative mx-auto flex min-h-[86vh] max-w-[1400px] flex-col justify-center px-[6vw] py-24 md:px-[8vw] md:py-32">
+        <p className="text-label uppercase text-muted-on-ink">
+          AI Automation Consultancy <span className="text-gold">·</span> Dubai
+        </p>
+
+        <h1 className="mt-7 max-w-[16ch] font-display text-hero text-cream">
+          We build AI systems that do the work of <em className="italic text-gold">extra employees.</em>
+        </h1>
+
+        <p className="mt-8 max-w-xl text-body-lg text-muted-on-ink">
+          Custom automations that cut the manual work and let you get more done with fewer people.
+          Free up time and headcount. Put it toward what actually grows the business.
+        </p>
+
+        <div className="mt-11 flex flex-wrap items-center gap-4">
+          <a
+            href={CALENDAR_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-[52px] items-center rounded bg-gold px-7 text-button uppercase text-ink transition-transform duration-300 ease-passage hover:-translate-y-0.5"
+          >
+            Free Audit
+          </a>
+          <Link
+            to="/work"
+            className="group inline-flex min-h-[52px] items-center gap-2 rounded border border-cream/25 px-7 text-button uppercase text-cream transition-colors duration-300 hover:border-gold hover:text-gold"
+          >
+            See the work
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </Link>
         </div>
       </div>
     </section>
-  );
+  )
 }

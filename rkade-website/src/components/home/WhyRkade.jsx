@@ -1,76 +1,81 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Wrench, Boxes, ChartLine } from 'lucide-react';
-import Reveal from '@/components/common/Reveal';
-import SectionHeading from '@/components/common/SectionHeading';
-import Parallax from '@/components/common/Parallax';
+import { Link } from 'react-router-dom'
+import { ArrowUpRight } from 'lucide-react'
+import Section from '@/components/layout/Section'
+import Reveal from '@/components/common/Reveal'
+import RuleSweep from '@/components/common/RuleSweep'
+import ArchFrame from '@/components/arch/ArchFrame'
+
+/**
+ * Why RKade. The three points are good and on-voice, so they stay.
+ *
+ * The base44 image is gone. It was generic AI-generated abstract art served
+ * from a third-party CDN nobody at RKade controls, which is both a brand
+ * problem and a dependency problem. An ArchFrame says more about the company
+ * than stock nodes-on-a-grid ever did, and nothing at all would still have
+ * been better than the image.
+ */
 
 const points = [
   {
-    icon: Wrench,
     title: 'Operators, not talkers',
     text: 'We build working systems, not slide decks about them. Everything we recommend, we can build.',
   },
   {
-    icon: Boxes,
     title: 'Built for your workflow',
     text: 'No off-the-shelf template. We design around how your business actually runs, then automate it.',
   },
   {
-    icon: ChartLine,
     title: 'Measured by output',
     text: "Success is fewer manual hours and more done. If it doesn't move that number, we don't build it.",
   },
-];
+]
 
 export default function WhyRkade() {
   return (
-    <section className="border-t border-line-strong bg-cream py-28 md:py-36">
-      <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-[6vw] md:grid-cols-2 md:px-[8vw]">
-        <Reveal>
-          <Parallax speed={0.12} className="overflow-hidden rounded border border-line-strong">
-            <img
-              src="https://media.base44.com/images/public/6a51e4127f3378ab46439447/15dc1ba51_generated_345bc685.png"
-              alt="Abstract data nodes connecting in a grid"
-              className="h-full w-full object-cover"
-            />
-          </Parallax>
-        </Reveal>
-        <div>
-          <Reveal>
-            <SectionHeading
-              label="Why RKade"
-              title="We build the system. You close the clients."
-              description="We're not AI consultants who talk about automation. We're operators who have built it, and we approach every engagement the same way: understand the work, then build the system that does it."
-            />
-          </Reveal>
-          <div className="mt-10 space-y-6">
+    <Section tone="cream" id="why">
+      <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-20">
+        <ArchFrame scale={0.85} opacity={0.1} className="order-2 min-h-[320px] py-10 lg:order-1">
+          <blockquote className="max-w-md">
+            <p className="font-display text-section text-ink">
+              We build the system. <em className="italic">You close the clients.</em>
+            </p>
+            <footer className="mt-6 text-label uppercase text-muted">
+              What RKade is actually for
+            </footer>
+          </blockquote>
+        </ArchFrame>
+
+        <div className="order-1 lg:order-2">
+          <RuleSweep />
+          <p className="mt-3 text-label uppercase text-muted">Why RKade</p>
+          <h2 className="mt-4 font-display text-section text-ink">
+            Operators who have <em className="italic">already built it.</em>
+          </h2>
+          <p className="mt-5 max-w-lg text-body-lg text-muted">
+            We are not AI consultants who talk about automation. We understand the work first, then
+            build the system that does it.
+          </p>
+
+          <dl className="mt-12 space-y-8">
             {points.map((p, i) => (
-              <Reveal key={p.title} delay={i * 0.05}>
-                <div className="flex gap-4">
-                  <div className="flex h-11 w-11 flex-none items-center justify-center rounded border border-gold/30 bg-gold/10">
-                    <p.icon className="h-5 w-5 text-gold" />
-                  </div>
-                  <div>
-                    <h3 className="font-body text-base font-medium text-ink">{p.title}</h3>
-                    <p className="mt-1 text-body text-muted">{p.text}</p>
-                  </div>
+              <Reveal key={p.title} delay={i * 0.07}>
+                <div className="border-l-2 border-gold-dark/40 pl-6">
+                  <dt className="font-body text-base font-medium text-ink">{p.title}</dt>
+                  <dd className="mt-1 max-w-lg text-body text-muted">{p.text}</dd>
                 </div>
               </Reveal>
             ))}
-          </div>
-          <Reveal delay={0.2}>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                to="/about"
-                className="inline-flex min-h-[44px] items-center justify-center rounded border border-line-strong px-6 text-sm font-medium text-ink/80 transition-colors hover:text-ink hover:border-gold-dark"
-              >
-                Meet the founders
-              </Link>
-            </div>
-          </Reveal>
+          </dl>
+
+          <Link
+            to="/about"
+            className="group mt-12 inline-flex items-center gap-2 text-button uppercase text-ink underline decoration-gold-dark underline-offset-4 transition-colors hover:decoration-ink"
+          >
+            How we work
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </Link>
         </div>
       </div>
-    </section>
-  );
+    </Section>
+  )
 }
