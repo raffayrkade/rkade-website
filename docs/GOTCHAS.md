@@ -45,24 +45,6 @@ where it showed up as a black logo on ink. `ArchMark.jsx` therefore carries the
 paths inline rather than pointing at the file. The file in `public/` exists for
 handoff (rkade-crm needs it) and for anywhere an explicit fill is set.
 
-## Reveal animations do not fire in a full-page screenshot
-
-`Reveal` uses framer-motion `whileInView` with `once: true`, so anything below
-the fold sits at `opacity: 0` until it is scrolled into view. Chrome's
-full-page screenshot does not scroll, so those sections capture **blank**, and
-Lenis's smooth scrolling makes them fire late even when you do scroll.
-
-Before screenshotting any route, scroll the whole page, then scroll directly to
-whatever is still hidden, then return to the top. `once: true` means revealed
-content stays revealed. Verify with:
-
-```js
-[...document.querySelectorAll('#root div')].filter(e => getComputedStyle(e).opacity === '0').length
-```
-
-A blank mid-page screenshot is almost always this, not a render bug. Check the
-count before going hunting.
-
 ## A bare `margin: '-60px'` on useInView insets all four sides
 
 framer-motion's `useInView` and `whileInView` pass `margin` straight through to
@@ -143,3 +125,15 @@ unused textures and two OG background plates were all still sitting in
 `public/work/` with nothing in `src/` referencing any of them. Before
 shipping a crop made for safety, check `public/` itself for the file it was
 cropped from, not just the code that renders the replacement.
+
+## A booking or third-party link must be verified signed out
+
+The account owner is always signed into their own Google, Calendly or similar
+account, so a broken link can still load a page that looks fine to them.
+Everyone else sees the real failure. This is exactly what happened with
+RKADE's Google appointment schedule: it looked fine to Raffay in his own
+browser and returned "Appointment not found" to every real visitor, caught by
+an automated check on 18-08-2026 and confirmed by hand. The replacement link
+was checked in a clean, signed-out browser session before being wired in.
+Before trusting any third-party link that gates a CTA, load it in a private or
+incognito window, signed out, not just the owner's own logged-in browser.

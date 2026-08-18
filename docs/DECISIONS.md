@@ -428,16 +428,32 @@ All six open items closed the same day. These are his calls, not defaults.
   behaviour, not a bug. **To reverse:** set `INSTAGRAM_LINK` back to
   `"PLACEHOLDER"`.
 
+## The site went live, 18-08-2026
+
+- **[18-08-2026] Merged to `main` and deployed.** `site-revamp-2026` (PR #9)
+  merged `--no-ff` as 6cb9429, after Raffay reviewed the Netlify preview and
+  approved it in chat. Both `site-revamp-2026` and
+  `phase-1-foundation-and-brand-truth` deleted, locally and remotely. Verified
+  live on rkade.co: all five routes 200 with correct per-route titles, the new
+  booking link the only calendar link present, the Instagram icon rendering,
+  zero third-party font requests, the 404 page correct on a bad URL. Reverse:
+  there is no reverse for a live merge; a regression is a new fix forward, not
+  a revert of this commit.
+- **[18-08-2026] The `GITHUB_TOKEN` gap never mattered.** The `gh` CLI was
+  still authenticated as `raffayrkade` and opened PR #9 directly. `docs/SETUP.md`'s
+  token section is now marked optional rather than needed.
+
 ## Open, needs Raffay
 
-Nothing is blocking. Two things to do when convenient:
+Nothing is blocking except one item that now matters more because the site is
+live and real people can use it:
 
 1. ~~Approve the traced arch mark.~~ **Done, 18-08-2026.** It ships.
-2. **Paste in the Instagram and LinkedIn URLs** when those pages exist. Nothing
-   breaks in the meantime, the icons simply do not render.
-3. **Click `calendar.app.google/La6EpDjL6HBNR67k7` yourself, signed into your
-   own browser.** Automated checks got "Appointment not found" on the
-   resolved schedule page today, 18-08-2026, with no iframe involved at all.
-   If it works for you, the booking overlay's link is already correct and
-   nothing changes. If it also fails for you, the schedule itself needs
-   attention on Google's side, separate from anything in this codebase.
+2. **Repoint Formspree's delivery address to `contact@rkade.co`.** The form
+   still sends, it currently lands in the old `hello@rkade.co` inbox, which
+   Raffay may not be watching. Steps in `docs/SETUP.md`.
+3. **Paste in the LinkedIn URL** when that page exists. Instagram is done.
+   Nothing breaks in the meantime, the icon simply does not render.
+4. ~~Click the booking link yourself, signed into your own browser.~~ **Done,
+   18-08-2026.** Raffay supplied a new schedule, verified signed out before
+   being wired in. See "The site went live" above.

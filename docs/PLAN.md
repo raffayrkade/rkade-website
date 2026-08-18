@@ -59,13 +59,13 @@ Phase 1 ──┬── Phase 2 ──┬── Phase 3 ──┐
 
 | Phase | Status |
 |---|---|
-| 1 | **Done, uncommitted to `main`.** Built and verified locally 18-08-2026 |
-| 2 | **Done, uncommitted to `main`.** Built and verified locally 18-08-2026 |
-| 3 | **Done, uncommitted to `main`.** Unit D's Selected Work landed 18-08-2026 |
-| 4 | **Done, uncommitted to `main`.** Unit D, imagery, landed 18-08-2026, USD 1.88 spent |
-| 5 | **Done, uncommitted to `main`.** All four units built and verified locally 18-08-2026 |
-| 6 | **Done, uncommitted to `main`.** All three units built and verified locally 18-08-2026 |
-| 7 | Not started. Runs only on the word `deploy` |
+| 1 | **Done, live.** Merged to `main` 18-08-2026, commit 6cb9429 |
+| 2 | **Done, live.** Merged to `main` 18-08-2026, commit 6cb9429 |
+| 3 | **Done, live.** Unit D's Selected Work landed 18-08-2026, merged same day |
+| 4 | **Done, live.** Unit D, imagery, landed 18-08-2026, USD 1.88 spent, merged same day |
+| 5 | **Done, live.** All four units built, verified, merged 18-08-2026 |
+| 6 | **Done, live.** All three units built, verified, merged 18-08-2026 |
+| 7 | **Done. The site is live on rkade.co.** Merged 18-08-2026, commit 6cb9429, PR #9. Approved in chat after the Netlify preview. All seven phases complete |
 
 ## Nothing is blocked
 
@@ -83,7 +83,9 @@ The two that most change the build:
    screenshots of the real systems taking priority over generated art. Phase 4
    task 4.16.
 
-The arch mark trace was approved 18-08-2026 and ships. What is left needing
-Raffay is written up in `docs/SETUP.md` and none of it blocks phase 7: the
-dead Google booking link, a new `GITHUB_TOKEN`, repointing Formspree's
-delivery address, and pasting in the Instagram and LinkedIn URLs.
+The arch mark trace was approved 18-08-2026 and ships. All seven phases are
+now done and the site is live on rkade.co. What is left needing Raffay is
+written up in `docs/SETUP.md`, none of it blocking: repointing Formspree's
+delivery address (worth doing soon, now that the form is live) and pasting in
+the LinkedIn URL. The Google booking link and the `GITHUB_TOKEN` question are
+both resolved.

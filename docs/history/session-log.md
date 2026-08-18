@@ -164,3 +164,42 @@ link is confirmed dead.
 
 Phases 1 to 6 are now fully done. Phase 7, deploy, is the only phase left, and
 it only runs on the word `deploy`.
+
+## 18-08-2026, phase 7: deploy, and the site went live
+
+Branch `site-revamp-2026` opened as PR #9 via the `gh` CLI directly, still
+authenticated as `raffayrkade`. The missing `GITHUB_TOKEN` never actually
+blocked anything, `docs/SETUP.md` now marks that section optional.
+
+Before merge, two things Raffay supplied at the last moment were wired in and
+verified, commit 9818fd2:
+
+- A working Google booking link, `calendar.app.google/waHYAngJttZ25BbL7`.
+  Checked signed out, in a clean browser session, before being trusted: the
+  previous one looked fine to Raffay in his own browser while returning
+  "Appointment not found" to every real visitor. The new one loads as "RKADE
+  Free Audit Call", 30 minute slots, Google Meet, real availability.
+  `CALENDAR_LIVE` in `src/components/common/CTAButtons.jsx` is now `true`, so
+  every Free Audit button books directly again.
+- The Instagram URL, `https://www.instagram.com/rkade.co`, now rendering in
+  the footer. LinkedIn stays `PLACEHOLDER`, so only one icon renders, which is
+  correct.
+
+Raffay reviewed the Netlify preview and approved it in chat. Merged `--no-ff`
+to `main`, commit 6cb9429, merging `site-revamp-2026`. Both that branch and
+`phase-1-foundation-and-brand-truth` deleted, locally and remotely.
+
+Verified on the live site after the merge:
+- `/`, `/work`, `/services`, `/about` and `/contact` all return 200 with their
+  own correct per-route titles
+- The new booking link is the only calendar link present anywhere on the
+  site, the old dead one appears zero times
+- The Instagram icon renders in the footer
+- Zero requests to `fonts.googleapis.com`, fonts are self-hosted
+- A bad URL renders the 404 page, tab title "Page Not Found | RKade"
+
+**All seven phases of `docs/PLAN.md` are done. rkade.co is live.** What is
+left is on Raffay's side, not code: repointing Formspree's delivery address
+to `contact@rkade.co` (now the priority, since the form is live and real
+submissions are landing in the old `hello@rkade.co` inbox), and pasting in the
+LinkedIn URL once that page exists. Both written up in `docs/SETUP.md`.

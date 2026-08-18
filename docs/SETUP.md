@@ -1,7 +1,52 @@
 # Setup: things Raffay has to go and do himself
 
-None of these block the site from running. Nothing here is a code change,
-they are all clicks on somebody else's website.
+**The site is live on rkade.co, 18-08-2026.** None of what is left blocks the
+site from running. Nothing here is a code change, they are all clicks on
+somebody else's website. Formspree is now the top item, because it is the
+only one that actually matters with real visitors on the site.
+
+---
+
+## Top priority now the site is live: point the contact form's real inbox at contact@rkade.co
+
+**What it is for:** the contact form on `/contact` is wired to Formspree, a
+service that takes the form submission and emails it somewhere. Right now
+that "somewhere" is still set to `hello@rkade.co` inside the Formspree
+account itself, even though every email address shown on the site was
+changed to `contact@rkade.co`. The code cannot fix this part: Formspree
+stores the delivery address on their server, not in this repo. **This now
+matters more than it did before the site was live**: real visitors can submit
+that form today, and every submission is going to an inbox that may not be
+watched.
+
+**What it costs:** free, on Formspree's free plan (up to 50 submissions a
+month, which this site is nowhere near). No card needed.
+
+**The website:** formspree.io
+
+**The literal clicks:**
+1. Go to formspree.io and log in (this project already has an account, since
+   the form is live and working today).
+2. Click the form already in use for rkade.co. If unsure which one, the form
+   ID is `mzdnppbe`, so the form's URL in the dashboard will end in
+   `/forms/mzdnppbe` or show that ID somewhere on its settings page.
+3. Click **Settings** (usually a tab near the top of the form's page).
+4. Find the field labelled **Email** or **Notification Email** (Formspree has
+   changed this label before, so look for whichever box currently holds an
+   email address).
+5. Change it from `hello@rkade.co` to `contact@rkade.co`.
+6. Click **Save**.
+
+**What it should look like when done:** the settings page shows
+`contact@rkade.co` in that box, not `hello@rkade.co`.
+
+**The trap:** there may be a second, separate field for a "reply-to" or
+"CC" address. Only change the one that controls where the submission itself
+is delivered. Leaving a stray CC pointed at the old address is harmless but
+pointless, so change it too if you see it.
+
+**When it is actually needed:** now. The site is live, the form is live, and
+every submission until this is changed lands in the old inbox.
 
 ---
 ## RESOLVED 18-08-2026: the booking link (kept for reference)
@@ -96,16 +141,20 @@ working. That is a smaller loss than a button that leads to an error page.
 
 
 
-## Needed today: the GitHub token, so the deploy can happen without you
+## Optional, not needed: the GitHub token
 
-**What it is for:** at the very end of this build the whole new site goes up as
-a pull request, which is a "here is the change, look at it before it goes live"
-page on GitHub. Netlify then builds a private preview of the site from it, and
-that preview link is the thing you actually look at and approve. Creating that
-pull request automatically needs a GitHub token. There used to be one on this
-machine, saved as `GITHUB_TOKEN`, and it is gone now. Without it, you have to
-click a "Create pull request" button yourself, which is not the end of the
-world, but it means the last step of the build stops and waits for you.
+**Resolved 18-08-2026, turned out not to matter.** The deploy has already
+happened: PR #9 was opened and the merge went live without this token, because
+the `gh` CLI on this machine was still authenticated as `raffayrkade` and
+created the pull request directly. `GITHUB_TOKEN` was never actually missing
+in a way that blocked anything. The steps below are kept only in case the `gh`
+CLI's own login ever expires and a fresh way to open PRs is needed; nothing
+about the live site depends on this.
+
+**What it is for:** creating a pull request automatically needs a way to
+authenticate to GitHub's API. `gh` (already logged in) does that today. A
+`GITHUB_TOKEN` environment variable is a second, independent way to do the
+same thing, useful only as a fallback if `gh`'s own login is ever lost.
 
 **What it costs:** free. GitHub tokens cost nothing, on any plan, forever.
 
@@ -170,52 +219,8 @@ which is exactly what we do not want a token sitting on a laptop to have.
 gone permanently and you have to delete it and start again from step 6. GitHub
 will not show it a second time.
 
-**When it is actually needed:** only at the very end, when you type `deploy`.
-Nothing in the build waits for it. Do it whenever is convenient between now and
-then. If it is not there when we get to the end, I will push the branch and
-hand you a link to click instead, and the deploy still happens, just with one
-manual step.
-
----
-
-## Needed soon: point the contact form's real inbox at contact@rkade.co
-
-**What it is for:** the contact form on `/contact` is wired to Formspree, a
-service that takes the form submission and emails it somewhere. Right now
-that "somewhere" is still set to `hello@rkade.co` inside the Formspree
-account itself, even though every email address shown on the site was
-changed to `contact@rkade.co`. The code cannot fix this part: Formspree
-stores the delivery address on their server, not in this repo.
-
-**What it costs:** free, on Formspree's free plan (up to 50 submissions a
-month, which this site is nowhere near). No card needed.
-
-**The website:** formspree.io
-
-**The literal clicks:**
-1. Go to formspree.io and log in (this project already has an account, since
-   the form is live and working today).
-2. Click the form already in use for rkade.co. If unsure which one, the form
-   ID is `mzdnppbe`, so the form's URL in the dashboard will end in
-   `/forms/mzdnppbe` or show that ID somewhere on its settings page.
-3. Click **Settings** (usually a tab near the top of the form's page).
-4. Find the field labelled **Email** or **Notification Email** (Formspree has
-   changed this label before, so look for whichever box currently holds an
-   email address).
-5. Change it from `hello@rkade.co` to `contact@rkade.co`.
-6. Click **Save**.
-
-**What it should look like when done:** the settings page shows
-`contact@rkade.co` in that box, not `hello@rkade.co`.
-
-**The trap:** there may be a second, separate field for a "reply-to" or
-"CC" address. Only change the one that controls where the submission itself
-is delivered. Leaving a stray CC pointed at the old address is harmless but
-pointless, so change it too if you see it.
-
-**When it is actually needed:** before relying on the contact form to reach
-anyone. It does not block the site from working today: the form still sends,
-it just currently lands in the old inbox. Do this whenever convenient.
+**When it is actually needed:** never, unless `gh`'s own login is lost. The
+deploy already happened without it.
 
 ---
 

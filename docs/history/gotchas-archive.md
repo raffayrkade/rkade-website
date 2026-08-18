@@ -73,6 +73,27 @@ slash into `C:/Program Files/Git/`, and the first route fails with "no
 prerendered file". Prefix with `MSYS_NO_PATHCONV=1` and quote the argument, or
 just run the script with no arguments and let it use its default list.
 
+## Reveal animations do not fire in a full-page screenshot
+
+Moved out 18-08-2026 (go-live recording unit, GOTCHAS.md over its 8 KB cap): a
+screenshot-taking technique, not a component bug.
+
+`Reveal` uses framer-motion `whileInView` with `once: true`, so anything below
+the fold sits at `opacity: 0` until it is scrolled into view. Chrome's
+full-page screenshot does not scroll, so those sections capture **blank**, and
+Lenis's smooth scrolling makes them fire late even when you do scroll.
+
+Before screenshotting any route, scroll the whole page, then scroll directly to
+whatever is still hidden, then return to the top. `once: true` means revealed
+content stays revealed. Verify with:
+
+```js
+[...document.querySelectorAll('#root div')].filter(e => getComputedStyle(e).opacity === '0').length
+```
+
+A blank mid-page screenshot is almost always this, not a render bug. Check the
+count before going hunting.
+
 ## Fast programmatic scrolling outruns IntersectionObserver
 
 Moved out 18-08-2026 (phase 6 close, GOTCHAS.md over its 8 KB cap): a
