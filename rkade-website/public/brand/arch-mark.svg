@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 182 197" fill="none" role="img" aria-label="RKade arch mark">
+  <title>RKade arch mark</title>
+  <!--
+    Traced from docs/brand/extracted/arch-mark-icon.jpg, measured by pixel
+    sampling rather than by eye. In the reference the three arches share a
+    centre at (328.75, 341.5), the centreline radii are 33 / 66 / 99, the
+    stroke is 17 and the legs end flat at y=431. Subtracting the bounding box
+    origin puts the centre at (107.5, 107.5) here and the baseline at y=197.
+
+    Five legs, not six. The outermost arch has a left leg only. Its crown
+    sweeps past the apex and tapers to a point at roughly one o'clock. That
+    taper is a circular arc of radius 40.4 centred at (107.5, 40.4), internally
+    tangent to the outer edge at the apex, ending where it meets the inner edge
+    at (144.9, 25.08). Every sampled row of the reference agrees to under a
+    pixel.
+
+    The outer arch is one filled path rather than a stroke plus a separate
+    taper, because that join left a visible hairline seam at the apex.
+
+    Colour comes from currentColor, so one file serves cream and ink. It must
+    be inlined into the DOM to pick that up. Referenced through <img src> it
+    renders black, which is why ArchMark.jsx inlines it.
+  -->
+  <g stroke="currentColor" stroke-width="17" fill="none">
+    <path d="M74.5 197V107.5a33 33 0 0 1 66 0V197" />
+    <path d="M41.5 197V107.5a66 66 0 0 1 132 0V197" />
+  </g>
+  <path fill="currentColor" d="M0 197V107.5A107.5 107.5 0 0 1 107.5 0a40.4 40.4 0 0 1 37.4 25.08A90.5 90.5 0 0 0 17 107.5V197Z" />
+</svg>

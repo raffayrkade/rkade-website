@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
+import Wordmark from '../brand/Wordmark';
 import { Link, Outlet } from 'react-router-dom';
-import { Menu, X, Linkedin, Twitter, Github, Mail } from 'lucide-react';
-import { WHATSAPP_LINK, CALENDAR_LINK, CONTACT_EMAIL } from '@/components/common/CTAButtons';
+import { Menu, X, Linkedin, Instagram, Mail } from 'lucide-react';
+import { WHATSAPP_LINK, CALENDAR_LINK, CONTACT_EMAIL, INSTAGRAM_LINK, LINKEDIN_LINK } from '@/components/common/CTAButtons';
 import ScrollProgress from '@/components/common/ScrollProgress';
 
-function Wordmark({ size = 'text-2xl' }) {
-  return (
-    <span className={`font-heading tracking-tight leading-none ${size}`}>
-      <span className="font-bold text-ink">RK</span>
-      <span className="font-light text-warmgrey">ade</span>
-    </span>
-  );
-}
 
 const navLinks = [
   { label: 'Services', href: '/services' },
@@ -20,12 +13,17 @@ const navLinks = [
   { label: 'Contact', href: '/contact' },
 ];
 
+const socialLinks = [
+  { label: 'Instagram', href: INSTAGRAM_LINK, Icon: Instagram },
+  { label: 'LinkedIn', href: LINKEDIN_LINK, Icon: Linkedin },
+].filter((link) => link.href !== 'PLACEHOLDER');
+
 export default function SiteLayout() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-cream text-ink">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-divider bg-cream/70 backdrop-blur-xl transition-all duration-300">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-line-strong bg-cream/70 backdrop-blur-xl transition-all duration-300">
         <ScrollProgress />
         <nav className="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between px-[6vw] md:px-[8vw]">
           <Link to="/" className="flex items-center">
@@ -37,17 +35,19 @@ export default function SiteLayout() {
               <Link
                 key={l.label}
                 to={l.href}
-                className="text-sm font-medium text-warmgrey transition-colors hover:text-ink"
+                className="text-sm font-medium text-muted transition-colors hover:text-ink"
               >
                 {l.label}
               </Link>
             ))}
-            <Link
-              to="/contact"
-              className="inline-flex min-h-[44px] items-center rounded-md bg-gold px-5 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5"
+            <a
+              href={CALENDAR_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[44px] items-center rounded bg-gold px-5 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5"
             >
               Free Audit
-            </Link>
+            </a>
           </div>
 
           <button
@@ -60,25 +60,27 @@ export default function SiteLayout() {
         </nav>
 
         {menuOpen && (
-          <div className="border-t border-divider bg-cream px-[6vw] py-6 md:hidden">
+          <div className="border-t border-line-strong bg-cream px-[6vw] py-6 md:hidden">
             <div className="flex flex-col gap-4">
               {navLinks.map((l) => (
                 <Link
                   key={l.label}
                   to={l.href}
-                  className="text-sm font-medium text-warmgrey"
+                  className="text-sm font-medium text-muted"
                   onClick={() => setMenuOpen(false)}
                 >
                   {l.label}
                 </Link>
               ))}
-              <Link
-                to="/contact"
-                className="inline-flex min-h-[44px] items-center justify-center rounded-md bg-gold px-5 text-sm font-medium text-ink"
+              <a
+                href={CALENDAR_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[44px] items-center justify-center rounded bg-gold px-5 text-sm font-medium text-ink"
                 onClick={() => setMenuOpen(false)}
               >
                 Free Audit
-              </Link>
+              </a>
             </div>
           </div>
         )}
@@ -88,7 +90,7 @@ export default function SiteLayout() {
         <Outlet />
       </main>
 
-      <footer className="relative border-t border-divider bg-cream">
+      <footer className="relative border-t border-line-strong bg-cream">
         <svg
           className="pointer-events-none absolute -top-px left-1/2 h-16 w-[520px] max-w-full -translate-x-1/2"
           viewBox="0 0 400 200"
@@ -98,7 +100,7 @@ export default function SiteLayout() {
         >
           <path
             d="M0 200 L0 120 Q0 0 200 0 Q400 0 400 120 L400 200"
-            stroke="#C9A84C"
+            className="stroke-gold"
             strokeOpacity="0.25"
             strokeWidth="1.2"
             vectorEffect="non-scaling-stroke"
@@ -108,53 +110,58 @@ export default function SiteLayout() {
           <div className="grid gap-10 md:grid-cols-4">
             <div className="md:col-span-2">
               <Wordmark size="text-3xl" />
-              <p className="mt-4 max-w-sm text-sm leading-relaxed text-warmgrey">
+              <p className="mt-4 max-w-sm text-body text-muted">
                 AI automation systems that do the work of extra employees. We build the
                 infrastructure, so your team ships more with less.
               </p>
             </div>
             <div>
-              <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-warmgrey">
+              <h4 className="mb-4 text-label uppercase text-muted">
                 Company
               </h4>
               <ul className="space-y-3 text-sm">
-                <li><Link className="text-warmgrey hover:text-ink transition-colors" to="/services">Services</Link></li>
-                <li><Link className="text-warmgrey hover:text-ink transition-colors" to="/about">About</Link></li>
-                <li><Link className="text-warmgrey hover:text-ink transition-colors" to="/contact">Contact</Link></li>
-                <li><Link className="text-warmgrey hover:text-ink transition-colors" to="/#how-it-works">How It Works</Link></li>
+                <li><Link className="text-muted hover:text-ink transition-colors" to="/services">Services</Link></li>
+                <li><Link className="text-muted hover:text-ink transition-colors" to="/about">About</Link></li>
+                <li><Link className="text-muted hover:text-ink transition-colors" to="/contact">Contact</Link></li>
+                <li><Link className="text-muted hover:text-ink transition-colors" to="/#how-it-works">How It Works</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-warmgrey">
+              <h4 className="mb-4 text-label uppercase text-muted">
                 Get in touch
               </h4>
               <ul className="space-y-3 text-sm">
                 <li>
-                  <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex items-center gap-2 text-warmgrey hover:text-ink transition-colors">
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex items-center gap-2 text-muted hover:text-ink transition-colors">
                     <Mail className="h-4 w-4" /> {CONTACT_EMAIL}
                   </a>
                 </li>
                 <li>
-                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-warmgrey hover:text-ink transition-colors">
+                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-ink transition-colors">
                     WhatsApp
                   </a>
                 </li>
               </ul>
-              <div className="mt-5 flex gap-3">
-                <a href="#" className="flex h-10 w-10 items-center justify-center rounded-md border border-divider text-warmgrey transition-colors hover:border-gold/60 hover:text-ink" aria-label="LinkedIn">
-                  <Linkedin className="h-4 w-4" />
-                </a>
-                <a href="#" className="flex h-10 w-10 items-center justify-center rounded-md border border-divider text-warmgrey transition-colors hover:border-gold/60 hover:text-ink" aria-label="X / Twitter">
-                  <Twitter className="h-4 w-4" />
-                </a>
-                <a href="#" className="flex h-10 w-10 items-center justify-center rounded-md border border-divider text-warmgrey transition-colors hover:border-gold/60 hover:text-ink" aria-label="GitHub">
-                  <Github className="h-4 w-4" />
-                </a>
-              </div>
+              {socialLinks.length > 0 && (
+                <div className="mt-5 flex gap-3">
+                  {socialLinks.map(({ label, href, Icon }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-10 w-10 items-center justify-center rounded border border-line-strong text-muted transition-colors hover:border-gold/60 hover:text-ink"
+                      aria-label={label}
+                    >
+                      <Icon className="h-4 w-4" />
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
-          <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-divider pt-6 text-xs text-warmgrey sm:flex-row">
-            <p>© 2026 RKADE. All rights reserved.</p>
+          <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-line-strong pt-6 text-xs text-muted sm:flex-row">
+            <p>© 2026 RKade. All rights reserved.</p>
             <p>Systems, not hype.</p>
           </div>
         </div>

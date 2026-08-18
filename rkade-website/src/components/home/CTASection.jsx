@@ -7,7 +7,7 @@ import { CALENDAR_LINK } from '@/components/common/CTAButtons';
 
 export default function CTASection() {
   return (
-    <section className="relative overflow-hidden border-t border-divider bg-cream py-28 md:py-32">
+    <section className="relative overflow-hidden border-t border-line-strong bg-cream py-28 md:py-36">
       <div className="pointer-events-none absolute -top-px left-1/2 h-40 w-[900px] max-w-full -translate-x-1/2">
         <Parallax speed={0.1} className="h-full w-full">
           <svg
@@ -19,7 +19,7 @@ export default function CTASection() {
           >
             <path
               d="M0 200 L0 120 Q0 0 200 0 Q400 0 400 120 L400 200"
-              stroke="#C9A84C"
+              className="stroke-gold"
               strokeOpacity="0.3"
               strokeWidth="1.2"
               vectorEffect="non-scaling-stroke"
@@ -29,10 +29,10 @@ export default function CTASection() {
       </div>
       <div className="mx-auto max-w-3xl px-[6vw] text-center md:px-[8vw]">
         <Reveal>
-          <h2 className="font-heading text-3xl font-bold leading-tight text-ink sm:text-4xl md:text-5xl">
+          <h2 className="font-display text-section text-ink">
             Stop paying people to do what a system can.
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-warmgrey">
+          <p className="mx-auto mt-6 max-w-xl text-body-lg text-muted">
             Start with a free audit. We'll show you exactly where automation pays off. No
             commitment, no fluff.
           </p>
@@ -41,14 +41,14 @@ export default function CTASection() {
               href={CALENDAR_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-md bg-gold px-6 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5"
+              className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded bg-gold px-6 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5"
             >
               <Calendar className="h-4 w-4" />
               Free Audit
             </a>
             <Link
               to="/contact"
-              className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-md border border-divider px-6 text-sm font-medium text-ink/80 transition-colors hover:text-ink hover:border-offcream"
+              className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded border border-line-strong px-6 text-sm font-medium text-ink/80 transition-colors hover:text-ink hover:border-gold-dark"
             >
               Get in Touch
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

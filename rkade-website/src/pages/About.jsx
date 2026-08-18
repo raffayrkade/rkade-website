@@ -27,26 +27,26 @@ export default function About() {
       <PageHeader
         label="About"
         title="Operators building for operators."
-        description="RKADE is built by two founders with complementary backgrounds: one who builds the systems, one who understands the business they serve."
+        description="RKade is built by two founders with complementary backgrounds: one who builds the systems, one who understands the business they serve."
       />
 
-      <section className="bg-cream py-24 md:py-28">
+      <section className="bg-cream py-28 md:py-36">
         <div className="mx-auto max-w-[1400px] px-[6vw] md:px-[8vw]">
           <Reveal>
-            <p className="mb-10 max-w-2xl text-base leading-relaxed text-warmgrey md:mb-12">
+            <p className="mb-10 max-w-2xl text-body-lg text-muted md:mb-12">
               We both build. We both sit with clients. These are where we naturally spend more of
               our time.
             </p>
           </Reveal>
-          <div className="grid gap-px overflow-hidden rounded-xl border border-divider bg-divider md:grid-cols-2">
+          <div className="grid gap-px overflow-hidden rounded border border-line-strong bg-line md:grid-cols-2">
             {founders.map((f, i) => (
               <Reveal key={f.role} delay={i * 0.1}>
                 <div className="h-full bg-cream p-10">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-md border border-gold/30 bg-gold/10">
+                  <div className="flex h-12 w-12 items-center justify-center rounded border border-gold/30 bg-gold/10">
                     <f.icon className="h-6 w-6 text-gold" />
                   </div>
-                  <h3 className="mt-6 font-heading text-2xl font-bold text-ink">{f.role}</h3>
-                  <p className="mt-4 text-base leading-relaxed text-warmgrey">{f.text}</p>
+                  <h3 className="mt-6 font-display text-card text-ink">{f.role}</h3>
+                  <p className="mt-4 text-body-lg text-muted">{f.text}</p>
                 </div>
               </Reveal>
             ))}
@@ -54,21 +54,21 @@ export default function About() {
         </div>
       </section>
 
-      <section className="border-t border-divider bg-cream py-24 md:py-28">
+      <section className="border-t border-line-strong bg-cream py-28 md:py-36">
         <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-[6vw] md:grid-cols-2 md:px-[8vw]">
           <Reveal>
-            <Parallax speed={0.12} className="overflow-hidden rounded-2xl border border-divider">
+            <Parallax speed={0.12} className="overflow-hidden rounded border border-line-strong">
               <img src={VAULT_IMG} alt="Abstract vaulted ceiling with repeating arches" className="h-full w-full object-cover" />
             </Parallax>
           </Reveal>
           <div>
             <Reveal>
-              <SectionHeading label="The Name" title="Why RKADE." />
+              <SectionHeading label="The Name" title="Why RKade." />
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="mt-6 space-y-4 text-base leading-relaxed text-warmgrey">
+              <div className="mt-6 space-y-4 text-body-lg text-muted">
                 <p>
-                  RKADE comes from <span className="text-ink">arcade</span>, and arcade comes
+                  RKade comes from <span className="text-ink">arcade</span>, and arcade comes
                   from the Latin for <span className="text-ink">arch</span>: a structure that
                   holds up a passageway.
                 </p>

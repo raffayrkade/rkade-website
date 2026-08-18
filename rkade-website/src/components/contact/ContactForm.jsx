@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
+import { CONTACT_EMAIL } from '@/components/common/CTAButtons';
 
-// IMPORTANT: replace this with your real Formspree endpoint.
-// 1. Go to formspree.io, sign up free, create a new form.
-// 2. Set the form's destination email to hello@rkade.co
-// 3. Copy the endpoint URL Formspree gives you (looks like
-//    https://formspree.io/f/xxxxxxx) and paste it below.
 const FORM_ENDPOINT = 'https://formspree.io/f/mzdnppbe';
 
 export default function ContactForm() {
@@ -37,9 +33,9 @@ export default function ContactForm() {
 
   if (status === 'sent') {
     return (
-      <div className="rounded-xl border border-gold/30 bg-gold/10 p-7">
-        <h3 className="font-heading text-lg font-semibold text-ink">Message sent.</h3>
-        <p className="mt-2 text-sm text-warmgrey">
+      <div className="rounded border border-gold/30 bg-gold/10 p-7">
+        <h3 className="font-display text-card text-ink">Message sent.</h3>
+        <p className="mt-2 text-sm text-muted">
           We'll get back to you shortly. Talk soon.
         </p>
       </div>
@@ -49,8 +45,8 @@ export default function ContactForm() {
   return (
     <form className="space-y-7" onSubmit={handleSubmit}>
       <div className="relative">
-        <label htmlFor="name" className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-warmgrey">
-          Name <span className="text-gold">*</span>
+        <label htmlFor="name" className="mb-2 block text-label uppercase text-muted">
+          Name <span className="text-muted">*</span>
         </label>
         <input
           id="name"
@@ -59,13 +55,13 @@ export default function ContactForm() {
           required
           value={values.name}
           onChange={handleChange}
-          className="w-full border-0 border-b border-divider bg-transparent pb-3 text-base text-ink outline-none transition-colors placeholder:text-warmgrey/70 focus:border-gold"
+          className="w-full border-0 border-b border-line-strong bg-transparent pb-3 text-base text-ink outline-none transition-colors placeholder:text-muted/70 focus:border-gold"
           placeholder="Your name"
         />
       </div>
       <div className="relative">
-        <label htmlFor="email" className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-warmgrey">
-          Email <span className="text-gold">*</span>
+        <label htmlFor="email" className="mb-2 block text-label uppercase text-muted">
+          Email <span className="text-muted">*</span>
         </label>
         <input
           id="email"
@@ -74,12 +70,12 @@ export default function ContactForm() {
           required
           value={values.email}
           onChange={handleChange}
-          className="w-full border-0 border-b border-divider bg-transparent pb-3 text-base text-ink outline-none transition-colors placeholder:text-warmgrey/70 focus:border-gold"
+          className="w-full border-0 border-b border-line-strong bg-transparent pb-3 text-base text-ink outline-none transition-colors placeholder:text-muted/70 focus:border-gold"
           placeholder="Your email"
         />
       </div>
       <div className="relative">
-        <label htmlFor="company" className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-warmgrey">
+        <label htmlFor="company" className="mb-2 block text-label uppercase text-muted">
           Company
         </label>
         <input
@@ -88,13 +84,13 @@ export default function ContactForm() {
           type="text"
           value={values.company}
           onChange={handleChange}
-          className="w-full border-0 border-b border-divider bg-transparent pb-3 text-base text-ink outline-none transition-colors placeholder:text-warmgrey/70 focus:border-gold"
+          className="w-full border-0 border-b border-line-strong bg-transparent pb-3 text-base text-ink outline-none transition-colors placeholder:text-muted/70 focus:border-gold"
           placeholder="Your company"
         />
       </div>
       <div>
-        <label htmlFor="message" className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-warmgrey">
-          What do you want to automate? <span className="text-gold">*</span>
+        <label htmlFor="message" className="mb-2 block text-label uppercase text-muted">
+          What do you want to automate? <span className="text-muted">*</span>
         </label>
         <textarea
           id="message"
@@ -103,21 +99,21 @@ export default function ContactForm() {
           rows={4}
           value={values.message}
           onChange={handleChange}
-          className="w-full resize-none border-0 border-b border-divider bg-transparent pb-3 text-base text-ink outline-none transition-colors placeholder:text-warmgrey/70 focus:border-gold"
+          className="w-full resize-none border-0 border-b border-line-strong bg-transparent pb-3 text-base text-ink outline-none transition-colors placeholder:text-muted/70 focus:border-gold"
           placeholder="Tell us where the manual work is piling up."
         />
       </div>
 
       {status === 'error' && (
         <p className="text-sm text-red-400">
-          Something went wrong sending that. Try again, or email us directly at hello@rkade.co.
+          Something went wrong sending that. Try again, or email us directly at {CONTACT_EMAIL}.
         </p>
       )}
 
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-md bg-gold px-6 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5 disabled:opacity-60 sm:w-auto"
+        className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded bg-gold px-6 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5 disabled:opacity-60 sm:w-auto"
       >
         {status === 'sending' ? 'Sending...' : 'Send message'}
       </button>

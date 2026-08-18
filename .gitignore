@@ -1,0 +1,10 @@
+# Added 17-08-2026 during the laptop migration.
+# The old laptop could not run npm, so this repo never needed one. It does now.
+
+node_modules/
+dist/
+.DS_Store
+*.local
+.env
+.env.*
+!.env.example

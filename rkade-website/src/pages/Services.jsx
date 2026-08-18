@@ -45,7 +45,7 @@ const tiers = [
 ];
 
 const faqs = [
-  { q: 'Do I have to start with the Audit?', a: "It's the fastest way to know where the leverage is, but if you already know what you want built, we can start there." },
+  { q: 'Do I have to start with the Audit?', a: "It's the fastest way to know what to automate first, but if you already know what you want built, we can start there." },
   { q: 'How long does a build take?', a: 'It depends on scope. Most first systems ship in weeks, not months. The audit gives you a clear timeline before anything is committed.' },
   { q: 'Which tools do you work with?', a: 'We build around your existing stack rather than forcing a new one. If it has an API or an interface, we can usually automate it.' },
   { q: 'What happens after a system is built?', a: 'You can run it yourself, or move to Managed and let us monitor and improve it so it keeps earning its keep.' },
@@ -61,23 +61,23 @@ export default function Services() {
         description="Three tiers that stack into one system. Take what you need, or the whole path from assessment to fully managed automation."
       />
 
-      <section className="bg-cream py-24 md:py-28">
-        <div className="mx-auto max-w-[1400px] space-y-px overflow-hidden rounded-xl border border-divider bg-divider px-0 md:mx-[8vw]">
+      <section className="bg-cream py-28 md:py-36">
+        <div className="mx-auto max-w-[1400px] space-y-px overflow-hidden rounded border border-line-strong bg-line px-0 md:mx-[8vw]">
           {tiers.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.05}>
               <div className="grid gap-8 bg-cream p-9 md:grid-cols-3 md:p-12">
                 <div>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-md border border-gold/30 bg-gold/10">
+                  <div className="flex h-12 w-12 items-center justify-center rounded border border-gold/30 bg-gold/10">
                     <t.icon className="h-6 w-6 text-gold" />
                   </div>
-                  <p className="mt-6 text-xs font-medium uppercase tracking-[0.2em] text-gold">{t.tag}</p>
-                  <h2 className="mt-2 font-heading text-3xl font-bold text-ink">{t.name}</h2>
+                  <p className="mt-6 text-label uppercase text-muted">{t.tag}</p>
+                  <h2 className="mt-2 font-display text-section text-ink">{t.name}</h2>
                 </div>
                 <div className="md:col-span-2">
-                  <p className="text-lg leading-relaxed text-ink">{t.text}</p>
+                  <p className="text-body-lg text-ink">{t.text}</p>
                   <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                     {t.deliverables.map((d) => (
-                      <li key={d} className="flex items-start gap-3 text-sm text-warmgrey">
+                      <li key={d} className="flex items-start gap-3 text-sm text-muted">
                         <Check className="mt-0.5 h-4 w-4 flex-none text-gold" />
                         {d}
                       </li>
@@ -90,17 +90,17 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="border-t border-divider bg-cream py-24 md:py-28">
+      <section className="border-t border-line-strong bg-cream py-28 md:py-36">
         <div className="mx-auto max-w-[1400px] px-[6vw] md:px-[8vw]">
           <Reveal>
             <SectionHeading label="FAQ" title="How engagements work." />
           </Reveal>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-divider bg-divider md:grid-cols-2">
+          <div className="mt-12 grid gap-px overflow-hidden rounded border border-line-strong bg-line md:grid-cols-2">
             {faqs.map((f, i) => (
               <Reveal key={f.q} delay={i * 0.05}>
                 <div className="h-full bg-cream p-8">
-                  <h3 className="font-heading text-lg font-semibold text-ink">{f.q}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-warmgrey">{f.a}</p>
+                  <h3 className="font-display text-card text-ink">{f.q}</h3>
+                  <p className="mt-3 text-body text-muted">{f.a}</p>
                 </div>
               </Reveal>
             ))}

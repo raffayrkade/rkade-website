@@ -28,22 +28,22 @@ const problems = [
 
 export default function Problem() {
   return (
-    <section className="border-t border-divider bg-cream py-24 md:py-28">
+    <section className="border-t border-line-strong bg-cream py-28 md:py-36">
       <div className="mx-auto max-w-[1400px] px-[6vw] md:px-[8vw]">
         <Reveal>
           <SectionHeading
             label="The Problem"
             title="Your team isn't slow. Your process is manual."
-            description="Most businesses don't have a talent problem. They have a leverage problem: smart people doing work a system should be doing."
+            description="Most businesses don't have a talent problem. They have a systems problem: smart people doing work a system should be doing."
           />
         </Reveal>
-        <div className="mt-14 grid gap-px overflow-hidden rounded-xl border border-divider bg-divider sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-px overflow-hidden rounded border border-line-strong bg-line sm:grid-cols-2 lg:grid-cols-4">
           {problems.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.05}>
-              <div className="h-full bg-cream p-8 transition-colors hover:bg-cream-elevated">
+              <div className="h-full bg-cream p-8 transition-colors hover:bg-cream-raised">
                 <p.icon className="h-6 w-6 text-gold" />
-                <h3 className="mt-5 font-heading text-lg font-semibold text-ink">{p.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-warmgrey">{p.text}</p>
+                <h3 className="mt-5 font-display text-card text-ink">{p.title}</h3>
+                <p className="mt-3 text-body text-muted">{p.text}</p>
               </div>
             </Reveal>
           ))}

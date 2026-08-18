@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;500&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-heading: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
-  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
+  --font-body: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -14,18 +14,24 @@ html {
 }
 
 body {
-  background-color: #F5F0E8;
-  color: #2C2218;
+  @apply bg-cream text-ink;
   font-family: var(--font-body);
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: #C9A84C;
-  color: #2C2218;
+  @apply bg-gold text-ink;
 }
 
-.font-heading { font-family: var(--font-heading); }
+/* Cormorant is low contrast and runs small for its point size. Nothing below
+   18px uses it, so the display family never renders as timid. Small headings
+   are labels, and labels are Montserrat. */
+.font-display {
+  font-family: var(--font-display);
+  font-synthesis-weight: none;
+}
+
 .font-body { font-family: var(--font-body); }
 
 @media (prefers-reduced-motion: reduce) {

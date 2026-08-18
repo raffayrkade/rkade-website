@@ -27,7 +27,7 @@ const tiers = [
 
 export default function ServiceTiers() {
   return (
-    <section id="services" className="border-t border-divider bg-cream py-24 md:py-28">
+    <section id="services" className="border-t border-line-strong bg-cream py-28 md:py-36">
       <div className="mx-auto max-w-[1400px] px-[6vw] md:px-[8vw]">
         <Reveal>
           <SectionHeading
@@ -37,23 +37,23 @@ export default function ServiceTiers() {
           />
         </Reveal>
         <div className="mt-4">
-          <Link to="/services" className="text-sm font-medium text-gold hover:underline">
+          <Link to="/services" className="text-button text-ink underline decoration-gold-dark underline-offset-4 hover:decoration-ink">
             Full services breakdown →
           </Link>
         </div>
-        <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-divider bg-divider md:grid-cols-3">
+        <div className="mt-10 grid gap-px overflow-hidden rounded border border-line-strong bg-line md:grid-cols-3">
           {tiers.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.05}>
-              <div className="group relative h-full overflow-hidden bg-cream p-9 transition-colors hover:bg-cream-elevated">
+              <div className="group relative h-full overflow-hidden bg-cream p-9 transition-colors hover:bg-cream-raised">
                 <div className="flex items-center justify-between">
                   <t.icon className="h-7 w-7 text-gold" />
-                  <span className="font-heading text-4xl font-bold text-ink/10">
+                  <span className="font-display text-stat text-ink/10">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
-                <p className="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-gold">{t.tag}</p>
-                <h3 className="mt-2 font-heading text-2xl font-bold text-ink">{t.name}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-warmgrey">{t.text}</p>
+                <p className="mt-8 text-label uppercase text-muted">{t.tag}</p>
+                <h3 className="mt-2 font-display text-card text-ink">{t.name}</h3>
+                <p className="mt-4 text-body text-muted">{t.text}</p>
               </div>
             </Reveal>
           ))}

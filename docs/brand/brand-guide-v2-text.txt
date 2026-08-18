@@ -1,0 +1,183 @@
+BRAND IDENTITY GUIDE
+
+RKADE
+
+AI Automation Consultancy · Dubai, UAE
+
+rkade.co · contact@rkade.co
+August 2026 · Internal Reference Document
+
+01 -- THE NAME
+
+What RKADE means
+
+RKADE is a constructed word where RK is capitalised intentionally. It stands for Raffay and
+Kushan -- the two founders. The remaining letters form the word arcade.
+The word arcade comes from the Latin arcus, meaning arch. Historically an arcade is a
+series of arches -- a passageway that connects one place to another. Architecturally it is the
+structure that holds things up while creating a path forward.
+For RKADE, this is the core meaning: we are the passage businesses walk through to get
+from where they are to where they want to be. We are the structure. We create the path.
+
+Correct usage:
+-- Written: RKade -- capital R, capital K, lowercase ade
+-- Never: Rkade, rkade, RKADE (in body copy), R-Kade, R Kade
+-- Domain: rkade.co
+-- Email: contact@rkade.co / help@rkade.co
+-- Tagline: AI Automation Consultancy · Dubai, UAE
+
+02 -- THE LOGO
+
+Logo system
+
+The logo consists of two elements: the arch mark and the wordmark RKade. They can be
+used together or the arch mark can be used as a standalone icon. Six versions are available
+to cover all use cases.
+                                            Light -- Horizontal
+Primary version · Use on cream/white backgrounds · Website header, documents, presentations
+
+                                            Dark -- Horizontal
+                    Use on dark backgrounds · Email signatures, dark-mode designs
+                  Light -- Portrait (Stacked)
+Use in square formats · Social media posts, printed materials
+
+                  Dark -- Portrait (Stacked)
+           Use on dark backgrounds in square formats
+                                                    Icon -- Profile Picture
+                           Standalone arch mark · Social media profile pictures, favicons, app icons
+
+Logo rules:
+-- Minimum size: 120px wide for the horizontal lockup. 40px for the icon only.
+-- Clear space: maintain clear space equal to the height of the K around the logo on all
+sides.
+-- Never stretch, rotate, recolour, or add effects to the logo.
+-- Never place the logo on a busy background or any colour outside the brand palette.
+-- Never recreate the logo in a different font or redraw the arch mark.
+-- File formats: SVG for digital, PNG with transparent background for general use, PDF for
+print. The original AI file is the master -- never edit anything else.
+
+The RK treatment:
+In the wordmark RKade, the letters RK are visually heavier than ade. This split is intentional
+-- it represents the founders' initials embedded within a real word. Any reproduction of the
+wordmark must preserve this visual distinction.
+
+03 -- COLOUR PALETTE
+
+The brand colours
+
+Four primary colours make up the palette. All warm-toned -- nothing cold, nothing neon,
+nothing generic tech. The palette is designed to read as premium and established.
+
+Swatch  Name         Hex      Usage
+        Dark Ink     #2C2218  Primary dark background, text on light,
+                              logo background
+        Gold Accent  #C9A84C  CTAs, highlights, RK treatment, dividers
+                              -- accent only
+        Cream        #F5F0E8  Primary light background, body text on
+                              dark
+        Warm Muted   #8A7060  Secondary text, captions, labels, subtext
+        Border       #D4C5A9
+        Deep Black   #110F0D  Dividers, borders, separators
+
+                              Deepest dark -- use sparingly
+
+Colour rules:
+-- Gold is an accent only. Never use it as a background for large areas.
+-- Never use electric blue, neon, or gradient fills -- explicitly off-brand.
+-- Dark version: #2C2218 background, cream text, gold accents.
+-- Light version: #F5F0E8 background, dark ink text, gold accents.
+-- Do not introduce new colours without sign-off from both founders.
+
+04 -- TYPOGRAPHY
+Fonts
+
+Two font families. One for display and headlines, one for body and UI. Never mixed beyond
+their intended roles.
+
+Primary -- Baile (Cormorant Garamond as digital substitute)
+-- Role: Headlines, display text, the wordmark RKade, large numbers
+-- Weight: Light (300) and Regular (400) for headlines. Semibold (600) for the wordmark
+only.
+-- Style: Serif. Elegant, editorial, premium. Never bold or heavy.
+-- Digital substitute: Cormorant Garamond -- Google Fonts, free.
+
+Secondary -- Montserrat
+-- Role: Body copy, UI labels, captions, buttons, navigation
+-- Weight: Light (300) for body. Medium (500) for labels and buttons.
+-- Style: Clean geometric sans-serif. Pairs with the serif without competing.
+
+Typography rules:
+-- Headlines: Cormorant Garamond, light weight, large size, generous line height.
+-- Body: Montserrat, light weight, 14-16px, 1.7-1.8 line height.
+-- Never use bold body text except for emphasis on a specific word or phrase.
+-- Italic in Cormorant Garamond is a feature -- use it for headline emphasis.
+-- Letter spacing: 0.2em or higher for all-caps labels and eyebrows.
+
+05 -- BRAND VOICE
+
+How RKADE communicates
+
+Direct, warm, and confident. Not academic. Not salesy. Not generic tech. RKADE speaks
+like an expert who knows what they are doing and has no need to prove it.
+
+Four principles:
+-- Direct: Say what you mean. One sentence where others use three. No hedging.
+-- Specific: Reference real things -- real numbers, real situations, real businesses.
+-- Warm: Professional but human. Talking to a business owner, not writing a whitepaper.
+-- Confident: Never apologise for what you do. State it plainly.
+
+What to avoid:
+-- AI buzzwords: leverage, synergy, ecosystem, holistic, cutting-edge, seamlessly, robust.
+-- Em dashes in casual communication -- they read as formal and AI-generated.
+-- Passive voice. Write actively.
+
+Examples:
+Wrong: 'We leverage cutting-edge AI technology to provide holistic solutions for your
+business needs.'
+Right: 'We build the system that books your next clients. You close.'
+06 -- DIGITAL PRESENCE
+
+Channels and assets
+
+Website:
+-- Domain: rkade.co
+-- CTA: Book a Free Audit -- links to calendly.com/kushan-rkade/30min
+
+Email:
+-- Primary: contact@rkade.co
+-- Support: help@rkade.co
+-- Outreach only: sales@kres-labs.com -- separate domain, never use rkade.co for cold
+outreach
+
+Social media:
+-- Instagram: @rkade.co -- educational content, 2-3x per week
+-- LinkedIn: Company page -- same content cadence
+-- Profile picture: The icon-only DP version of the logo
+
+Booking:
+-- Discovery calls: calendly.com/kushan-rkade/30min -- 30 minute free audit
+
+07 -- POSITIONING
+
+What RKADE is and is not
+
+RKADE is an AI automation consultancy. We build custom systems that solve specific
+operational problems for UAE SMBs. We are not a SaaS product, not a marketing agency,
+and not a generic AI tools company.
+
+Current products:
+-- Jewellery CRM: Custom CRM for gold and diamond retailers. Inventory, customer
+records, custom order workflow, gold rate widget, invoicing.
+-- Sales CRM: Pipeline management, deal tracking, customer records for B2B businesses.
+-- Outreach engine: AI-powered cold outreach that finds prospects, writes personalised
+emails, and books meetings.
+-- Lead gen tool: Web app that sources and enriches business leads. Live at
+leadgentool.rkade.co
+
+Target market:
+-- Primary: UAE SMBs -- jewellery retailers, tourism operators, professional services firms.
+-- Geography: Dubai first. UAE-wide next. GCC as the product scales.
+-- Decision maker: The business owner -- not the employee.
+
+rkade.co · contact@rkade.co · Dubai, UAE · August 2026
+
