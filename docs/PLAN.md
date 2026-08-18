@@ -61,11 +61,11 @@ Phase 1 ──┬── Phase 2 ──┬── Phase 3 ──┐
 |---|---|
 | 1 | **Done, uncommitted to `main`.** Built and verified locally 18-08-2026 |
 | 2 | **Done, uncommitted to `main`.** Built and verified locally 18-08-2026 |
-| 3 | **Units A, B, C done.** Unit D's Selected Work waits on phase 4 |
-| 4 | **Units A, B, C done.** Unit D, imagery, not started |
-| 5 | Not started |
-| 6 | Not started |
-| 7 | Not started |
+| 3 | **Done, uncommitted to `main`.** Unit D's Selected Work landed 18-08-2026 |
+| 4 | **Done, uncommitted to `main`.** Unit D, imagery, landed 18-08-2026, USD 1.88 spent |
+| 5 | **Done, uncommitted to `main`.** All four units built and verified locally 18-08-2026 |
+| 6 | **Done, uncommitted to `main`.** All three units built and verified locally 18-08-2026 |
+| 7 | Not started. Runs only on the word `deploy` |
 
 ## Nothing is blocked
 
@@ -83,6 +83,7 @@ The two that most change the build:
    screenshots of the real systems taking priority over generated art. Phase 4
    task 4.16.
 
-Two things need Raffay later, and neither stops any work: approving the traced
-arch mark when phase 1 shows it to him, and pasting in the Instagram and
-LinkedIn URLs once those pages exist.
+The arch mark trace was approved 18-08-2026 and ships. What is left needing
+Raffay is written up in `docs/SETUP.md` and none of it blocks phase 7: the
+dead Google booking link, a new `GITHUB_TOKEN`, repointing Formspree's
+delivery address, and pasting in the Instagram and LinkedIn URLs.

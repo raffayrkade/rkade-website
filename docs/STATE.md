@@ -9,93 +9,100 @@ Last updated: 18-08-2026
 ## Status
 
 ```
-Right now:     Phases 1 to 4 are BUILT AND VERIFIED LOCALLY, on a branch,
-               not pushed. Phase 4's imagery unit is not started.
-               rkade.co still serves the OLD site. Nothing has been deployed.
+Right now:     Running locally only. Not live. Phases 1 to 6 are BUILT AND
+               VERIFIED LOCALLY on branch phase-1-foundation-and-brand-truth,
+               committed to that branch, not merged to main. rkade.co still
+               serves the OLD site.
 To see it:     cd rkade-website && npm run dev
 Local link:    http://localhost:5173
 Live link:     https://rkade.co  (Netlify, repo raffayrkade/rkade-website)
 Last deployed: 12-07-2026, commit 88da91d, arch parallax centering fix
-Since you last looked: Phase 1 fixed the ground: real typefaces, corrected
-               tokens, 2px corners, a contrast checker gating the build. Phase
-               2 built the arch system every later phase assembles from, plus
-               a dev-only /kit route. No real page changed in phase 2, which
-               was the point. The arch mark is traced and waiting on sign-off.
+Since you last looked: The whole site was rebuilt this session. Selected Work
+               landed on the homepage, the Work page got its imagery, Services,
+               About and Contact were rebuilt, and a full accessibility,
+               performance and SEO pass took every route to 100. Only deploy
+               is left, and it only happens on the word `deploy`.
 ```
 
 ## Progress
 
 ```
-PHASE    [#############       ]  Phases 1 to 4 done   (60%)
-TASKS    [#############       ]  49 of ~70 done
+PHASE    [████████████████░░░]  Phase 6 of 7 done      (86%)
+TASKS    [███████████████████░]  78 of 79 done          (99%)
 ```
 
-Phases 1 and 2 each took one session. Two measured units is still well under
-the ten needed, so the estimate stays "not enough history yet" rather than
-being invented. `docs/history/timings.md` has both entries.
+Build time left: not enough history yet, I have 5 units measured. Four of the
+five were single phases; this one was four phases in one session, so it does
+not cleanly average against the others.
+
+Realistically: ready to deploy the moment you type `deploy`. Because: phase 7
+never runs on its own, and nothing else is technically blocking it, see
+Blockers below for what is still worth fixing first.
+
+`docs/history/timings.md` has all five entries.
 
 ## Next up
 
-1. **Phase 5**: Services, About and Contact. They are the last three pages
-   still carrying the old shape.
-2. **Phase 3's Selected Work section** on the homepage. Phase 4's case studies
-   now exist, so it is unblocked.
-3. **Phase 4 unit D, imagery.** Screenshots of the real systems first, then
-   generate only what cannot be photographed. USD 20 hard cap, nothing spent.
-4. Everything is committed locally and **not pushed**. It goes to a branch, PR
-   and Netlify preview when you type `deploy`.
+1. **Type `deploy` when ready.** Phase 7 is the only phase left: branch, PR
+   via the GitHub API, Netlify preview, your explicit yes in chat, then merge.
+   Nothing else in the build is waiting.
+2. Before that word is typed, worth doing: fix the dead Google booking link
+   (see Blockers), since it is the one thing a real visitor would hit today.
+3. Optional before deploy: repoint Formspree's delivery address so the
+   contact form reaches `contact@rkade.co` instead of the old inbox.
+4. Optional, not blocking: a new `GITHUB_TOKEN`. Missing one just means the
+   branch gets pushed and you click the create-PR link yourself.
+5. Optional, not blocking: paste in the Instagram and LinkedIn URLs whenever
+   those pages exist. The footer shows no icons until then, no dead links.
 
 ## Blockers
 
-**None.** Nothing is waiting on anyone to start phase 2.
-
-Two things need Raffay, neither blocking:
+**Nothing stops phase 7 from starting.** Four things need you, all written up
+in full in `docs/SETUP.md`, in priority order:
 
 | Thing | Effect while it waits |
 |---|---|
-| Paste Instagram and LinkedIn URLs | Footer renders no social icons. No dead links |
-| Repoint Formspree delivery to contact@rkade.co | Form still mails the old inbox. See `docs/SETUP.md` |
+| **Your Google booking link is dead** (`calendar.app.google/La6EpDjL6HBNR67k7`) | Confirmed dead 18-08-2026, in a real signed-out browser check. Every Free Audit button already routes to `/contact` instead via a `CALENDAR_LIVE` switch, so nothing on the site is broken, but the calendar link itself still needs fixing on Google's side |
+| A new `GITHUB_TOKEN` | The old one is gone from this machine. Deploy still works without it, you just get a manual "click to create PR" step instead of it happening automatically |
+| Repoint Formspree's delivery address to `contact@rkade.co` | The form still sends, it currently lands in the old `hello@rkade.co` inbox |
+| Paste Instagram and LinkedIn URLs | Footer renders no social icons. No dead links either way |
 
 ## Things that are true and were not last session
 
-- **The build has a gate now.** `npm run check:contrast` runs before every
-  build and exits non-zero on a regressed token. Proved both ways: restoring
-  the old `muted` `#8A7060` fails it at 4.05:1, the corrected `#6F5A48` passes
-  at 5.73:1.
-- **`npm run verify:routes`** proves all four routes prerender to real HTML,
-  which is the one thing that catches a `window`-at-module-scope blank page.
-- **Zero raw hex in `src/`.** Colour lives in `rkade-website/brand-tokens.json`,
-  read by both Tailwind and the contrast checker.
-- **The arch mark is measured, not eyeballed.** Centre (328.75, 341.5) in the
-  reference, centreline radii 33 / 66 / 99, stroke 17, five legs. The taper is
-  a 40.4 radius arc internally tangent at the apex. Full reasoning is in the
-  SVG's own comment.
-- **Node and npm work.** The project `CLAUDE.md` no longer claims otherwise.
-- **There is a component kit now.** `/kit` in dev renders every arch and motion
-  primitive in both tones. It is the fastest way to see a change, and it is
-  where all three of phase 2's bugs were caught.
-- **`<Section>` owns tone.** No page picks a background by hand any more, and
-  two same-tone sections touching warns in dev.
+- **Selected Work is built.** Three case studies as full-width editorial rows
+  on the homepage, read live from `src/data/work.js`.
+- **Every case study has a real image, except one on purpose.**
+  `lead-sourcing-platform` ships with `image: null` because it could not be
+  booted for a real screenshot and an invented mockup would fail the site's
+  own honesty test. Total image spend: USD 1.88, in
+  `docs/history/image-generation.md`.
+- **Services, About and Contact are rebuilt.** All three left the flat, all-
+  cream, phase 1 shape behind: arch-framed sections, tone alternation, the
+  founders named on About, booking as a focus-trapped overlay on Contact.
+- **The header now reads the section under it.** `data-header-tone` replaced
+  a fixed 72px scroll threshold that was putting nav text at 3.10:1 contrast
+  on some pages. Fixed in phase 6, closing an item this file had carried
+  since phase 3.
+- **Accessibility is 100 on every route.** Was 79 on the homepage, 87 on most
+  case studies. Two real bugs were behind part of the gap: the header
+  contrast issue above, and the homepage's three service tiers being
+  permanently invisible with reduced motion on.
+- **Zero third-party requests on any route.** Fonts are self-hosted from
+  `public/fonts/*.woff2` rather than fetched from Google's CDN.
+- **Every route has its own SEO.** Title, description, canonical, OG and
+  Twitter card, where all ten routes previously shared one identical title.
+  Plus robots.txt, sitemap.xml, Organization JSON-LD, and `npm run lint`.
+- **Only shipped files live in `public/`.** An unreferenced file there still
+  deploys and is still a live URL; six such files were moved to
+  `docs/history/` in the pre-deploy review. See `docs/GOTCHAS.md`.
 
 ## Known, still open
 
-- **Selected Work**, homepage section 5, is still not built. Phase 4's case
-  studies now exist, so nothing blocks it.
-- **Every case study has `image: null`.** Phase 4 unit D is not started. The
-  pages read fine without imagery, they are just plainer than they will be.
-
-## Known, deliberately left for later
-
-The homepage is rebuilt. Services, About and Contact are not, and they still
-carry the phase 1 problems:
-
-- **`PageHeader` eats the whole first screen.** On Contact at 1440x769 the
-  heading and intro fill the viewport and every piece of real content starts
-  below the fold. Phase 5.
-- **Services, About and Contact are still all cream**, with no alternation and
-  none of the arch system on them. Phase 5.
-- **The header bar over a mid-page dark section** reads as a washed light bar.
-  It is correct and consistent, but phase 6 should look at it.
+- **`rkade-website - Updated Colors/` question is resolved, not open.** It
+  moved to `docs/history/updated-colors-experiment/`, logged in
+  `docs/DECISIONS.md`.
+- Nothing else from phases 1 to 6 is known-incomplete. What remains is phase
+  7 itself, and the four items in Blockers above.
 
 ## Session protocol for this project
 
@@ -122,3 +129,4 @@ carry the phase 1 problems:
 | `docs/SETUP.md` | The things Raffay has to go and do himself |
 | `docs/brand/README.md` | Logo assets, arch mark measurements, brand rules |
 | `docs/DECISIONS.md` | Every call taken, and how to reverse it |
+| `docs/history/task-checklist.md` | The full task list, one line per task |

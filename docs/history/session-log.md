@@ -94,3 +94,73 @@ work" link points at /work, which phase 4 creates.
 - Prerendering extended from 4 routes to 10. Verified: zero client names, zero
   logos, zero financial figures in the rendered HTML.
 - Unit D, imagery, is not started. No money was spent.
+
+## 18-08-2026, closing phase 3, phase 4 unit D, phase 5, phase 6
+
+The whole site was rebuilt in this session. Built and verified locally on
+branch `phase-1-foundation-and-brand-truth`. Not pushed, not deployed.
+
+**Phase 3 leftover, Selected Work.** The homepage's fifth section is now
+three case studies as full-width editorial rows on cream, read live from
+`src/data/work.js` rather than hardcoded. The Industries marquee moved
+directly beneath it onto the same cream surface, and the homepage's section
+order was adjusted so tones keep alternating with the new section in place.
+
+**Phase 4 unit D, imagery.** The first screenshot pass came back technically
+anonymised but visually empty: a pipeline reading AED 0.00 across every KPI,
+an org literally named "Opening Balance Test Org". Screens were re-shot
+against invented demo seed data instead. A repeatable seed script now lives
+at `Jewelry-CRM/scripts/demo-seed.mts`, so the same clean state can be
+regenerated any time. Generated art filled in what could not be photographed;
+one generated image was redone because the first had garbled AI lettering on
+a jeweller's loupe. Everything is wired into `/work` and all five case study
+pages with real alt text, plus per-case-study OG cards composited at build
+time. `lead-sourcing-platform` ships with no image at all, deliberately: it
+could not be booted, and an invented mockup of it would fail the site's own
+honesty test. Total image spend: USD 1.88, logged line by line in
+`docs/history/image-generation.md`.
+
+**Phase 5, all four units.** Services is now three full sections, each framed
+by one arch, "Audit. Free." in the heading, case study links on Audit and
+Build and none on Manage, and a one-column FAQ accordion that answers the
+cost question as a model rather than a number. About opens with the
+arch/arcade name story in large Cormorant next to the arch mark, reveals that
+RK is Raffay and Kushan, names both founders, and adds a new section on how
+the work actually gets done. Contact ships booking as a styled overlay with
+its own focus trap after the Google embed was proven impossible (see
+`docs/DECISIONS.md`, session 6), real inline validation, a honeypot, and a
+success state that makes no reply-time promise. Nav, footer and 404 were
+rebuilt together: Work added to the primary nav, order fixed, Process
+dropped, the mobile menu rebuilt as a full-height overlay with its own focus
+trap, a footer tagline added, the footer renders zero social icons while the
+Instagram/LinkedIn URLs are still placeholders, and 404 is now an arch you
+walk back through.
+
+**Phase 6, all three units.** Two real bugs were found and fixed, not just
+polish: the header was flipping to its cream bar at a fixed 72px scroll
+regardless of hero height, which put nav text at 3.10:1 contrast over a dark
+background; and the homepage's three service tiers were permanently invisible
+whenever reduced motion was on. Accessibility went from 79 on the homepage and
+87 on most case study pages to 100 on every route. Fonts are now self-hosted,
+so the site makes zero third-party requests on any route. Every route has its
+own title, description, canonical, OG and Twitter card, where previously all
+ten routes shared one identical title. LCP improved 37% on the homepage, 24%
+on Services, 17% on Work, measured on a throttled phone against a real
+before-build; CLS is 0.00 everywhere. Added robots.txt, sitemap.xml,
+Organization JSON-LD, and eslint wired to `npm run lint`. The header was then
+rewritten a second time to read `data-header-tone` from whichever section is
+physically underneath it, closing the "washed grey bar over mid-page dark
+sections" item STATE.md had been carrying since phase 3. Several stat labels
+that were wrapping to three or four lines were fixed. A real-device pass at
+390/768/1024/1440 across every route found gallery images rendering smaller
+at 768px than at 390px, and that was fixed too.
+
+**Pre-deploy review fixes**, already logged in `docs/DECISIONS.md`, restated
+here for the record: unreferenced files were removed from `public/` (an
+unreferenced file still deploys and is still a live URL, six files moved to
+`docs/history/`), and every Free Audit button now routes to `/contact` via a
+single `CALENDAR_LIVE` switch in `CTAButtons.jsx`, because the Google booking
+link is confirmed dead.
+
+Phases 1 to 6 are now fully done. Phase 7, deploy, is the only phase left, and
+it only runs on the word `deploy`.

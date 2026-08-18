@@ -83,7 +83,7 @@ export default function ServiceTiers() {
   const fade = [fadeOuter, fadeMiddle, fadeInner]
 
   return (
-    <section id="services" ref={ref} className="bg-ink text-cream">
+    <section id="services" ref={ref} data-header-tone="dark" className="bg-ink text-cream">
       <div className="mx-auto max-w-[1400px] px-[6vw] py-28 md:px-[8vw] md:py-36">
         <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
           {/* The mark, building. Sticky on desktop so it stays beside whichever
@@ -126,7 +126,18 @@ export default function ServiceTiers() {
               {tiers.map((t, i) => (
                 <motion.li
                   key={t.name}
-                  style={reducedMotion ? undefined : { opacity: fade[i] }}
+                  // An explicit 1 here, not `undefined`. `fade[i]` is a
+                  // MotionValue that framer-motion applies straight to the
+                  // DOM node outside of React's own reconciliation; simply
+                  // removing it from `style` on the next render does not
+                  // clear whatever opacity it last set. Under reduced
+                  // motion, mount can briefly still see `fade[i]` at 0
+                  // (scrolled-to-top, section not yet entered) before the
+                  // reduced-motion state resolves, and that 0 stuck
+                  // permanently, hiding all three tiers' copy. Found
+                  // 18-08-2026 by walking the page in reduced motion end to
+                  // end rather than trusting the token.
+                  style={{ opacity: reducedMotion ? 1 : fade[i] }}
                   className="border-l-2 border-gold/30 pl-6"
                 >
                   <div className="flex flex-wrap items-baseline gap-x-3">

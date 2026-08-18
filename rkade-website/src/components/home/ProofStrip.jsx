@@ -47,7 +47,7 @@ const format = (n) => n.toLocaleString('en-GB')
 
 export default function ProofStrip() {
   return (
-    <section className="border-t border-cream/10 bg-ink text-cream">
+    <section data-header-tone="dark" className="border-t border-cream/10 bg-ink text-cream">
       <div className="mx-auto max-w-[1400px] px-[6vw] py-16 md:px-[8vw] md:py-20">
         <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s) => (
@@ -55,7 +55,7 @@ export default function ProofStrip() {
               <dt className="sr-only">{s.label}</dt>
               <dd>
                 <Counter to={s.to} format={format} className="text-cream" />
-                <span className="mt-3 block max-w-[18ch] text-label uppercase text-muted-on-ink">
+                <span className="mt-3 block max-w-[28ch] text-label uppercase text-muted-on-ink">
                   {s.label}
                 </span>
               </dd>

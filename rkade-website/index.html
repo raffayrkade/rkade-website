@@ -1,21 +1,23 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="RKade builds custom AI automation systems that eliminate manual work: workflow audits, system builds, and managed automation for growing businesses." />
-    <meta property="og:title" content="RKade: AI Automation Consultancy" />
-    <meta property="og:description" content="We build AI systems that automate your workflows, so your team ships more with less. Audit, Build, Managed." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://rkade.co/" />
-    <meta property="og:image" content="https://rkade.co/brand/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="RKade. We build the system. You close the clients." />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://rkade.co/brand/og-image.png" />
-    <title>RKade: AI Automation Consultancy</title>
+    <meta name="theme-color" content="#2C2218" />
+    <!--
+      No charset, title, description, canonical or Open Graph tags here on
+      purpose. Every route renders its own through
+      src/components/common/Seo.jsx (and charset through RootLayout.jsx),
+      which vite-react-ssg's <Head> (a React Helmet wrapper) writes into the
+      real prerendered <head> at build time. A static tag here would sit
+      alongside the per-route one rather than being replaced by it, since
+      the SSG injector inserts rather than overwrites, and the site would
+      ship with two of everything, with charset pushed past the byte-1024
+      window every reader is supposed to find it in. See docs/GOTCHAS.md.
+    -->
+    <link rel="preload" href="/fonts/cormorant-garamond-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/cormorant-garamond-italic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/montserrat-normal.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
     <div id="root"></div>

@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
-import work from '@/data/work'
+import work, { primaryImage } from '@/data/work'
 import Section from '@/components/layout/Section'
 import Reveal from '@/components/common/Reveal'
 import StatusTag from '@/components/work/StatusTag'
+import WorkImage from '@/components/work/WorkImage'
 import ArchTrio from '@/components/arch/ArchTrio'
 import useArchDraw from '@/hooks/useArchDraw'
 import CTASection from '@/components/home/CTASection'
-import { useDeclareHeaderTone } from '@/components/layout/HeaderTone'
+import Seo from '@/components/common/Seo'
 
 /**
  * The Work index. The single biggest gap on the old site: it proved nothing,
@@ -23,11 +24,17 @@ import { useDeclareHeaderTone } from '@/components/layout/HeaderTone'
 function Row({ item, index }) {
   const dark = index % 2 === 1
   const tone = dark ? 'ink' : 'cream'
+  const img = primaryImage(item)
+  const number = String(index + 1).padStart(2, '0')
 
   return (
     <Section tone={tone} padding="loose">
       <Reveal>
-        <article className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-16">
+        <article
+          className={`grid gap-10 lg:items-center lg:gap-16 ${
+            img ? 'lg:grid-cols-[1.05fr_0.95fr]' : 'lg:grid-cols-[1fr_auto] lg:items-end'
+          }`}
+        >
           <div className="max-w-3xl">
             <div className="flex flex-wrap items-center gap-3">
               <span className={`text-label uppercase ${dark ? 'text-muted-on-ink' : 'text-muted'}`}>
@@ -56,7 +63,7 @@ function Row({ item, index }) {
                         {s.value.toLocaleString('en-GB')}
                       </span>
                       <span
-                        className={`mt-1 block max-w-[20ch] text-label uppercase ${dark ? 'text-muted-on-ink' : 'text-muted'}`}
+                        className={`mt-1 block max-w-[28ch] text-label uppercase ${dark ? 'text-muted-on-ink' : 'text-muted'}`}
                       >
                         {s.label}
                       </span>
@@ -79,12 +86,40 @@ function Row({ item, index }) {
             </Link>
           </div>
 
-          <span
-            aria-hidden="true"
-            className={`font-display text-stat tabular-nums ${dark ? 'text-cream/10' : 'text-ink/10'}`}
-          >
-            {String(index + 1).padStart(2, '0')}
-          </span>
+          {img ? (
+            <div className="relative">
+              <WorkImage image={img} tone={tone} />
+              {/* The same index, demoted to a small caption plate once an
+                  image fills the column: a numeral this size sitting next to
+                  a photograph reads as a plate number, not competing with
+                  the row's own order the way the full-size version below
+                  does when there is nothing else to anchor it against. */}
+              <span
+                aria-hidden="true"
+                className={`absolute -bottom-3 -left-3 rounded border px-2 py-1 font-display text-body tabular-nums ${
+                  dark
+                    ? 'border-cream/15 bg-ink text-cream/70'
+                    : 'border-line-strong bg-cream text-ink/70'
+                }`}
+              >
+                {number}
+              </span>
+            </div>
+          ) : (
+            // Decorative index, redundant with the section's own row order.
+            // Opacity raised from the original 10% (roughly 1.2:1 either
+            // way) to clear the 3:1 large-text minimum: 45% for cream on the
+            // ink rows, 60% for ink on the cream rows, since cream needs
+            // less tint to read at the same weight against a dark
+            // background. Only the lead sourcing platform has no image, so
+            // this is the one row still built around the giant numeral.
+            <span
+              aria-hidden="true"
+              className={`font-display text-stat tabular-nums ${dark ? 'text-cream/45' : 'text-ink/60'}`}
+            >
+              {number}
+            </span>
+          )}
         </article>
       </Reveal>
     </Section>
@@ -92,7 +127,6 @@ function Row({ item, index }) {
 }
 
 export default function Work() {
-  useDeclareHeaderTone('ink')
   // Rows alternate starting cream, so the closing block takes whatever the
   // last row did not. Computed rather than hardcoded, so adding a sixth study
   // cannot silently put two sections of the same tone next to each other.
@@ -103,7 +137,12 @@ export default function Work() {
 
   return (
     <>
-      <section ref={ref} className="relative overflow-hidden bg-ink pt-[72px] text-cream">
+      <Seo
+        title="Case Studies: Real AI Automation Projects"
+        description="Five real automation projects, from a jewellery trade CRM to a lead sourcing platform. Anonymised, sourced, and honest about what is live and what isn't."
+        path="/work"
+      />
+      <section ref={ref} data-header-tone="dark" className="relative overflow-hidden bg-ink pt-[72px] text-cream">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -right-[10%] bottom-[-20%] h-[120%] w-[55%] text-gold opacity-[0.09]"

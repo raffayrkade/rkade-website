@@ -113,3 +113,33 @@ Checkpoint-style, one entry per meaningful change — not a full transcript. New
   not a move — the original path's directory entry stayed locked by the running Claude Code host
   process even after its contents were cleared, so an empty folder shell may still exist at the
   old path; harmless, safe to delete manually once confirmed unused.
+- **18-08-2026**: The whole site was rebuilt this session, phases 1 through 6 of the plan in
+  `docs/PLAN.md`. Full detail lives in `docs/STATE.md` and `docs/history/session-log.md`. Built
+  and verified locally on branch `phase-1-foundation-and-brand-truth`, not merged to `main`, not
+  deployed. This entry closes both open items above: the booking widget is now a styled overlay
+  with a focus trap on the Contact page (the Google embed itself was proven impossible, so the
+  fallback is the existing outbound link, not an iframe), and `rkade-website - Updated Colors/`
+  was retired to `docs/history/updated-colors-experiment/`, not kept or finished.
+- **18-08-2026**: Homepage, Work page (five case studies plus imagery), Services, About and
+  Contact all rebuilt around the arch motif. Nav, footer and 404 rebuilt too: Work added to the
+  primary nav, Process dropped, mobile menu rebuilt as a full-height overlay.
+- **18-08-2026**: Two real bugs found and fixed in the accessibility pass: the header was
+  flipping to its cream bar at a fixed 72px of scroll regardless of hero height, putting nav text
+  at 3.10:1 contrast on some pages, and the homepage's three service tiers were permanently
+  invisible whenever reduced motion was on. Accessibility is now 100 on every route, was 79 on
+  the homepage and 87 on most case studies.
+- **18-08-2026**: Fonts self-hosted, so the site now makes zero third-party requests on any
+  route. Every route has its own title, description, canonical, OG and Twitter card, where all
+  ten routes previously shared one identical title. LCP improved 37% on the homepage, 24% on
+  Services, 17% on Work, measured throttled against a real before-build.
+- **18-08-2026**: Pre-deploy review found and fixed two issues: six unreferenced files were still
+  sitting in `public/`, which still deploys and is still a live URL even with nothing in `src/`
+  linking to it, so they were moved to `docs/history/`. And the Google booking link
+  (`calendar.app.google/La6EpDjL6HBNR67k7`) was confirmed dead in a real signed-out browser check,
+  so every "Free Audit" button now routes to `/contact` via a single `CALENDAR_LIVE` switch in
+  `src/components/common/CTAButtons.jsx`, currently `false`.
+- **18-08-2026**: `GITHUB_TOKEN` was found to be gone from this machine (contradicts the
+  Environment notes above, which still describe it as set). Steps to recreate it are in
+  `docs/SETUP.md`. Only needed at deploy: if still missing then, the branch gets pushed and
+  Raffay clicks the create-PR link himself. Phases 1 to 6 are done. Phase 7, deploy, is the only
+  phase left and only runs on the word `deploy`.

@@ -69,6 +69,10 @@ export default function Section({
   return (
     <section
       id={id}
+      // Read by the fixed header (src/components/layout/HeaderTone.jsx) to
+      // decide its own tone: whichever section's rect currently sits under
+      // the header wins, not just the page's first one.
+      data-header-tone={tone === 'cream' ? 'light' : 'dark'}
       className={`${t.surface} ${PADDING[padding] ?? PADDING.default} ${rule ? `border-t ${t.rule}` : ''} ${className}`}
       {...rest}
     >

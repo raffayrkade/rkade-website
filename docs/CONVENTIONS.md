@@ -32,6 +32,13 @@ component references the name. If a colour needs a new shade, add the token,
 don't inline the hex. Verify with a grep for `#[0-9a-fA-F]{3,6}` in `src/`
 before calling anything done.
 
+**One documented exception:** `src/components/arch/Arch.jsx`'s SVG `<mask>`
+strokes its centreline with `stroke="#fff"`. That value is never painted on
+screen, it only tells the mask which pixels of the arch shape to reveal as the
+draw animation progresses. It carries no brand meaning and swapping it for a
+token would not change how anything looks. Leave it as `#fff`, don't churn it
+into a token.
+
 ## Corners
 
 Global corner radius is 2px. The only genuinely round things on the site are

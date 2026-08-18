@@ -5,10 +5,12 @@ import Marquee from '@/components/common/Marquee'
  * with any motion personality.
  *
  * It is no longer its own section. It sits on the same cream surface directly
- * under Why RKade with only a hairline between them, so it reads as a footnote
- * rather than as another full-weight argument. It carries no <Section> of its
- * own for that reason: two cream sections touching is exactly what Section
- * warns about, and here the continuation is deliberate.
+ * under Selected work with only a hairline between them, so it reads as a
+ * footnote to the case studies above rather than as another full-weight
+ * argument: these are the kinds of businesses those systems were built for.
+ * It carries no <Section> of its own for that reason: two cream sections
+ * touching is exactly what Section warns about, and here the continuation is
+ * deliberate.
  */
 
 const industries = [
@@ -22,7 +24,7 @@ const industries = [
 
 export default function Industries() {
   return (
-    <div className="bg-cream pb-28 md:pb-36">
+    <div data-header-tone="light" className="bg-cream pb-28 md:pb-36">
       <div className="mx-auto max-w-[1400px] px-[6vw] md:px-[8vw]">
         <div className="border-t border-line-strong pt-14">
           <p className="text-label uppercase text-muted">Industries we work with</p>

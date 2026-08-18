@@ -282,6 +282,138 @@ All six open items closed the same day. These are his calls, not defaults.
   two cream sections next to each other. The same applies on a detail page when
   a study has no stats band.
 
+## 18-08-2026, session 5 (Raffay answered directly)
+
+- **Imagery: the USD 20 cap is lifted.** Asked before spending, per phase 4 unit
+  D. Raffay: "you have free hand to generate whatever, the website needs to look
+  good." Real screenshots still come first where a system has a UI worth
+  showing, because a real screen beats a generated one. Generation fills what
+  cannot be photographed. Actual spend gets reported at the end.
+  **To reverse:** delete the generated files from `public/` and set the case
+  studies back to `image: null`. Nothing else depends on them.
+- **The contact form makes no promise about reply time.** Phase 5 task 5.9 asked
+  before writing one. Raffay chose no time promise, so the success state
+  confirms the message arrived and offers WhatsApp for anything urgent, and
+  names no window. **To reverse:** add the line back in the form's success
+  state. One string.
+- **`GITHUB_TOKEN` is gone from this machine.** Not a decision, a fact found on
+  18-08-2026. Steps to recreate it are written up in `docs/SETUP.md`. It is
+  only needed at deploy. If it is still missing then, the branch gets pushed and
+  Raffay clicks the create-PR link himself.
+
+## 18-08-2026, session 6 (phase 5 unit C, contact and booking)
+
+- **The Google appointment schedule does not embed, and the outbound link
+  itself returned an error on repeated automated checks.** Per task 5.8,
+  confirmed before building anything around it: `calendar.app.google/La6EpDjL6HBNR67k7`
+  resolves to `calendar.google.com/calendar/appointments/schedules/AcZssZ...`,
+  and loading that page directly, at the top level, with no iframe involved at
+  all, returned "Appointment not found, the appointment schedule is currently
+  unavailable" every time, across several URL variants. The underlying API
+  call (`AppointmentBookingService/GetAppointmentServiceDefinition`) answered
+  `400 Precondition check failed`. This is not a framing block: the identical
+  failure happened with no iframe present, so switching provider would not
+  have fixed it and wasn't tried. Per the task's own fallback instruction, the
+  booking route stays the existing outbound link, now opened from a properly
+  styled overlay (`BookingOverlay.jsx`) instead of a bare `<a>`, with no
+  iframe and therefore no third-party embed and no exception needed to the
+  "nothing loads from another domain" rule. **This may be an artifact of an
+  automated, signed-out browser rather than a real outage**, headless
+  verification cannot rule that out. Ask Raffay to click the link himself in
+  his own browser; if it also fails for him, that's a Google-side issue with
+  the schedule itself, worth raising independently of this website change.
+  Reverse: once the schedule is confirmed working, swap the overlay's link
+  for an `<iframe src={scheduleUrl}>`, keeping the same fallback link visible
+  alongside it.
+- **The WhatsApp card's "typical reply time: under an hour" line is dropped,
+  not carried into the restyle.** Task 5.10 asked to keep the existing copy
+  rather than rewrite it, but this is the same kind of reply-time promise
+  Raffay explicitly declined for the contact form's success state on
+  18-08-2026, just sitting in a different card. Trimmed one line rather than
+  rewriting the section. Reverse: add the line back to
+  `ContactRoutes.jsx`.
+
+## 18-08-2026, session 7 (phase 5 unit D, nav, footer, 404)
+
+- **"Process" dropped from the primary nav, leaving Work, Services, About,
+  Contact, then the Free Audit button.** Task 5.11 states that exact final
+  order and it has no fifth link. The old nav also had "Process" pointing at
+  `/#how-it-works`, added before Work existed. Reverse: add the link back
+  between About and Contact.
+- **The rebuilt mobile menu owns its own close control instead of the header's
+  hamburger flipping to an X.** The overlay is a portal at `z-[100]`, above the
+  header's `z-50`, so a close button living in the header would render
+  underneath it and be unreachable. `MobileMenu.jsx` carries its own top bar
+  (logo plus close) and matches `BookingOverlay.jsx`'s focus trap exactly:
+  focus to the close button on open, `Tab` cycles within the dialog, `Escape`
+  closes, focus returns to whatever was focused before opening. Reverse: fold
+  the menu back into `SiteLayout.jsx` and drop the file.
+
+## 18-08-2026, pre-deploy review fixes
+
+- **Only shipped images live in `public/`.** The reviewer found the uncropped
+  `rkade-crm-pipeline.webp` still sitting in `public/work/` after being cropped
+  for safety. Nothing linked to it, but an unreferenced file in `public/` still
+  deploys and is still a live URL, so it would have been fetchable at
+  rkade.co. Moved it, the garbled uncropped storefront capture, the two unused
+  textures and the two OG background plates out to `docs/history/`. The two
+  generator scripts were repointed at the new locations and both still run, so
+  the crops stay reproducible. **To reverse:** move the files back and repoint
+  the two scripts.
+
+- **Every "Free Audit" button now goes to /contact, not the calendar.** The
+  booking link `calendar.app.google/La6EpDjL6HBNR67k7` is confirmed dead. The
+  pre-declared fallback in `docs/SETUP.md` had only been built on the Contact
+  page, so the header, the mobile menu, the homepage hero and the closing CTA
+  reused on three pages all still opened a Google error page in a new tab.
+  There is now one switch, `CALENDAR_LIVE` in
+  `src/components/common/CTAButtons.jsx`, currently `false`. While it is false
+  every Free Audit button routes to /contact and the booking overlay offers
+  WhatsApp and email instead of a dead button. The overlay does not announce
+  that the calendar is broken, it just shows the routes that work.
+  **To reverse:** set `CALENDAR_LIVE = true` once Raffay confirms a working
+  booking link. That single change restores direct-to-calendar behaviour
+  everywhere on the site. If the link itself changed, update `CALENDAR_LINK`
+  in the same file.
+
+## 18-08-2026, phase 4 unit D and phase 6 (recorded at close, not asked)
+
+- **Screenshots were re-shot against invented demo seed data, not the first
+  pass.** The first pass was technically anonymised but visually empty: a
+  pipeline reading AED 0.00 across every KPI, an org literally named "Opening
+  Balance Test Org". That would have read as evidence the software does not
+  work. A repeatable seed script now exists at
+  `Jewelry-CRM/scripts/demo-seed.mts`, so the same clean, populated state can
+  be regenerated for any future screenshot without touching real client data.
+  Reverse: re-run screenshots against a blank database, delete the seed
+  script's output.
+- **`lead-sourcing-platform` ships with no image, deliberately.** It could not
+  be booted for a real screenshot, and an invented mockup of software that was
+  never actually run would fail the site's own honesty test, the same
+  standard applied to every publishable number. Reverse: build and boot the
+  platform, screenshot it, add `image:` back to its case study entry.
+- **Header contrast bug found and fixed in phase 6, not carried from phase 3.**
+  The header was flipping from its transparent state to the cream `/80` bar at
+  a fixed 72px of scroll regardless of hero height, so on any page with a
+  short or dark hero the nav text sat on the wrong background and measured
+  3.10:1. Fixed by having the header read `data-header-tone` from whichever
+  section is physically underneath it, rather than a fixed scroll threshold,
+  which also closed the separate "washed grey bar over a mid-page dark
+  section" item carried in STATE.md since phase 3.
+- **Reduced-motion bug found and fixed in phase 6: the homepage's three
+  service tiers were permanently invisible with reduced motion on.** The
+  arch-draw entrance animation that reveals each tier never resolved to its
+  end state when motion was disabled, so the content stayed at its animated
+  start (invisible) forever rather than snapping to visible. `useArchDraw`'s
+  reduced-motion branch now returns a constant 1 for this path too. Found
+  during the phase 6 accessibility sweep, not by a user report.
+- **Fonts moved to self-hosted `.woff2` files, not Google Fonts' CDN.** The
+  site previously made a `fonts.gstatic.com` request on every route. Self-
+  hosting removes it, taking the site to zero third-party requests on every
+  route, and removes a render-blocking round trip that was hurting LCP.
+  Reverse: point `index.html`/`index.css` back at the Google Fonts CSS2 API
+  URL and delete `public/fonts/`.
+
 ## Open, needs Raffay
 
 Nothing is blocking. Two things to do when convenient:
@@ -289,3 +421,9 @@ Nothing is blocking. Two things to do when convenient:
 1. ~~Approve the traced arch mark.~~ **Done, 18-08-2026.** It ships.
 2. **Paste in the Instagram and LinkedIn URLs** when those pages exist. Nothing
    breaks in the meantime, the icons simply do not render.
+3. **Click `calendar.app.google/La6EpDjL6HBNR67k7` yourself, signed into your
+   own browser.** Automated checks got "Appointment not found" on the
+   resolved schedule page today, 18-08-2026, with no iframe involved at all.
+   If it works for you, the booking overlay's link is already correct and
+   nothing changes. If it also fails for you, the schedule itself needs
+   attention on Google's side, separate from anything in this codebase.

@@ -1,6 +1,6 @@
-import { CALENDAR_LINK } from '@/components/common/CTAButtons'
 import ArchTrio from '@/components/arch/ArchTrio'
 import useArchDraw from '@/hooks/useArchDraw'
+import FreeAuditLink from '@/components/common/FreeAuditLink'
 
 /**
  * The close. On ink, and the whole section sits inside one large arch, which
@@ -17,7 +17,7 @@ export default function CTASection() {
   const { ref, drawProgress } = useArchDraw({ mode: 'once' })
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-ink text-cream">
+    <section ref={ref} data-header-tone="dark" className="relative overflow-hidden bg-ink text-cream">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center text-gold opacity-[0.11]"
@@ -34,14 +34,11 @@ export default function CTASection() {
           do it in. It costs nothing and there is no pitch.
         </p>
         <div className="mt-11 flex justify-center">
-          <a
-            href={CALENDAR_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-[52px] items-center rounded bg-gold px-8 text-button uppercase text-ink transition-transform duration-300 ease-passage hover:-translate-y-0.5"
-          >
+          <FreeAuditLink
+        className="inline-flex min-h-[52px] items-center rounded bg-gold px-8 text-button uppercase text-ink transition-transform duration-300 ease-passage hover:-translate-y-0.5"
+      >
             Free Audit
-          </a>
+          </FreeAuditLink>
         </div>
       </div>
     </section>

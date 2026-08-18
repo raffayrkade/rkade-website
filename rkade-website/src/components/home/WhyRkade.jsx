@@ -58,11 +58,13 @@ export default function WhyRkade() {
 
           <dl className="mt-12 space-y-8">
             {points.map((p, i) => (
-              <Reveal key={p.title} delay={i * 0.07}>
-                <div className="border-l-2 border-gold-dark/40 pl-6">
-                  <dt className="font-body text-base font-medium text-ink">{p.title}</dt>
-                  <dd className="mt-1 max-w-lg text-body text-muted">{p.text}</dd>
-                </div>
+              // Reveal's own div is the group wrapping one dt/dd pair. A <dl>
+              // permits a div wrapping a dt+dd group, but not a div wrapping
+              // *another* div that wraps the pair, which is what a second,
+              // inner wrapper produced and axe's definition-list audit caught.
+              <Reveal key={p.title} delay={i * 0.07} className="border-l-2 border-gold-dark/40 pl-6">
+                <dt className="font-body text-base font-medium text-ink">{p.title}</dt>
+                <dd className="mt-1 max-w-lg text-body text-muted">{p.text}</dd>
               </Reveal>
             ))}
           </dl>

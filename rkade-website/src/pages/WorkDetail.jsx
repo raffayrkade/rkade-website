@@ -1,16 +1,17 @@
 import { Link, useParams } from 'react-router-dom'
 import { ArrowUpRight, Check } from 'lucide-react'
-import work, { bySlug } from '@/data/work'
+import work, { bySlug, imageByRole, galleryImages } from '@/data/work'
 import Section from '@/components/layout/Section'
 import Reveal from '@/components/common/Reveal'
 import Counter from '@/components/common/Counter'
 import StatusTag from '@/components/work/StatusTag'
+import WorkImage from '@/components/work/WorkImage'
 import ArchFrame from '@/components/arch/ArchFrame'
 import ArchTrio from '@/components/arch/ArchTrio'
 import useArchDraw from '@/hooks/useArchDraw'
 import CTASection from '@/components/home/CTASection'
 import NotFound from '@/pages/NotFound'
-import { useDeclareHeaderTone } from '@/components/layout/HeaderTone'
+import Seo from '@/components/common/Seo'
 
 /**
  * One template, five instances. Sections in order: hero with sector and
@@ -26,11 +27,13 @@ const format = (n) => n.toLocaleString('en-GB')
 export default function WorkDetail() {
   const { slug } = useParams()
   const item = bySlug(slug)
-  useDeclareHeaderTone('ink')
   const { ref, drawProgress } = useArchDraw({ mode: 'once' })
 
   if (!item) return <NotFound />
 
+  const problemImage = imageByRole(item, 'problem')
+  const buildImage = imageByRole(item, 'build')
+  const gallery = galleryImages(item)
   const hasStats = item.stats.length > 0
   // Without a stats band the angle would put two cream sections back to back,
   // so it takes the ink slot instead and the alternation survives.
@@ -42,7 +45,23 @@ export default function WorkDetail() {
 
   return (
     <>
-      <section ref={ref} className="relative overflow-hidden bg-ink pt-[72px] text-cream">
+      {/* Title and description come straight from item.title and item.summary
+          in src/data/work.js, not hand-typed here, so they stay accurate as
+          the case studies change and never drift from the anonymisation and
+          sourcing rules that file enforces. */}
+      <Seo
+        title={item.title}
+        description={item.summary}
+        path={`/work/${item.slug}`}
+        type="article"
+        // Composited at build time from the case study's own title, over the
+        // same textless background every other route falls back to. See
+        // scripts/generate-og-cards.mjs. Re-run that script if a title here
+        // ever changes.
+        image={`/work/og/${item.slug}.webp`}
+        imageAlt={`${item.title}, an RKade case study.`}
+      />
+      <section ref={ref} data-header-tone="dark" className="relative overflow-hidden bg-ink pt-[72px] text-cream">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -right-[12%] bottom-[-25%] h-[125%] w-[52%] text-gold opacity-[0.08]"
@@ -72,22 +91,47 @@ export default function WorkDetail() {
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="text-label uppercase text-muted">The problem</p>
-            <p className="mt-5 font-display text-card text-ink">{item.problem}</p>
+            {problemImage && <WorkImage image={problemImage} tone="cream" className="mt-6" />}
+            <p className="mt-6 font-display text-card text-ink">{item.problem}</p>
           </div>
           <div>
             <p className="text-label uppercase text-muted">What we built</p>
+            {buildImage && <WorkImage image={buildImage} tone="cream" className="mt-6" />}
             <ul className="mt-6 space-y-4">
               {item.whatWeBuilt.map((b, i) => (
-                <Reveal key={b} delay={i * 0.05}>
-                  <li className="flex gap-3">
-                    <Check aria-hidden="true" className="mt-1 h-4 w-4 flex-none text-gold-dark" />
-                    <span className="text-body text-muted">{b}</span>
-                  </li>
+                // `as="li"` so Reveal's own element is the list item: a
+                // wrapping div between <ul> and <li> fails axe's
+                // list/listitem audits.
+                <Reveal key={b} as="li" delay={i * 0.05} className="flex gap-3">
+                  <Check aria-hidden="true" className="mt-1 h-4 w-4 flex-none text-gold-dark" />
+                  <span className="text-body text-muted">{b}</span>
                 </Reveal>
               ))}
             </ul>
           </div>
         </div>
+
+        {gallery.length > 0 && (
+          <div
+            className={`mt-16 grid gap-8 border-t border-line-strong pt-12 ${
+              // `lg`, not `sm`. The page gutter widens to 8vw at the same
+              // `sm` breakpoint the grid used to switch to two columns at,
+              // and the two changes together made these screenshots render
+              // narrower at 768px than they were at 390px on one column,
+              // real UI screenshots turned to grey mush right at tablet
+              // width. Single column all the way to `lg` keeps every
+              // screenshot at least as wide as the full mobile column.
+              gallery.length > 1 ? 'lg:grid-cols-2' : 'sm:max-w-md'
+            }`}
+          >
+            {gallery.map((g) => (
+              <figure key={g.src}>
+                <WorkImage image={g} tone="cream" />
+                <figcaption className="mt-3 text-label uppercase text-muted">{g.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
       </Section>
 
       {hasStats && (
@@ -98,7 +142,7 @@ export default function WorkDetail() {
                 <dt className="sr-only">{s.label}</dt>
                 <dd>
                   <Counter to={s.value} format={format} className="text-cream" />
-                  <span className="mt-3 block max-w-[20ch] text-label uppercase text-muted-on-ink">
+                  <span className="mt-3 block max-w-[28ch] text-label uppercase text-muted-on-ink">
                     {s.label}
                   </span>
                 </dd>
@@ -124,7 +168,7 @@ export default function WorkDetail() {
         </ArchFrame>
       </Section>
 
-      <div className="bg-ink text-cream">
+      <div data-header-tone="dark" className="bg-ink text-cream">
         <div className="mx-auto max-w-[1400px] border-t border-cream/10 px-[6vw] py-16 md:px-[8vw] md:py-20">
           <Link to={`/work/${next.slug}`} className="group block">
           <p className="text-label uppercase text-muted-on-ink">Next case study</p>

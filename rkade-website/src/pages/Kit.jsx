@@ -8,7 +8,6 @@ import Counter from '@/components/common/Counter'
 import RuleSweep from '@/components/common/RuleSweep'
 import Wordmark from '@/components/brand/Wordmark'
 import usePrefersReducedMotion from '@/hooks/usePrefersReducedMotion'
-import { useDeclareHeaderTone } from '@/components/layout/HeaderTone'
 
 /**
  * Dev-only kit route. Not linked from the nav and not in the prerendered route
@@ -40,8 +39,6 @@ function Row({ title, children }) {
 }
 
 export default function Kit() {
-  // This page opens on an ink section, so the header goes transparent over it.
-  useDeclareHeaderTone('ink')
   const reducedMotion = usePrefersReducedMotion()
   const steps = [0, 0.25, 0.5, 0.75, 1]
   const cards = ['One', 'Two', 'Three']

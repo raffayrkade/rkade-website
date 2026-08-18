@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
-import { CALENDAR_LINK } from '@/components/common/CTAButtons'
 import Parallax from '@/components/common/Parallax'
 import ArchTrio from '@/components/arch/ArchTrio'
 import useArchDraw from '@/hooks/useArchDraw'
+import FreeAuditLink from '@/components/common/FreeAuditLink'
 
 /**
  * The hero. Dark, and the first time the site has ever used the brand's dark
@@ -19,7 +19,11 @@ export default function Hero() {
   const { ref, drawProgress } = useArchDraw({ mode: 'once', offset: ['start 1', 'end 0.2'] })
 
   return (
-    <section ref={ref} className="relative isolate overflow-hidden bg-ink pt-[72px] text-cream">
+    <section
+      ref={ref}
+      data-header-tone="dark"
+      className="relative isolate overflow-hidden bg-ink pt-[72px] text-cream"
+    >
       {/* Three depth layers, speeds 0.05 / 0.15 / 0.3, per docs/ART-DIRECTION.md. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <Parallax speed={0.05} className="absolute inset-0">
@@ -38,7 +42,11 @@ export default function Hero() {
           </div>
         </Parallax>
         {/* A single soft pool of light at the vanishing point. Not a gradient
-            fill across a surface, which the brand guide bans. */}
+            fill across a surface, which the brand guide bans. `rounded-full`
+            here is the shape of a radial blur, not a corner radius: at
+            120px of blur the box's actual corners are invisible, only the
+            ellipse silhouette reads. Exempt from the 2px corner rule for the
+            same reason arches are. */}
         <div className="absolute left-1/2 top-[38%] h-[420px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/[0.10] blur-[120px]" />
       </div>
 
@@ -57,14 +65,11 @@ export default function Hero() {
         </p>
 
         <div className="mt-11 flex flex-wrap items-center gap-4">
-          <a
-            href={CALENDAR_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-[52px] items-center rounded bg-gold px-7 text-button uppercase text-ink transition-transform duration-300 ease-passage hover:-translate-y-0.5"
-          >
+          <FreeAuditLink
+        className="inline-flex min-h-[52px] items-center rounded bg-gold px-7 text-button uppercase text-ink transition-transform duration-300 ease-passage hover:-translate-y-0.5"
+      >
             Free Audit
-          </a>
+          </FreeAuditLink>
           <Link
             to="/work"
             className="group inline-flex min-h-[52px] items-center gap-2 rounded border border-cream/25 px-7 text-button uppercase text-cream transition-colors duration-300 hover:border-gold hover:text-gold"

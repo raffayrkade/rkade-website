@@ -31,6 +31,14 @@ const textOf = (html) =>
     .replace(/\s+/g, ' ')
     .trim()
 
+// Scoped to <head> and tolerant of react-helmet-async's data-rh attribute.
+// A plain `<title>` regex run against the whole document also matches any
+// SVG <title> used for icon accessibility (ArchTrio does this on several
+// pages), which made this check pass on pages whose real document title was
+// missing, see docs/GOTCHAS.md.
+const headOf = (html) => html.match(/<head[^>]*>[\s\S]*?<\/head>/i)?.[0] ?? ''
+const hasTitle = (html) => /<title[^>]*>[^<]+<\/title>/i.test(headOf(html))
+
 const MIN_TEXT = 400 // a real page, not a shell
 
 let failed = 0
@@ -48,7 +56,7 @@ for (const route of routes) {
     const text = textOf(html)
     if (text.length < MIN_TEXT) problems.push(`only ${text.length} chars of text`)
     if (!/<h1[\s>]/i.test(html)) problems.push('no <h1>')
-    if (!/<title>[^<]+<\/title>/i.test(html)) problems.push('no <title>')
+    if (!hasTitle(html)) problems.push('no <title>')
     if (/data-server-rendered-error|Application error/i.test(html)) problems.push('render error marker')
     var chars = text.length
   }

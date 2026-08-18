@@ -19,6 +19,23 @@
  * providers and does not support six, so no provider count ships. It also
  * proposed a phase count for the storefront that its folder does not confirm.
  * An unverifiable number does not go up, even a flattering one.
+ *
+ * IMAGES. `images` is an array, empty where nothing exists to show (the lead
+ * platform never had a screen worth capturing). Each entry carries a `role`:
+ *
+ *   'problem'  the image that illustrates the "before" state, shown beside
+ *              the problem paragraph on the detail page
+ *   'build'    the strongest real screenshot of the system, shown beside the
+ *              "what we built" list. This is the image the index page uses
+ *              too, since a prospect scanning /work should see the actual
+ *              product before anything else
+ *   'gallery'  supporting screenshots, shown as a smaller strip underneath
+ *
+ * All seed data in these screenshots is invented for the capture: shop name,
+ * owner name, customer names and phone numbers, deal names, all fictional.
+ * See docs/history/image-generation.md for how each file was made or
+ * sourced, and scripts/generate-work-image-crops.mjs for the two files that
+ * are crops of a raw capture rather than the capture itself, and why.
  */
 
 export const STATUSES = {
@@ -56,7 +73,38 @@ const work = [
     ],
     // Jewelry-CRM/docs/STATE.md: "eu-central-1 (Frankfurt)".
     stack: 'Deployed to Frankfurt for latency and data residency. In daily use.',
-    image: null,
+    images: [
+      {
+        role: 'problem',
+        src: '/work/jewelry-crm-lead.webp',
+        alt: 'A brass balance scale weighing loose diamonds against gold nuggets on a wooden desk, beside an open handwritten ledger and a pair of tweezers, the paper bookkeeping the shop ran on before this system existed.',
+        width: 1400,
+        height: 933,
+      },
+      {
+        role: 'build',
+        src: '/work/jewelry-crm-stock.webp',
+        alt: "The CRM's Stock screen, a table of jewellery items by code, name, category and live balance: a 22K gold chain shown in grams, a certified diamond packet shown in carats, a wedding band pair shown by the piece.",
+        width: 1440,
+        height: 900,
+      },
+      {
+        role: 'gallery',
+        caption: 'Today',
+        src: '/work/jewelry-crm-today.webp',
+        alt: "The CRM's Today screen, quick action tiles for New Sale, New Expense, Receive Payment and New Purchase, above cards totalling the day's sales, expenses and cash in hand in AED.",
+        width: 1440,
+        height: 900,
+      },
+      {
+        role: 'gallery',
+        caption: 'Parties',
+        src: '/work/jewelry-crm-parties.webp',
+        alt: "The CRM's Parties screen, a table of customers and suppliers with phone numbers, balance status and buttons to collect a payment or view a full ledger.",
+        width: 1440,
+        height: 900,
+      },
+    ],
   },
   {
     slug: 'luxury-jewellery-storefront',
@@ -78,10 +126,34 @@ const work = [
     stats: [
       // metro-jewellers-website/docs/STATE.md: rounds 6 to 9 are the most
       // recent four, so nine rounds in total, all closed.
-      { value: 9, label: 'rounds of client feedback, all closed' },
+      { value: 9, label: 'feedback rounds, all closed' },
     ],
     stack: 'Built and handed over. Awaiting the client’s go-ahead to deploy.',
-    image: null,
+    images: [
+      {
+        role: 'build',
+        src: '/work/metro-storefront-certified-card.webp',
+        alt: 'Three independent diamond grading reports shown side by side on the storefront, each from a different named lab, listing cut, carat weight, colour grade and clarity grade, so a buyer can compare certificates before choosing a stone.',
+        width: 1440,
+        height: 410,
+      },
+      {
+        role: 'gallery',
+        caption: 'Loose diamonds',
+        src: '/work/metro-storefront-diamonds.webp',
+        alt: "Loose faceted diamonds scattered across a jeweller's grading card under the storefront's Loose Diamonds section heading, with tweezers resting at the edge of the frame.",
+        width: 1280,
+        height: 280,
+      },
+      {
+        role: 'gallery',
+        caption: 'Gemstones',
+        src: '/work/metro-storefront-gemstones.webp',
+        alt: "An arrangement of coloured gemstones, sapphires, rubies, emeralds and topaz among them, under the storefront's Gemstones section heading.",
+        width: 1280,
+        height: 280,
+      },
+    ],
   },
   {
     slug: 'lead-sourcing-platform',
@@ -106,7 +178,11 @@ const work = [
     // Lead-Generation-Tool/docs/DEPLOYMENT.md: "went live 2026-07-25".
     stats: [],
     stack: 'Live since July 2026. Custom domain, SSL, running on a free tier by design.',
-    image: null,
+    // No screenshot exists for this one, and none gets invented. The
+    // interface is a working form and a spreadsheet export, nothing that
+    // reads as distinctive next to the other four, so it ships without an
+    // image rather than with a mockup of a UI that does not look like this.
+    images: [],
   },
   {
     slug: 'crm-forensic-audit',
@@ -134,10 +210,18 @@ const work = [
       // parsed rows, plus 90,048 rows of order exports across two years."
       { value: 67, label: 'screens captured' },
       { value: 6254, label: 'rows parsed' },
-      { value: 90048, label: 'order rows across two years' },
+      { value: 90048, label: 'order rows, two years' },
     ],
     stack: 'Delivered as a dossier and an ownership brief.',
-    image: null,
+    images: [
+      {
+        role: 'problem',
+        src: '/work/crm-audit-lead.webp',
+        alt: 'An open antique ledger under a brass magnifying glass, with loose paper receipts beside it, the paper trail RKade traced by hand before the client could get straight answers from a system it did not own.',
+        width: 1536,
+        height: 1024,
+      },
+    ],
   },
   {
     slug: 'our-own-crm',
@@ -162,11 +246,43 @@ const work = [
       { value: 8, label: 'phases shipped' },
     ],
     stack: 'Live at crm.rkade.co. Mobile first.',
-    image: null,
+    images: [
+      {
+        role: 'build',
+        // Cropped to the KPI header strip only. The full board's deal cards
+        // carry invented company and contact names for the capture, but
+        // this exact project already had one real client name slip into an
+        // earlier screenshot (see docs/history/image-generation.md), so the
+        // crop drops every deal card rather than trust a second read of
+        // names that look like seed data. See
+        // scripts/generate-work-image-crops.mjs.
+        src: '/work/rkade-crm-pipeline-card.webp',
+        alt: "RKade's own CRM Pipeline screen, pipeline value, annual value, deals with a proposal sent, and this month's agreed and closed revenue, each shown in AED and USD.",
+        width: 1360,
+        height: 320,
+      },
+      {
+        role: 'gallery',
+        caption: 'Sign in',
+        src: '/work/rkade-crm-login.webp',
+        alt: 'RKade’s own CRM sign in screen, an email and password form on a cream background with a gold Sign in button, the same login every project in this list runs behind.',
+        width: 1280,
+        height: 900,
+      },
+    ],
   },
 ]
 
 export const bySlug = (slug) => work.find((w) => w.slug === slug)
 export const slugs = work.map((w) => w.slug)
+
+/** The image shown on the /work index row and paired with "what we built"
+ * on the detail page: the strongest real screenshot if one exists, else the
+ * mood image, else nothing. */
+export const primaryImage = (item) =>
+  item.images.find((i) => i.role === 'build') ?? item.images.find((i) => i.role === 'problem') ?? null
+
+export const imageByRole = (item, role) => item.images.find((i) => i.role === role) ?? null
+export const galleryImages = (item) => item.images.filter((i) => i.role === 'gallery')
 
 export default work

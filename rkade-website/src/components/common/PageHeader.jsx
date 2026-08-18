@@ -3,7 +3,7 @@ import Parallax from '@/components/common/Parallax';
 
 export default function PageHeader({ label, title, description }) {
   return (
-    <section className="relative overflow-hidden border-b border-line-strong bg-cream pt-[72px]">
+    <section data-header-tone="light" className="relative overflow-hidden border-b border-line-strong bg-cream pt-[72px]">
       <div className="pointer-events-none absolute -bottom-px left-1/2 h-32 w-[800px] max-w-full -translate-x-1/2">
         <Parallax speed={0.08} className="h-full w-full">
           <svg

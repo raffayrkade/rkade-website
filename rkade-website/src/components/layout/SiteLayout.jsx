@@ -1,17 +1,30 @@
 import React, { useState } from 'react';
+import { Head } from 'vite-react-ssg';
 import Logo from '../brand/Logo';
 import { Link, Outlet } from 'react-router-dom';
-import { Menu, X, Linkedin, Instagram, Mail } from 'lucide-react';
-import { WHATSAPP_LINK, CALENDAR_LINK, CONTACT_EMAIL, INSTAGRAM_LINK, LINKEDIN_LINK } from '@/components/common/CTAButtons';
+import { Menu, Linkedin, Instagram, Mail } from 'lucide-react';
+import { WHATSAPP_LINK, CONTACT_EMAIL, INSTAGRAM_LINK, LINKEDIN_LINK } from '@/components/common/CTAButtons';
 import ScrollProgress from '@/components/common/ScrollProgress';
-import { HeaderToneProvider, useHeaderTone } from './HeaderTone';
+import MobileMenu from './MobileMenu';
+import { useHeaderTone } from './HeaderTone';
+import { organizationJsonLd } from '@/lib/seo';
+import FreeAuditLink from '@/components/common/FreeAuditLink'
 
+// Rendered once, sitewide (every route except the catch-all 404 goes through
+// this layout), so Google only ever sees one Organization entity for RKade
+// rather than a page repeating it with slightly different data every time.
+const ORGANIZATION_JSON_LD = organizationJsonLd({
+  instagram: INSTAGRAM_LINK,
+  linkedin: LINKEDIN_LINK,
+});
 
+// Work, Services, About, Contact, then the Free Audit button. "Process" used
+// to sit between About and Contact, linking to the homepage's How It Works
+// section; dropped so the primary nav matches the settled order exactly.
 const navLinks = [
   { label: 'Work', href: '/work' },
   { label: 'Services', href: '/services' },
   { label: 'About', href: '/about' },
-  { label: 'Process', href: '/#how-it-works' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -21,30 +34,24 @@ const socialLinks = [
 ].filter((link) => link.href !== 'PLACEHOLDER');
 
 export default function SiteLayout() {
-  // The provider has to sit above both the header and the page, because a page
-  // cannot hand context upward to its own parent.
-  return (
-    <HeaderToneProvider>
-      <SiteChrome />
-    </HeaderToneProvider>
-  );
-}
-
-function SiteChrome() {
   const [menuOpen, setMenuOpen] = useState(false);
   const header = useHeaderTone();
 
   return (
     <div className="min-h-screen bg-cream text-ink">
+      <Head>
+        <script type="application/ld+json" data-seo="organization">
+          {JSON.stringify(ORGANIZATION_JSON_LD)}
+        </script>
+      </Head>
+
       <header
-        className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
-          menuOpen ? 'border-line-strong bg-cream' : header.surface
-        }`}
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 motion-reduce:transition-none ${header.surface}`}
       >
         <ScrollProgress />
         <nav className="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between px-[6vw] md:px-[8vw]">
           <Link to="/" className="flex items-center">
-            <Logo tone={menuOpen ? 'light' : header.wordmark} />
+            <Logo tone={header.wordmark} />
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
@@ -52,56 +59,32 @@ function SiteChrome() {
               <Link
                 key={l.label}
                 to={l.href}
-                className={`text-sm font-medium transition-colors ${menuOpen ? 'text-muted hover:text-ink' : header.link}`}
+                className={`text-sm font-medium transition-colors ${header.link}`}
               >
                 {l.label}
               </Link>
             ))}
-            <a
-              href={CALENDAR_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center rounded bg-gold px-5 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5"
-            >
+            <FreeAuditLink
+        className="inline-flex min-h-[44px] items-center rounded bg-gold px-5 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5"
+      >
               Free Audit
-            </a>
+            </FreeAuditLink>
           </div>
 
           <button
-            className={`flex h-11 w-11 items-center justify-center md:hidden ${menuOpen ? 'text-ink' : header.icon}`}
-            aria-label="Toggle menu"
-            onClick={() => setMenuOpen((v) => !v)}
+            type="button"
+            className={`flex h-11 w-11 items-center justify-center md:hidden ${header.icon}`}
+            aria-label="Open menu"
+            aria-haspopup="dialog"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(true)}
           >
-            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <Menu className="h-6 w-6" />
           </button>
         </nav>
-
-        {menuOpen && (
-          <div className="border-t border-line-strong bg-cream px-[6vw] py-6 md:hidden">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((l) => (
-                <Link
-                  key={l.label}
-                  to={l.href}
-                  className="text-sm font-medium text-muted"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {l.label}
-                </Link>
-              ))}
-              <a
-                href={CALENDAR_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[44px] items-center justify-center rounded bg-gold px-5 text-sm font-medium text-ink"
-                onClick={() => setMenuOpen(false)}
-              >
-                Free Audit
-              </a>
-            </div>
-          </div>
-        )}
       </header>
+
+      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} navLinks={navLinks} />
 
       <main>
         <Outlet />
@@ -127,15 +110,24 @@ function SiteChrome() {
           <div className="grid gap-10 md:grid-cols-4">
             <div className="md:col-span-2">
               <Logo size="text-3xl" />
+              <p className="mt-3 text-label uppercase text-muted">
+                AI Automation Consultancy, Dubai, UAE
+              </p>
               <p className="mt-4 max-w-sm text-body text-muted">
                 AI automation systems that do the work of extra employees. We build the
                 infrastructure, so your team ships more with less.
               </p>
             </div>
             <div>
-              <h4 className="mb-4 text-label uppercase text-muted">
+              {/* h2, not h4: the footer sits after whatever heading level a
+                  given page happened to end on (an h2 CTA, an h3 card, a
+                  dt/dd stat), and h4 skipped a level on every page that
+                  didn't end in exactly h3. A heading never skips a level
+                  going *up*, but stepping back down to h2 is always valid,
+                  regardless of what came before it. */}
+              <h2 className="mb-4 text-label uppercase text-muted">
                 Company
-              </h4>
+              </h2>
               <ul className="space-y-3 text-sm">
                 <li><Link className="text-muted hover:text-ink transition-colors" to="/work">Work</Link></li>
                 <li><Link className="text-muted hover:text-ink transition-colors" to="/services">Services</Link></li>
@@ -145,9 +137,15 @@ function SiteChrome() {
               </ul>
             </div>
             <div>
-              <h4 className="mb-4 text-label uppercase text-muted">
+              {/* h2, not h4: the footer sits after whatever heading level a
+                  given page happened to end on (an h2 CTA, an h3 card, a
+                  dt/dd stat), and h4 skipped a level on every page that
+                  didn't end in exactly h3. A heading never skips a level
+                  going *up*, but stepping back down to h2 is always valid,
+                  regardless of what came before it. */}
+              <h2 className="mb-4 text-label uppercase text-muted">
                 Get in touch
-              </h4>
+              </h2>
               <ul className="space-y-3 text-sm">
                 <li>
                   <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex items-center gap-2 text-muted hover:text-ink transition-colors">

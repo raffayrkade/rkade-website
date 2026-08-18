@@ -57,19 +57,30 @@ export default function Problem() {
 
       <ol className="mt-16 border-t border-line-strong">
         {problems.map((p, i) => (
-          <Reveal key={p.title} delay={i * 0.06}>
-            <li className="grid grid-cols-[auto_1fr] items-start gap-x-6 gap-y-2 border-b border-line-strong py-9 md:grid-cols-[6rem_1fr_16rem] md:gap-x-10 md:py-11">
-              <span className="font-display text-stat leading-none text-ink/15 tabular-nums">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <div className="col-start-2">
-                <h3 className="font-display text-card text-ink">{p.title}</h3>
-                <p className="mt-2 max-w-xl text-body text-muted">{p.text}</p>
-              </div>
-              <p className="col-start-2 text-label uppercase text-muted md:col-start-3 md:pt-2 md:text-right">
-                {p.cost}
-              </p>
-            </li>
+          // `as="li"` so Reveal's own element IS the list item, rather than
+          // wrapping one in a div: an <ol> only permits <li> (and script
+          // helpers) as direct children, and a wrapping div fails axe's
+          // list/listitem audits.
+          <Reveal
+            key={p.title}
+            as="li"
+            delay={i * 0.06}
+            className="grid grid-cols-[auto_1fr] items-start gap-x-6 gap-y-2 border-b border-line-strong py-9 md:grid-cols-[6rem_1fr_16rem] md:gap-x-10 md:py-11"
+          >
+            {/* Decorative index, redundant with the <ol>'s own numbering, so
+                hidden from assistive tech. Opacity raised from the original
+                15% to 60%: the faint version measured 1.6:1 against cream,
+                well under the 3:1 large-text minimum. */}
+            <span aria-hidden="true" className="font-display text-stat leading-none text-ink/60 tabular-nums">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <div className="col-start-2">
+              <h3 className="font-display text-card text-ink">{p.title}</h3>
+              <p className="mt-2 max-w-xl text-body text-muted">{p.text}</p>
+            </div>
+            <p className="col-start-2 text-label uppercase text-muted md:col-start-3 md:pt-2 md:text-right">
+              {p.cost}
+            </p>
           </Reveal>
         ))}
       </ol>

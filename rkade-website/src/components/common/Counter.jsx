@@ -58,15 +58,20 @@ export default function Counter({
   }, [inView, reducedMotion, from, to, duration])
 
   return (
-    <span
-      ref={ref}
-      className={`font-display text-stat tabular-nums ${className}`}
-      // The final value is what assistive tech should hear, not every tick.
-      aria-label={`${prefix}${render(to)}${suffix}`}
-    >
+    <span ref={ref} className={`font-display text-stat tabular-nums ${className}`}>
       <span aria-hidden="true">
         {prefix}
         {render(display)}
+        {suffix}
+      </span>
+      {/* `aria-label` is prohibited on a plain span (role "generic" does not
+          support naming), which axe's aria-prohibited-attr audit catches.
+          A visually-hidden span with the final value does the same job: the
+          animated digits are hidden from assistive tech and this text,
+          always the finished number, is what gets read out. */}
+      <span className="sr-only">
+        {prefix}
+        {render(to)}
         {suffix}
       </span>
     </span>

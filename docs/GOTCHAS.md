@@ -7,20 +7,6 @@ blocking you.
 
 ---
 
-## Netlify serves a static 404 without `public/_redirects`
-
-`BrowserRouter` (react-router-dom) handles routing client-side, but Netlify's
-static host has no idea `/services` or `/about` are real. Reloading any route
-other than `/` hits Netlify's own 404 page unless `public/_redirects` exists
-with:
-
-```
-/*  /index.html  200
-```
-
-This bit the site once already, 12-07-2026. Check the file exists any time
-routing or the Netlify config changes.
-
 ## `vite-react-ssg` prerenders at build time
 
 The site is built with `vite-react-ssg`, which runs every route through a
@@ -36,15 +22,6 @@ a bare top-level `window.matchMedia(...)` or `document.querySelector(...)`.
 If a new animation or utility reads viewport size, motion preference, or
 anything else browser-only, gate it behind a mount check or `useEffect`, never
 call it during the initial render pass.
-
-## The brand guide names a stale booking link
-
-`docs/brand/README.md` and the PDF both say Calendly
-(`calendly.com/kushan-rkade/30min`). That is wrong. The real, monitored link is
-the Google Calendar one already on the site,
-`calendar.app.google/La6EpDjL6HBNR67k7`, confirmed by Raffay 18-08-2026. The
-guide looks authoritative and is stale on exactly this one point. Do not "fix"
-the calendar link back to Calendly.
 
 ## Formspree's delivery address is set in their dashboard, not in code
 
@@ -86,13 +63,6 @@ content stays revealed. Verify with:
 A blank mid-page screenshot is almost always this, not a render bug. Check the
 count before going hunting.
 
-## Git Bash rewrites a leading `/` into a Windows path
-
-`npm run verify:routes -- /,/services` gets mangled: MSYS turns the leading
-slash into `C:/Program Files/Git/`, and the first route fails with "no
-prerendered file". Prefix with `MSYS_NO_PATHCONV=1` and quote the argument, or
-just run the script with no arguments and let it use its default list.
-
 ## A bare `margin: '-60px'` on useInView insets all four sides
 
 framer-motion's `useInView` and `whileInView` pass `margin` straight through to
@@ -111,13 +81,65 @@ useInView(ref, { once: true, margin: '-60px 0px' })
 
 The same applies to `viewport={{ margin: ... }}` on `whileInView`.
 
-## Fast programmatic scrolling outruns IntersectionObserver
+## `vite-react-ssg`'s `<Head>` inserts, it never replaces
 
-Scripted `window.scrollTo` in 250px steps will skip reveal and counter triggers
-even when the components are correct, because the observer samples per frame
-and Lenis is easing the position underneath. This shows up as "the counter is
-broken" when it is not.
+`extractHelmet` in `vite-react-ssg` writes collected `<Head>` tags into the
+built HTML by doing `indexHTML.replace(headStartTag, headStartTag + metaTags)`. That
+inserts right after `<head>`, it does not remove whatever was already in
+`index.html`. A static `<title>` or `<meta name="description">` left in
+`index.html` ships **alongside** every route's own tag, not replaced by it,
+so the built HTML carries two of each. `index.html` therefore carries no
+title, description, canonical, charset or Open Graph tags at all, only the
+things that are genuinely identical on every route (viewport, favicon, theme
+colour, font preloads). Every route sets its own through
+`src/components/common/Seo.jsx`, and charset comes from `RootLayout.jsx`
+instead, the one `<Head>` guaranteed to sit above every page's own. Charset
+has to be Helmet-managed too, not just title and description: a static
+`<meta charset>` left in `index.html` gets pushed past byte 1024 by the
+injected title and description ahead of it, which Lighthouse's `charset`
+audit catches and a plain glance at the rendered page never will. Confirm
+with a view-source on `dist/`, not the browser's live DOM, which normalises
+duplicates away and hides both problems. This is also why
+`scripts/verify-routes.mjs`'s `<title>` check is scoped to `<head>`: a bare
+`<title>` regex over the whole document also matches ArchTrio's SVG
+accessibility `<title>` in the page body (see the archive for the full story).
 
-To capture a screenshot, scroll each triggering element into view with
-`scrollIntoView({ block: 'center' })` and wait, rather than stepping past it.
-Confirm the real behaviour that way before changing any component.
+## `Reveal`'s wrapping element breaks `<ol>`/`<ul>`/`<dl>` structure
+
+`<Reveal><li>...</li></Reveal>` in a list renders `<ol><div><li>`, an extra div
+axe's `list`/`listitem` audits reject. The same shape in a `<dl>` nests two
+divs around a dt/dd pair, which fails `definition-list` (one div per pair is
+valid, two nested is not). `Reveal` already takes an `as` prop for this: pass
+`as="li"` (or keep the `<dl>` case at the default `as="div"`) and put the
+child's own className straight on `Reveal`, dropping the inner wrapper. Broke
+silently across five case study pages and both homepage stat lists, caught
+18-08-2026.
+
+## `aria-label` on a bare `<span>` fails `aria-prohibited-attr`
+
+A `<span>` has no role that supports author naming. `Counter.jsx` used
+`aria-label` on its wrapper span to announce the finished number over the
+animated digits; axe flags it even though every screen reader tested it fine.
+Fix: a visually-hidden (`sr-only`) sibling span with the real text instead.
+
+## Decorative low-opacity text still needs 3:1 contrast
+
+`aria-hidden="true"` on the site's faint background numerals stops a screen
+reader announcing them, but a sighted low-vision user still sees the pixels,
+and axe's `color-contrast` audit measures those, not the ARIA tree. Ink at
+10% opacity on cream measures roughly 1.2:1; it takes about 55 to 60% to clear
+the 3:1 large-text minimum. No attribute exempts visible text from contrast.
+
+## A file sitting in `public/` but referenced by nothing still deploys
+
+Vite copies `public/` into `dist/` verbatim. Nothing checks whether a file in
+there is imported or linked anywhere in the app; it becomes a live URL on the
+deployed site regardless. Cropping an image to remove something sensitive (a
+client name, a dashboard showing real numbers) is not enough by itself: the
+uncropped source has to be moved out of `public/` too, or the original still
+ships at its own address even though no page ever points at it. Caught
+18-08-2026 in the pre-deploy review: an uncropped case-study screenshot, two
+unused textures and two OG background plates were all still sitting in
+`public/work/` with nothing in `src/` referencing any of them. Before
+shipping a crop made for safety, check `public/` itself for the file it was
+cropped from, not just the code that renders the replacement.
