@@ -43,29 +43,26 @@ Blockers below for what is still worth fixing first.
 
 ## Next up
 
-1. **Type `deploy` when ready.** Phase 7 is the only phase left: branch, PR
-   via the GitHub API, Netlify preview, your explicit yes in chat, then merge.
-   Nothing else in the build is waiting.
-2. Before that word is typed, worth doing: fix the dead Google booking link
-   (see Blockers), since it is the one thing a real visitor would hit today.
-3. Optional before deploy: repoint Formspree's delivery address so the
-   contact form reaches `contact@rkade.co` instead of the old inbox.
-4. Optional, not blocking: a new `GITHUB_TOKEN`. Missing one just means the
-   branch gets pushed and you click the create-PR link yourself.
-5. Optional, not blocking: paste in the Instagram and LinkedIn URLs whenever
-   those pages exist. The footer shows no icons until then, no dead links.
+1. **Phase 7 is running.** Raffay approved the preview and asked for it live on
+   18-08-2026, having supplied a working booking link and the Instagram URL.
+   Both are wired in and verified. The branch is `site-revamp-2026`, PR #9.
+2. After the merge: confirm rkade.co serves the new site, then delete the
+   branch locally and remotely.
+3. Only two optional items are left, neither blocking anything. See Blockers.
 
 ## Blockers
 
-**Nothing stops phase 7 from starting.** Four things need you, all written up
-in full in `docs/SETUP.md`, in priority order:
+**None.** Two optional items remain, both written up in `docs/SETUP.md`:
 
 | Thing | Effect while it waits |
 |---|---|
-| **Your Google booking link is dead** (`calendar.app.google/La6EpDjL6HBNR67k7`) | Confirmed dead 18-08-2026, in a real signed-out browser check. Every Free Audit button already routes to `/contact` instead via a `CALENDAR_LIVE` switch, so nothing on the site is broken, but the calendar link itself still needs fixing on Google's side |
-| A new `GITHUB_TOKEN` | The old one is gone from this machine. Deploy still works without it, you just get a manual "click to create PR" step instead of it happening automatically |
-| Repoint Formspree's delivery address to `contact@rkade.co` | The form still sends, it currently lands in the old `hello@rkade.co` inbox |
-| Paste Instagram and LinkedIn URLs | Footer renders no social icons. No dead links either way |
+| Repoint Formspree's delivery address to `contact@rkade.co` | The form still sends, it currently lands in the old `hello@rkade.co` inbox. This is the one worth doing soon, because messages are going somewhere Raffay may not be watching |
+| Paste the LinkedIn URL when that page exists | Footer renders the Instagram icon only. No dead links either way |
+
+Resolved 18-08-2026: the dead Google booking link, replaced with a working
+schedule and verified signed out. Instagram, now live in the footer. The missing
+`GITHUB_TOKEN`, which turned out not to matter because the `gh` CLI is still
+authenticated and opened the PR directly.
 
 ## Things that are true and were not last session
 

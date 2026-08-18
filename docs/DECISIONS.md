@@ -414,6 +414,20 @@ All six open items closed the same day. These are his calls, not defaults.
   Reverse: point `index.html`/`index.css` back at the Google Fonts CSS2 API
   URL and delete `public/fonts/`.
 
+## 18-08-2026, go live
+
+- **Booking is back on the calendar.** Raffay supplied a working schedule,
+  `calendar.app.google/waHYAngJttZ25BbL7`. Verified signed out before wiring it
+  in, because the previous one looked fine to him and was dead to everyone else:
+  it loads as "RKADE Free Audit Call", 30 minutes, Google Meet, real slots.
+  `CALENDAR_LIVE` is now `true`, so every Free Audit button books directly again
+  and the /contact overlay offers the booking page rather than the WhatsApp and
+  email fallback. **To reverse:** set `CALENDAR_LIVE = false`.
+- **Instagram is live in the footer**, `https://www.instagram.com/rkade.co`.
+  LinkedIn stays `PLACEHOLDER`, so only one icon renders. That is the intended
+  behaviour, not a bug. **To reverse:** set `INSTAGRAM_LINK` back to
+  `"PLACEHOLDER"`.
+
 ## Open, needs Raffay
 
 Nothing is blocking. Two things to do when convenient:

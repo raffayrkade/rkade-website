@@ -4,7 +4,15 @@ None of these block the site from running. Nothing here is a code change,
 they are all clicks on somebody else's website.
 
 ---
-## Needed today, and this one is broken on the LIVE site right now
+## RESOLVED 18-08-2026: the booking link (kept for reference)
+
+**Done.** Raffay supplied a new appointment schedule,
+`calendar.app.google/waHYAngJttZ25BbL7`. It was checked signed out and loads as
+"RKADE Free Audit Call", 30 minute slots with real availability. It is wired in
+and every Free Audit button books directly again. Nothing to do. The steps below
+are kept only in case a schedule ever breaks again.
+
+### Original entry
 
 ### Your Google booking link is dead. Every "Free Audit" button on rkade.co
 ### currently leads to an error page.
@@ -211,7 +219,12 @@ it just currently lands in the old inbox. Do this whenever convenient.
 
 ---
 
-## Needed only when the pages exist: Instagram and LinkedIn URLs
+## Instagram DONE 18-08-2026. LinkedIn still needed when the page exists
+
+**Instagram is live** at `https://www.instagram.com/rkade.co` and its icon now
+renders in the footer. **LinkedIn is still a placeholder**, so no LinkedIn icon
+renders, which is correct. Paste its URL in the same way when the company page
+exists. Original steps below.
 
 **What they are for:** the two social icons in the site footer. Both are
 currently suppressed (nothing renders) because neither profile exists yet.
