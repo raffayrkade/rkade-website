@@ -9,14 +9,15 @@ Last updated: 19-08-2026
 ## Status
 
 ```
-Right now:     LIVE. rkade.co serves the new site, all seven phases done.
-               A copy and audit pass is built and waiting on Raffay's yes:
-               branch cofounder-copy-pass-and-audit-fixes, PR open, NOT merged.
+Right now:     LIVE. rkade.co serves the new site, all seven phases done,
+               plus the 19-08-2026 copy and audit pass. Nothing is in flight
+               and no branch is open.
 To see it:     https://rkade.co, or cd rkade-website && npm run dev for local
                changes
 Local link:    http://localhost:5173
 Live link:     https://rkade.co  (Netlify, repo raffayrkade/rkade-website)
-Last deployed: 18-08-2026, commit 6cb9429, merged from site-revamp-2026 (PR #9)
+Last deployed: 19-08-2026, commit e601ae2, merged from
+               cofounder-copy-pass-and-audit-fixes (PR #10)
 Since you last looked: Kushan's homepage copy review and a full audit of
                preview #9 were both worked through. Two real blockers fixed
                (the header was transparent over dark sections, and unknown
@@ -86,13 +87,15 @@ is still authenticated and opened the PR directly.
 
 ## Things that are true and were not last session
 
-- **A copy and audit pass is built but not live.** Branch
-  `cofounder-copy-pass-and-audit-fixes`. The hero, the final CTA, the footer
-  and the problem section no longer sell headcount reduction; the tagline is
-  "AI Consultants"; the impossible "fall by around 400%" claim is now the 4x
-  increase the study actually found; the Industries band is gone; `/privacy`
-  and `/terms` exist. Verified locally, waiting on the Netlify preview and an
-  explicit yes.
+- **The copy and audit pass is live.** PR #10, merged `--no-ff` as e601ae2
+  after Raffay approved the preview in chat, branch deleted both sides.
+  Verified on rkade.co: all eight real routes 200, a bad URL returns a real
+  404 with the 404 page and no canonical, the four security headers present,
+  `apple-touch-icon.png` served, the sitemap carrying /privacy and /terms and
+  not /404, zero `fonts.googleapis.com` references, and every one of the six
+  retired strings ("extra employees", "AI Automation Consultancy", "fall by
+  around 400", "Stop paying people", "vertical-specific", "fewer people")
+  returning zero hits on the live homepage.
 - **The site had no real 404 and nobody noticed, because the browser check
   passed.** A bad URL rendered the 404 page after hydration while returning
   HTTP 200 and the homepage's own HTML and canonical. Fixed by prerendering

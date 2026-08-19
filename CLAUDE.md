@@ -176,5 +176,10 @@ Checkpoint-style, one entry per meaningful change — not a full transcript. New
   Consultants", the impossible "fall by around 400%" became the 4x increase the study actually
   found, the Industries band was retired to `docs/history/`, and `/privacy` and `/terms` were
   written and shipped, which closes the one thing the site was collecting form data without.
-  Built and verified locally on branch `cofounder-copy-pass-and-audit-fixes`. **Not merged.**
-  Full detail in `docs/DECISIONS.md`.
+  Raffay approved the preview in chat and it went live the same session: PR #10, merged
+  `--no-ff` as e601ae2, branch deleted both sides. Verified on rkade.co, including the one thing
+  that can only be checked in production: a bad URL now returns a real HTTP 404 with the 404 page,
+  where it previously returned 200 and a byte-identical copy of the homepage. Full detail in
+  `docs/DECISIONS.md`. Two things stay open and neither is code: the same copy pass on the other
+  four pages, which needs Kushan, and one screenshot for the lead-sourcing case study, which needs
+  Raffay. Both are rows in `docs/BLOCKED.md`.
