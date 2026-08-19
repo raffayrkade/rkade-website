@@ -27,7 +27,7 @@ export default function CTASection() {
 
       <div className="relative mx-auto max-w-[1400px] px-[6vw] py-32 text-center md:px-[8vw] md:py-44">
         <h2 className="mx-auto max-w-[18ch] font-display text-section text-cream">
-          Stop paying people to do <em className="italic text-gold">what a system can.</em>
+          Stop losing hours to work <em className="italic text-gold">a system should be doing.</em>
         </h2>
         <p className="mx-auto mt-6 max-w-lg text-body-lg text-muted-on-ink">
           Start with the audit. We map exactly where automation pays off, and tell you the order to

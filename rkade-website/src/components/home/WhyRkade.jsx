@@ -71,7 +71,7 @@ export default function WhyRkade() {
 
           <Link
             to="/about"
-            className="group mt-12 inline-flex items-center gap-2 text-button uppercase text-ink underline decoration-gold-dark underline-offset-4 transition-colors hover:decoration-ink"
+            className="group mt-12 inline-flex items-center gap-2 py-2 text-button uppercase text-ink underline decoration-gold-dark underline-offset-4 transition-colors hover:decoration-ink"
           >
             How we work
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

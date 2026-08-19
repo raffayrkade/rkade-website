@@ -1,0 +1,18 @@
+# Security headers, added 19-08-2026 after the deploy preview #9 audit
+# embedded the entire live site in a cross-origin iframe and it worked.
+#
+# This lives in public/_headers rather than in a netlify.toml on purpose.
+# netlify.toml is read relative to the build's base directory, and the site
+# root is the rkade-website/ subfolder of this repo, so a toml at either
+# level is a guess about how the Netlify site is configured. Everything in
+# public/ is copied into dist/ verbatim by the build, so _headers is correct
+# no matter what the base directory turns out to be.
+#
+# No Content-Security-Policy here yet. Getting one wrong silently breaks the
+# page rather than failing loudly, and it needs its own test pass against a
+# preview before it goes anywhere near the live site.
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()

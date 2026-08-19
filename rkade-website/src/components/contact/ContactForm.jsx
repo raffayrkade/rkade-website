@@ -107,7 +107,7 @@ export default function ContactForm() {
           href={WHATSAPP_LINK}
           target="_blank"
           rel="noopener noreferrer"
-          className="group mt-5 inline-flex items-center gap-2 text-button uppercase text-gold"
+          className="group mt-5 inline-flex items-center gap-2 py-2 text-button uppercase text-gold"
         >
           Chat on WhatsApp
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -137,6 +137,7 @@ export default function ContactForm() {
           id="name"
           name="name"
           type="text"
+          autoComplete="name"
           value={values.name}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -156,6 +157,7 @@ export default function ContactForm() {
           id="email"
           name="email"
           type="email"
+          autoComplete="email"
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -175,6 +177,7 @@ export default function ContactForm() {
           id="company"
           name="company"
           type="text"
+          autoComplete="organization"
           value={values.company}
           onChange={handleChange}
           className="w-full border-0 border-b border-cream/25 bg-transparent pb-3 text-base text-cream outline-none transition-colors placeholder:text-muted-on-ink/70 focus:border-gold"

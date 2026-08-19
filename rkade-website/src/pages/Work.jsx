@@ -75,7 +75,7 @@ function Row({ item, index }) {
 
             <Link
               to={`/work/${item.slug}`}
-              className={`group mt-10 inline-flex items-center gap-2 text-button uppercase ${
+              className={`group mt-10 inline-flex items-center gap-2 py-2 text-button uppercase ${
                 dark
                   ? 'text-gold'
                   : 'text-ink underline decoration-gold-dark underline-offset-4 hover:decoration-ink'
@@ -180,7 +180,7 @@ export default function Work() {
           </p>
           <Link
             to="/services"
-            className={`group mt-8 inline-flex items-center gap-2 text-button uppercase ${
+            className={`group mt-8 inline-flex items-center gap-2 py-2 text-button uppercase ${
               closeDark
                 ? 'text-gold'
                 : 'text-ink underline decoration-gold-dark underline-offset-4 hover:decoration-ink'

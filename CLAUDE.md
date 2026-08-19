@@ -164,3 +164,17 @@ Checkpoint-style, one entry per meaningful change — not a full transcript. New
   seven phases of `docs/PLAN.md` are now done. What is left is on Raffay's side, not code:
   repointing Formspree's delivery address (now the priority, since the form is live) and pasting
   in the LinkedIn URL. Full detail in `docs/STATE.md`.
+- **19-08-2026**: Kushan sent a homepage copy review and a full audit of deploy preview #9. Both
+  worked through against the code first, which mattered: the em dash sweep, the nav contrast fix
+  and the honeypot `aria-hidden` were already done, and two more items were wrong (the stats band
+  "leading zeros" is the screen-reader span being scraped, not a render fault, and the audit's
+  own `netlify.toml` fix for the 404 would have handed a 404 to real pages). What was real and is
+  now fixed: the header was fully transparent over dark sections, so content scrolled through the
+  nav; and unknown URLs returned HTTP 200 with a byte-identical homepage, because the prerendered
+  fallback was `index.html`. The homepage copy was repositioned off headcount-reduction language
+  throughout (hero, subhead, final CTA, footer, the first problem label), the tagline became "AI
+  Consultants", the impossible "fall by around 400%" became the 4x increase the study actually
+  found, the Industries band was retired to `docs/history/`, and `/privacy` and `/terms` were
+  written and shipped, which closes the one thing the site was collecting form data without.
+  Built and verified locally on branch `cofounder-copy-pass-and-audit-fixes`. **Not merged.**
+  Full detail in `docs/DECISIONS.md`.

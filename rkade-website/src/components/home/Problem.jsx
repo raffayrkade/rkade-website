@@ -15,17 +15,22 @@ const problems = [
   {
     title: 'Repetitive work eats the day',
     text: 'Copy-paste, data entry, follow-ups. Hours your team will never get back.',
-    cost: 'Paid for at full salary',
+    cost: 'Hours you are already paying for',
   },
   {
     title: 'Manual processes slow everything',
     // Source: the widely cited Lead Response Management study (Oldroyd,
-    // McElheran & Elkington), which found the odds of qualifying a lead drop
-    // roughly 400% between a 5-minute and a 10-minute response. Kept because
-    // it is the one specific number in the old copy and the brand guide asks
+    // McElheran & Elkington), which found the odds of qualifying a lead are
+    // roughly 4x higher at a 5-minute response than at a 10-minute one.
+    //
+    // This said "fall by around 400%" until 19-08-2026. Nothing can fall by
+    // more than 100%, so the sentence was impossible as written, and the
+    // study's actual finding is an increase, not a decrease. Stated as the
+    // increase it is both correct and the stronger line. Kept at all because
+    // it is the one specific number in this section and the brand guide asks
     // for exactly this kind of specificity. It is an external finding, not an
     // RKade result, and it is not presented as one.
-    text: 'Every handoff waits on a human. Let a response slip from 5 minutes to 10 and the odds of qualifying that lead fall by around 400%.',
+    text: "Every handoff waits on a human. Respond to a lead in 5 minutes instead of 10 and you're 4x more likely to qualify it. Minutes decide deals.",
     cost: 'Lost before anyone notices',
   },
   {

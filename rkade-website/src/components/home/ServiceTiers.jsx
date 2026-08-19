@@ -41,7 +41,7 @@ const tiers = [
     tag: 'Tier 2',
     name: 'Build',
     line: 'Narrower. The systems that actually get made.',
-    text: 'Outreach engines, data pipelines, internal tools. Built around how you already operate rather than around a template, then shipped and handed over working.',
+    text: 'CRMs, websites, outreach engines, internal tools. Built around how you already operate rather than around a template, then shipped and handed over working.',
   },
   {
     tag: 'Tier 3',
@@ -112,7 +112,7 @@ export default function ServiceTiers() {
             </svg>
           </div>
 
-          <div className="mt-16 lg:mt-0 lg:pb-[24vh] lg:pt-[14vh]">
+          <div className="mt-16 lg:mt-0 lg:pb-[10vh] lg:pt-[10vh]">
             <p className="text-label uppercase text-muted-on-ink">What we do</p>
             <h2 className="mt-3 font-display text-section text-cream">
               Three arches. <em className="italic text-gold">Three tiers.</em>
@@ -122,7 +122,7 @@ export default function ServiceTiers() {
               inward, or take only the part you need.
             </p>
 
-            <ol className="mt-14 space-y-[20vh]">
+            <ol className="mt-14 space-y-[8vh]">
               {tiers.map((t, i) => (
                 <motion.li
                   key={t.name}
@@ -157,7 +157,7 @@ export default function ServiceTiers() {
 
             <Link
               to="/services"
-              className="group mt-20 inline-flex items-center gap-2 text-button uppercase text-gold"
+              className="group mt-20 inline-flex items-center gap-2 py-2 text-button uppercase text-gold"
             >
               Full services breakdown
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

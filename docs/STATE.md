@@ -2,24 +2,28 @@
 
 **Hard cap: 8 KB.** Read this first, every session.
 
-Last updated: 18-08-2026
+Last updated: 19-08-2026
 
 ---
 
 ## Status
 
 ```
-Right now:     LIVE. rkade.co serves the new site. All seven phases of
-               docs/PLAN.md are done.
+Right now:     LIVE. rkade.co serves the new site, all seven phases done.
+               A copy and audit pass is built and waiting on Raffay's yes:
+               branch cofounder-copy-pass-and-audit-fixes, PR open, NOT merged.
 To see it:     https://rkade.co, or cd rkade-website && npm run dev for local
                changes
 Local link:    http://localhost:5173
 Live link:     https://rkade.co  (Netlify, repo raffayrkade/rkade-website)
 Last deployed: 18-08-2026, commit 6cb9429, merged from site-revamp-2026 (PR #9)
-Since you last looked: The whole rebuild went live: Raffay approved the
-               Netlify preview, supplied a working booking link and the
-               Instagram URL at the last minute, and the merge to main was
-               verified on the real site straight after.
+Since you last looked: Kushan's homepage copy review and a full audit of
+               preview #9 were both worked through. Two real blockers fixed
+               (the header was transparent over dark sections, and unknown
+               URLs returned 200 with the homepage), the homepage copy
+               repositioned off headcount-reduction language, and /privacy
+               and /terms written and shipped. Four of their items turned out
+               to be already done or wrong, see docs/DECISIONS.md.
 ```
 
 ## Progress
@@ -43,6 +47,9 @@ Raffay's to do himself, not building, see Blockers below.
 
 There is no phase 8 planned. What comes after launch:
 
+0. **Read /privacy and /terms on the preview, then approve or reject the PR.**
+   They are the only pages on the site written as legal text rather than
+   marketing, so they are the only ones nobody else can sign off.
 1. **Get Formspree's delivery address repointed to `contact@rkade.co`.** This
    is now the one thing that actually matters, see Blockers.
 2. **Get the LinkedIn company page URL** once it exists, paste it into
@@ -68,12 +75,29 @@ The only other open item, and it blocks nothing: paste the LinkedIn company
 page URL into `CTAButtons.jsx` once that page exists. The footer simply shows
 no LinkedIn icon until then, Instagram already renders on its own.
 
+Two new rows in `docs/BLOCKED.md`, neither of them code: the copy review for
+the other four pages has to come from Kushan, and the lead-sourcing case study
+still needs one screenshot before it has any image at all.
+
 Resolved 18-08-2026: the dead Google booking link, replaced with a working
 schedule and verified signed out. Instagram, now live in the footer. The
 missing `GITHUB_TOKEN`, which turned out not to matter because the `gh` CLI
 is still authenticated and opened the PR directly.
 
 ## Things that are true and were not last session
+
+- **A copy and audit pass is built but not live.** Branch
+  `cofounder-copy-pass-and-audit-fixes`. The hero, the final CTA, the footer
+  and the problem section no longer sell headcount reduction; the tagline is
+  "AI Consultants"; the impossible "fall by around 400%" claim is now the 4x
+  increase the study actually found; the Industries band is gone; `/privacy`
+  and `/terms` exist. Verified locally, waiting on the Netlify preview and an
+  explicit yes.
+- **The site had no real 404 and nobody noticed, because the browser check
+  passed.** A bad URL rendered the 404 page after hydration while returning
+  HTTP 200 and the homepage's own HTML and canonical. Fixed by prerendering
+  `dist/404.html` and pointing `_redirects` at it with a 404 status. The
+  lesson is in `docs/DECISIONS.md`: a rendered page is not a status code.
 
 - **The site is live.** Merged `--no-ff` to `main` as commit 6cb9429, PR #9,
   after Raffay approved the Netlify preview in chat. Verified on the real

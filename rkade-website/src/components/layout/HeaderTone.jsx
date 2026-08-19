@@ -28,7 +28,7 @@ import { useLocation } from 'react-router-dom'
  */
 export function useHeaderTone(headerHeight = 72) {
   const { pathname } = useLocation()
-  const [dark, setDark] = useState(false)
+  const [{ dark, atTop }, setState] = useState({ dark: false, atTop: true })
 
   useEffect(() => {
     // Guarded because vite-react-ssg prerenders this with no window at all.
@@ -52,7 +52,12 @@ export function useHeaderTone(headerHeight = 72) {
           break
         }
       }
-      setDark(current?.getAttribute('data-header-tone') === 'dark')
+      setState({
+        dark: current?.getAttribute('data-header-tone') === 'dark',
+        // Only the very top of a page, where nothing has scrolled under the
+        // header yet, is allowed to go fully transparent. See `surface` below.
+        atTop: window.scrollY < 24,
+      })
     }
 
     const onScroll = () => {
@@ -78,8 +83,17 @@ export function useHeaderTone(headerHeight = 72) {
     // Gold is legal as text on ink and illegal as text on cream, so the CTA
     // stays a gold fill with ink text on both tones. Only the bar and the
     // link colours flip.
+    // Over dark sections the bar used to be fully transparent, so page
+    // content scrolled straight through the nav links and both became
+    // unreadable: the final CTA headline ran through Work and Services, and
+    // 90,048 in the proof strip collided with Contact. Found 18-08-2026 in
+    // the deploy preview #9 audit. The dark state is now the exact mirror of
+    // what the light state already did, and only the very top of a page,
+    // where nothing has scrolled under the header yet, stays transparent.
     surface: dark
-      ? 'border-transparent bg-transparent'
+      ? atTop
+        ? 'border-transparent bg-transparent'
+        : 'border-cream/10 bg-ink/70 backdrop-blur-xl'
       : 'border-line-strong bg-cream/70 backdrop-blur-xl',
     link: dark ? 'text-muted-on-ink hover:text-cream' : 'text-muted hover:text-ink',
     icon: dark ? 'text-cream' : 'text-ink',
