@@ -66,13 +66,19 @@ export default function MobileMenu({ open, onClose, navLinks }) {
       role="dialog"
       aria-modal="true"
       aria-label="Menu"
-      className="fixed inset-0 z-[100] flex flex-col overflow-y-auto bg-ink-deep md:hidden"
+      // h-[100dvh] as well as inset-0: a fixed element on iOS Safari is laid
+      // out against the toolbar-hidden viewport, so the Free Audit button at
+      // the bottom of this panel could sit underneath Safari's own bottom bar.
+      // dvh rather than svh here because this is a fixed overlay with the page
+      // behind it locked, so there is no layout for a mid-scroll resize to
+      // disturb, and dvh always fills exactly what is visible.
+      className="fixed inset-0 z-[100] flex h-[100dvh] flex-col overflow-y-auto bg-ink-deep md:hidden"
     >
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center text-gold opacity-[0.1]"
       >
-        <ArchTrio className="h-[50vh] w-auto" />
+        <ArchTrio className="h-[50dvh] w-auto" />
       </div>
 
       <div className="relative flex h-[72px] shrink-0 items-center justify-between px-[6vw]">

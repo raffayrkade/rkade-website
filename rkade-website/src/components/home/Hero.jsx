@@ -50,7 +50,11 @@ export default function Hero() {
         <div className="absolute left-1/2 top-[38%] h-[420px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/[0.10] blur-[120px]" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[86vh] max-w-[1400px] flex-col justify-center px-[6vw] py-24 md:px-[8vw] md:py-32">
+      {/* 86svh, not 86vh: on iOS Safari vh measures the screen with the
+          toolbars hidden, so at 86vh the two buttons below sat under Safari's
+          own chrome on a phone. svh is the toolbar-visible height, so the
+          hero fits as drawn and does not resize as the toolbar slides away. */}
+      <div className="relative mx-auto flex min-h-[86svh] max-w-[1400px] flex-col justify-center px-[6vw] py-24 md:px-[8vw] md:py-32">
         <p className="text-label uppercase text-muted-on-ink">
           AI Consultants <span className="text-gold">·</span> Dubai
         </p>

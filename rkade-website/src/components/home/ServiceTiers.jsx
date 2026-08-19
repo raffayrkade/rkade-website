@@ -5,6 +5,7 @@ import { ArrowUpRight } from 'lucide-react'
 import { ArchShape } from '@/components/arch/Arch'
 import { REFERENCE } from '@/components/arch/geometry'
 import usePrefersReducedMotion from '@/hooks/usePrefersReducedMotion'
+import useMediaQuery, { MD_UP } from '@/hooks/useMediaQuery'
 
 /**
  * The centrepiece.
@@ -63,6 +64,12 @@ const WINDOWS = [
 export default function ServiceTiers() {
   const ref = useRef(null)
   const reducedMotion = usePrefersReducedMotion()
+  // Below md this section behaves exactly as it does under reduced motion:
+  // the mark arrives drawn and all three tiers are simply readable. The
+  // scroll-scrubbed version is desktop's, where there is room for the sticky
+  // column beside the copy and the budget to repaint it.
+  const wideEnough = useMediaQuery(MD_UP)
+  const stillMark = reducedMotion || !wideEnough
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
 
   const outerRadius = REFERENCE.spans[0] + REFERENCE.strokeWidth / 2
@@ -106,7 +113,7 @@ export default function ServiceTiers() {
                   cx={outerRadius}
                   cy={outerRadius}
                   taper={i === 0}
-                  drawProgress={reducedMotion ? 1 : draw[i]}
+                  drawProgress={stillMark ? 1 : draw[i]}
                 />
               ))}
             </svg>
@@ -137,7 +144,7 @@ export default function ServiceTiers() {
                   // permanently, hiding all three tiers' copy. Found
                   // 18-08-2026 by walking the page in reduced motion end to
                   // end rather than trusting the token.
-                  style={{ opacity: reducedMotion ? 1 : fade[i] }}
+                  style={{ opacity: stillMark ? 1 : fade[i] }}
                   className="border-l-2 border-gold/30 pl-6"
                 >
                   <div className="flex flex-wrap items-baseline gap-x-3">

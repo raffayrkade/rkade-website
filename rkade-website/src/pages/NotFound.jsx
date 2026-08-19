@@ -24,7 +24,7 @@ export default function NotFound() {
     // landmark-one-main audit flags any page with none at all.
     <main
       ref={ref}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-ink-deep px-[6vw] py-24 text-cream"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-ink-deep px-[6vw] py-24 text-cream"
     >
       <Seo
         title="Page Not Found"
@@ -35,7 +35,7 @@ export default function NotFound() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center text-gold opacity-[0.14]"
       >
-        <ArchTrio drawProgress={drawProgress} className="h-[80vh] w-auto" />
+        <ArchTrio drawProgress={drawProgress} className="h-[80svh] w-auto" />
       </div>
 
       <div className="relative w-full max-w-lg text-center">
