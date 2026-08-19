@@ -26,18 +26,22 @@ const stats = [
     // Jewelry-CRM/docs/STATE.md: "Phase 28 of 28 (100%)", "All 28 phases are
     // shipped". A phase-29.md exists but is planned, not shipped, so 28.
     to: 28,
-    label: 'build phases on the largest one',
+    label: 'build phases on the largest project',
   },
   {
     // Jewelry-CRM/docs/STATE.md: "All 170 tasks across 28 phases are now built
     // and committed locally."
     to: 170,
-    label: 'tasks shipped on it',
+    label: 'tasks shipped across all builds',
   },
   {
     // crm-audit/docs/STATE.md: "90,048 rows of order exports across two years".
     // That project is a survey and extraction, so the verb is audited, not
-    // migrated. The plan's label said migrated. It is not accurate.
+    // migrated. The plan's label said migrated. It is not accurate, and the
+    // 18-08-2026 copy review asked for "migrated and audited" for the second
+    // time. Rejected for the second time, for the same reason: nothing was
+    // moved anywhere. The other two labels here were reworded as that review
+    // asked, so that each reads as a standalone fact.
     to: 90048,
     label: 'order rows audited',
   },

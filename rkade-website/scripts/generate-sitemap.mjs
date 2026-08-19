@@ -5,6 +5,8 @@
 //
 // Deliberately excludes /kit: it is dev-only (see routes.jsx and
 // docs/plan/phase-02.md) and was never in ssgOptions.includedRoutes either.
+// Also excludes /404, which vite.config.js does prerender but which must
+// never be offered to a crawler as a real page.
 
 import { writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -21,6 +23,8 @@ const routes = [
   { path: '/services', priority: '0.9', changefreq: 'monthly' },
   { path: '/about', priority: '0.6', changefreq: 'monthly' },
   { path: '/contact', priority: '0.8', changefreq: 'monthly' },
+  { path: '/privacy', priority: '0.3', changefreq: 'yearly' },
+  { path: '/terms', priority: '0.3', changefreq: 'yearly' },
 ]
 
 const urlEntry = ({ path, priority, changefreq }) => `  <url>

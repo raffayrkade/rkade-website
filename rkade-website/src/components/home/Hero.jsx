@@ -52,16 +52,16 @@ export default function Hero() {
 
       <div className="relative mx-auto flex min-h-[86vh] max-w-[1400px] flex-col justify-center px-[6vw] py-24 md:px-[8vw] md:py-32">
         <p className="text-label uppercase text-muted-on-ink">
-          AI Automation Consultancy <span className="text-gold">·</span> Dubai
+          AI Consultants <span className="text-gold">·</span> Dubai
         </p>
 
         <h1 className="mt-7 max-w-[16ch] font-display text-hero text-cream">
-          We build AI systems that do the work of <em className="italic text-gold">extra employees.</em>
+          We build the systems your business <em className="italic text-gold">runs on.</em>
         </h1>
 
         <p className="mt-8 max-w-xl text-body-lg text-muted-on-ink">
-          Custom automations that cut the manual work and let you get more done with fewer people.
-          Free up time and headcount. Put it toward what actually grows the business.
+          Custom systems built around how your business actually operates. Less time lost to
+          repetitive work, more time on what grows revenue.
         </p>
 
         <div className="mt-11 flex flex-wrap items-center gap-4">

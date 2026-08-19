@@ -107,7 +107,7 @@ export default function SelectedWork() {
 
                   <Link
                     to={`/work/${item.slug}`}
-                    className="group mt-9 inline-flex items-center gap-2 text-button uppercase text-ink underline decoration-gold-dark underline-offset-4 transition-colors hover:decoration-ink"
+                    className="group mt-9 inline-flex items-center gap-2 py-2 text-button uppercase text-ink underline decoration-gold-dark underline-offset-4 transition-colors hover:decoration-ink"
                   >
                     Read the case study
                     <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -131,7 +131,7 @@ export default function SelectedWork() {
 
       <Link
         to="/work"
-        className="group mt-14 inline-flex items-center gap-2 text-button uppercase text-ink underline decoration-gold-dark underline-offset-4 transition-colors hover:decoration-ink"
+        className="group mt-14 inline-flex items-center gap-2 py-2 text-button uppercase text-ink underline decoration-gold-dark underline-offset-4 transition-colors hover:decoration-ink"
       >
         See all {work.length} case studies
         <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

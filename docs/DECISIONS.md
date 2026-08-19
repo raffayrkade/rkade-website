@@ -443,6 +443,91 @@ All six open items closed the same day. These are his calls, not defaults.
   still authenticated as `raffayrkade` and opened PR #9 directly. `docs/SETUP.md`'s
   token section is now marked optional rather than needed.
 
+## 19-08-2026, co-founder copy review and audit fixes
+
+Kushan sent a homepage copy review and a full site audit of deploy preview #9.
+Both were worked through item by item against the actual code first, which
+matters: four of their items were already done or were wrong.
+
+- **[19-08-2026] The header gets an ink bar over dark sections, except at the
+  very top of a page.** The dark branch was `bg-transparent` with no scrim, so
+  content scrolled through the nav and both became unreadable. It now mirrors
+  the light branch exactly (`bg-ink/70 backdrop-blur-xl`). The transparent
+  state survives only while `scrollY < 24`, so the hero still opens clean and
+  nothing has scrolled under the bar yet. Reverse: drop the `atTop` branch in
+  `HeaderTone.jsx`.
+- **[19-08-2026] Unknown URLs now return a real 404, via a prerendered
+  `404.html`, not via the audit's suggested `netlify.toml`.** The audit was
+  right about the symptom and wrong about the cure: its snippet pointed the
+  catch-all at `/index.html` with `status = 404`, which would hand a 404 to
+  real pages if pretty-URL file serving ever missed. Instead `/404` was added
+  to `ssgOptions.includedRoutes` (it falls through to the `*` route and
+  prerenders `NotFound`), and `public/_redirects` now reads
+  `/* /404.html 404`. Netlify does not let an unforced redirect shadow an
+  existing file, and every real route is a real file, so this only fires on
+  paths with nothing behind them. Reverse: put back `/* /index.html 200`.
+- **[19-08-2026] The 404 was previously recorded as verified. It was verified
+  in the wrong place.** The 18-08-2026 go-live check loaded a bad URL in a
+  browser and saw the 404 page, which is true: React renders it after
+  hydration. What was never checked was the HTTP status and the prerendered
+  HTML, which were 200 and a byte-identical copy of the homepage. A rendered
+  page is not a status code. Check both from now on.
+- **[19-08-2026] Security headers live in `public/_headers`, not in a
+  `netlify.toml`.** `netlify.toml` is read relative to the build's base
+  directory, and the site root is a subfolder of this repo, so a toml at
+  either level is a guess about how the Netlify site is configured. Everything
+  in `public/` is copied to `dist/` verbatim, so `_headers` is right either
+  way. No CSP yet: a wrong one breaks the page silently rather than loudly,
+  and it needs its own pass against a preview.
+- **[19-08-2026] `/privacy` and `/terms` written and shipped.** The site has
+  been collecting names, emails and company names through a live form with
+  nothing to point at. Both pages are written from what the code actually
+  does, checked on the day: one Formspree form, no cookies, no analytics, no
+  storage, no third-party requests. If any of those three stop being true the
+  privacy page is wrong and has to change in the same commit. Reverse: they
+  are ordinary routes, remove from `routes.jsx`, `vite.config.js`, the
+  sitemap script and the footer.
+- **[19-08-2026] "order rows migrated and audited" rejected for the second
+  time.** The review asked for it again. crm-audit was a survey and an
+  extraction; nothing was moved anywhere, so "migrated" is not true. The other
+  two stat labels were reworded as asked, so each now reads as a standalone
+  fact.
+- **[19-08-2026] The stats band "rendering bug" was not a bug and was not
+  fixed.** The audit reported "03systems live in production". `Counter`
+  renders the animating digits in an `aria-hidden` span beside an `sr-only`
+  span holding the final number, so a text scrape reads both and concatenates
+  them. On screen it is correct. That pairing is a deliberate accessibility
+  fix (`aria-label` is prohibited on a plain span), so "fixing" it would
+  break screen readers.
+- **[19-08-2026] The nav contrast item was already fixed before it was
+  reported.** The audit measured 2.65:1 for `#A89179` on cream. The light
+  header state uses `muted`, `#6F5A48`, which passes: the old failing value
+  was replaced during the rebuild. 2.65:1 is exactly the gold-dark-on-cream
+  figure that `ART-DIRECTION.md` already records and bans as text, so the
+  audit most likely sampled a different element.
+- **[19-08-2026] The homepage got about 750px shorter, not the 2,500 to 3,000
+  the audit predicted.** `space-y-[20vh]` to `8vh` saves 24vh across two
+  gaps, roughly 216px at a 900px viewport, not thousands: the audit's estimate
+  misread the maths. With the tier column's padding tightened and the
+  Industries band gone, the real saving is around 750px, roughly 8%. The page
+  is still over 10 screens. What is left is an editorial call about seven
+  full-bleed sections, not a spacing token, and it was not taken here.
+- **[19-08-2026] The Industries band was deleted, and Marquee with it.** Six
+  sectors with case studies in two of them reads as a generalist. Both files
+  moved to `docs/history/retired-components/`, nothing deleted. Marquee had
+  no other caller.
+- **[19-08-2026] The homepage title changed too, though nobody asked.**
+  "AI Automation Systems for Growing Businesses" contradicted the new
+  "AI Consultants" positioning in the same breath. It is now "Custom AI
+  Systems for Growing Businesses". Reverse: one string in `Home.jsx`.
+- **[19-08-2026] Tap targets were fixed on eight text CTAs, not the three the
+  audit named.** The same 16px-tall pattern appears on `/work`, `/services`
+  and the contact success state as well. `py-2` takes all of them to 32px.
+- **[19-08-2026] The tab title lag was fixed with `defer={false}` on the
+  helmet Head.** react-helmet-async defers head writes to an idle callback by
+  default, which on a route change loses to the page's own sections
+  rendering. Cosmetic on its own, but analytics reads `document.title`.
+
 ## Open, needs Raffay
 
 Nothing is blocking except one item that now matters more because the site is

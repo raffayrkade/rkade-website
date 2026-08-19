@@ -28,7 +28,14 @@ export default function Seo({
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`
 
   return (
-    <Head>
+    // `defer={false}`, so the head is written during the commit rather than
+    // being queued for an idle callback. react-helmet-async defers by
+    // default, and on a route change this page's own sections are rendering
+    // at the same time, so that callback lost to them: the tab title lagged
+    // ~950ms behind the click, measured in the deploy preview #9 audit.
+    // Cosmetic on its own, but analytics reads document.title, so a lagging
+    // title is a page view logged against the previous page's name.
+    <Head defer={false}>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       {url && <link rel="canonical" href={url} />}

@@ -226,7 +226,7 @@ const work = [
   {
     slug: 'our-own-crm',
     sector: 'RKade',
-    title: 'We run the company on our own work',
+    title: 'We run RKade on the system we built for it',
     status: 'live',
     year: '2026',
     summary: 'Our deals, projects, checklists and money, in a CRM we built for ourselves.',

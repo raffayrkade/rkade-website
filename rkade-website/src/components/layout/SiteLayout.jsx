@@ -111,11 +111,11 @@ export default function SiteLayout() {
             <div className="md:col-span-2">
               <Logo size="text-3xl" />
               <p className="mt-3 text-label uppercase text-muted">
-                AI Automation Consultancy, Dubai, UAE
+                AI Consultants, Dubai, UAE
               </p>
               <p className="mt-4 max-w-sm text-body text-muted">
-                AI automation systems that do the work of extra employees. We build the
-                infrastructure, so your team ships more with less.
+                Custom AI systems for growing businesses. We build the infrastructure, so your
+                team ships more with less friction.
               </p>
             </div>
             <div>
@@ -176,9 +176,13 @@ export default function SiteLayout() {
               )}
             </div>
           </div>
-          <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-line-strong pt-6 text-xs text-muted sm:flex-row">
+          <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-line-strong pt-6 text-xs text-muted sm:flex-row">
             <p>© 2026 RKade. All rights reserved.</p>
-            <p>Systems, not hype.</p>
+            <div className="flex items-center gap-6">
+              <Link className="transition-colors hover:text-ink" to="/privacy">Privacy</Link>
+              <Link className="transition-colors hover:text-ink" to="/terms">Terms</Link>
+              <p>Systems, not hype.</p>
+            </div>
           </div>
         </div>
       </footer>

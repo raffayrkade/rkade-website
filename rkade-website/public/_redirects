@@ -1,1 +1,12 @@
-/*    /index.html   200
+# Every real route is prerendered to its own HTML file at build time
+# (see ssgOptions.includedRoutes in vite.config.js), so Netlify serves
+# /work, /services, /privacy and the rest straight from disk. Netlify does
+# not apply a redirect rule that would shadow an existing file unless the
+# rule is forced with a "!", so this catch-all only ever fires for a path
+# that genuinely has no page behind it.
+#
+# It used to read "/*  /index.html  200", which handed every unknown URL a
+# byte-identical copy of the homepage with an HTTP 200 and the homepage's own
+# canonical tag. Google reads that as a soft 404 across an unbounded set of
+# paths. Now an unknown URL gets the real 404 page with a real 404 status.
+/*    /404.html   404
