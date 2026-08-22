@@ -3,8 +3,26 @@ import { defineConfig } from 'vite'
 import path from 'path'
 import { slugs } from './src/data/work.js'
 
+/**
+ * The comments in index.html explain why the <head> is deliberately almost
+ * empty, and they name real source paths to do it. Those paths are useful in
+ * the repo and pointless in production, where they were being copied verbatim
+ * into all twelve prerendered pages and showing up in view-source. Flagged in
+ * the 19-08-2026 audit, item S5.
+ *
+ * Stripped at build time rather than deleted from the source, so the
+ * explanation stays where the next person editing index.html will read it.
+ * Dev is left alone: the comments are the whole point while working.
+ */
+const stripHtmlComments = () => ({
+  name: 'strip-html-comments',
+  apply: 'build',
+  enforce: 'post',
+  transformIndexHtml: (html) => html.replace(/<!--[\s\S]*?-->/g, ''),
+})
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), stripHtmlComments()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

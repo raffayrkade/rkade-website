@@ -2,29 +2,31 @@
 
 **Hard cap: 8 KB.** Read this first, every session.
 
-Last updated: 19-08-2026
+Last updated: 22-08-2026
 
 ---
 
 ## Status
 
 ```
-Right now:     LIVE. rkade.co serves the new site, all seven phases done,
-               plus the 19-08-2026 copy and audit pass. Nothing is in flight
-               and no branch is open.
+Right now:     LIVE, with one branch in flight. rkade.co serves the site as
+               of 19-08-2026. Branch `audit-pass-2-fixes` holds the fixes for
+               Kushan's audit pass 2 plus the unshipped iPhone commit, built
+               and verified locally, waiting on a Netlify preview and
+               Raffay's yes.
 To see it:     https://rkade.co, or cd rkade-website && npm run dev for local
                changes
 Local link:    http://localhost:5173
 Live link:     https://rkade.co  (Netlify, repo raffayrkade/rkade-website)
 Last deployed: 19-08-2026, commit e601ae2, merged from
                cofounder-copy-pass-and-audit-fixes (PR #10)
-Since you last looked: Kushan's homepage copy review and a full audit of
-               preview #9 were both worked through. Two real blockers fixed
-               (the header was transparent over dark sections, and unknown
-               URLs returned 200 with the homepage), the homepage copy
-               repositioned off headcount-reduction language, and /privacy
-               and /terms written and shipped. Four of their items turned out
-               to be already done or wrong, see docs/DECISIONS.md.
+Since you last looked: Kushan's audit pass 2 was worked through against the
+               code. Its one urgent item (N1, four stat values said to have
+               silently changed) is a measurement artefact and needed no
+               change, and S3 was already correct. The rest are fixed: the
+               homepage is a full screen shorter on both desktop and mobile,
+               internal paths no longer ship in the HTML, footer tap targets
+               clear WCAG, and the 404 has nav. See docs/DECISIONS.md.
 ```
 
 ## Progress
@@ -87,36 +89,33 @@ is still authenticated and opened the PR directly.
 
 ## Things that are true and were not last session
 
-- **The copy and audit pass is live.** PR #10, merged `--no-ff` as e601ae2
-  after Raffay approved the preview in chat, branch deleted both sides.
-  Verified on rkade.co: all eight real routes 200, a bad URL returns a real
-  404 with the 404 page and no canonical, the four security headers present,
-  `apple-touch-icon.png` served, the sitemap carrying /privacy and /terms and
-  not /404, zero `fonts.googleapis.com` references, and every one of the six
-  retired strings ("extra employees", "AI Automation Consultancy", "fall by
-  around 400", "Stop paying people", "vertical-specific", "fewer people")
-  returning zero hits on the live homepage.
-- **The site had no real 404 and nobody noticed, because the browser check
-  passed.** A bad URL rendered the 404 page after hydration while returning
-  HTTP 200 and the homepage's own HTML and canonical. Fixed by prerendering
-  `dist/404.html` and pointing `_redirects` at it with a 404 status. The
-  lesson is in `docs/DECISIONS.md`: a rendered page is not a status code.
+- **Two of the audit's findings were wrong, and checking first is why we know.**
+  N1, reported as the only urgent item, claimed three stat values had silently
+  dropped. Source says otherwise: those four numbers were written once and
+  never edited. The counter animates them up over 1.4 seconds and the audit
+  read the DOM mid-animation, which is why every reported value was slightly
+  under the real one and the only one that matched was the only one small
+  enough to finish counting instantly. S3 was the same shape: the honeypot's
+  `aria-hidden` was on the wrapper, not the input, and hiding a container
+  hides its subtree. Both are written up in `docs/DECISIONS.md`.
 
-- **The site is live.** Merged `--no-ff` to `main` as commit 6cb9429, PR #9,
-  after Raffay approved the Netlify preview in chat. Verified on the real
-  site: all five routes 200 with correct per-route titles, the new booking
-  link the only calendar link present, the Instagram icon rendering, zero
-  requests to `fonts.googleapis.com`, a bad URL rendering the 404 page.
-- **Both build branches are gone.** `site-revamp-2026` and
-  `phase-1-foundation-and-brand-truth` deleted, locally and remotely.
-- **The booking link works again.** Raffay supplied
-  `calendar.app.google/waHYAngJttZ25BbL7`, checked signed out before being
-  trusted. `CALENDAR_LIVE` in `src/components/common/CTAButtons.jsx` is `true`.
-- **Instagram is live in the footer**, `https://www.instagram.com/rkade.co`.
-  LinkedIn stays `PLACEHOLDER`, so only one icon renders, which is correct.
-- **`GITHUB_TOKEN` was never actually needed.** The `gh` CLI opened PR #9
-  directly while still authenticated as `raffayrkade`. `docs/SETUP.md` marks
-  that section optional now.
+- **The homepage is a full screen shorter, measured not assumed.** Desktop
+  9,306px to 8,386px, 10.1 screens to 9.1. Mobile 10,883px to 10,153px, 13.0
+  to 12.0. Empty space 34% to 23%. The lever was `Section.jsx`'s padding
+  scale, which six other components were hard-coding rather than importing;
+  all six now match.
+
+- **`dist/.vite/ssr-manifest.json` was being published.** 29KB naming every
+  source path in the project, reachable at `/.vite/ssr-manifest.json`. Found
+  while fixing the audit's smaller version of the same problem. `npm run
+  build` now strips it. Third time this trap has bitten: anything in `dist/`
+  or `public/` is a live URL whether or not the site links to it.
+
+- **The site is live and has been since 19-08-2026**, commit e601ae2 (PR #10),
+  on top of the 18-08-2026 launch (6cb9429, PR #9). Both go-lives verified on
+  rkade.co at the time. The detail of what each one shipped and what it fixed
+  has moved to `docs/history/state-go-live-entries.md`, so this file stays
+  under its cap.
 
 ## Known, still open
 

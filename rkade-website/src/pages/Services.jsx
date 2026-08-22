@@ -54,10 +54,10 @@ const tiers = [
         Build. <em className="italic text-gold">Shipped, not scoped.</em>
       </>
     ),
-    body: 'Outreach engines, data pipelines, internal tools: built around how you already operate rather than a template, then tested and handed over working. The audit tells us what to build. This is where it gets made.',
+    body: 'CRMs, websites, outreach engines, internal tools: built around how you already operate rather than a template, then tested and handed over working. The audit tells us what to build. This is where it gets made.',
     deliverables: [
       'Systems designed around how you operate',
-      'Outreach engines, data pipelines, internal tools',
+      'CRMs, websites, outreach engines, internal tools',
       'Integrated with the tools you already use',
       'Tested, documented, and handed over',
     ],
@@ -128,7 +128,7 @@ export default function Services() {
           <ArchTrio drawProgress={drawProgress} className="h-full w-auto" />
         </div>
 
-        <div className="relative mx-auto max-w-[1400px] px-[6vw] py-28 md:px-[8vw] md:py-36">
+        <div className="relative mx-auto max-w-[1400px] px-[6vw] py-20 md:px-[8vw] md:py-24">
           <p className="text-label uppercase text-muted-on-ink">Services</p>
           <h1 className="mt-5 max-w-[18ch] font-display text-hero text-cream">
             Map it. Build it. <em className="italic text-gold">Keep it running.</em>

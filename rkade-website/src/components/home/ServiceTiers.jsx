@@ -91,7 +91,7 @@ export default function ServiceTiers() {
 
   return (
     <section id="services" ref={ref} data-header-tone="dark" className="bg-ink text-cream">
-      <div className="mx-auto max-w-[1400px] px-[6vw] py-28 md:px-[8vw] md:py-36">
+      <div className="mx-auto max-w-[1400px] px-[6vw] py-20 md:px-[8vw] md:py-24">
         <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
           {/* The mark, building. Sticky on desktop so it stays beside whichever
               tier you are reading, and deliberately shorter than the viewport:
@@ -119,7 +119,7 @@ export default function ServiceTiers() {
             </svg>
           </div>
 
-          <div className="mt-16 lg:mt-0 lg:pb-[10vh] lg:pt-[10vh]">
+          <div className="mt-16 lg:mt-0 lg:pb-[4vh] lg:pt-[4vh]">
             <p className="text-label uppercase text-muted-on-ink">What we do</p>
             <h2 className="mt-3 font-display text-section text-cream">
               Three arches. <em className="italic text-gold">Three tiers.</em>
@@ -129,7 +129,7 @@ export default function ServiceTiers() {
               inward, or take only the part you need.
             </p>
 
-            <ol className="mt-14 space-y-[8vh]">
+            <ol className="mt-12 space-y-[6vh]">
               {tiers.map((t, i) => (
                 <motion.li
                   key={t.name}
@@ -164,7 +164,7 @@ export default function ServiceTiers() {
 
             <Link
               to="/services"
-              className="group mt-20 inline-flex items-center gap-2 py-2 text-button uppercase text-gold"
+              className="group mt-14 inline-flex items-center gap-2 py-2 text-button uppercase text-gold"
             >
               Full services breakdown
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

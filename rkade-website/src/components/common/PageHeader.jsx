@@ -23,7 +23,7 @@ export default function PageHeader({ label, title, description }) {
           </svg>
         </Parallax>
       </div>
-      <div className="mx-auto max-w-[1400px] px-[6vw] py-28 md:px-[8vw] md:py-36">
+      <div className="mx-auto max-w-[1400px] px-[6vw] py-20 md:px-[8vw] md:py-24">
         <div className="max-w-3xl">
           <span className="mb-5 inline-flex items-center gap-2 text-label uppercase text-muted">
             <span className="h-px w-6 bg-gold"></span>

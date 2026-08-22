@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run check:contrast && node scripts/generate-sitemap.mjs && vite-react-ssg build",
+    "build": "npm run check:contrast && node scripts/generate-sitemap.mjs && vite-react-ssg build && node scripts/strip-build-artifacts.mjs",
     "preview": "vite preview",
     "check:contrast": "node scripts/check-contrast.mjs",
     "verify:routes": "node scripts/verify-routes.mjs",

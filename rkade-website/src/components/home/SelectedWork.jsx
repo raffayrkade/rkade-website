@@ -64,7 +64,7 @@ export default function SelectedWork() {
         </p>
       </div>
 
-      <ol className="mt-16 border-t border-line-strong">
+      <ol className="mt-12 border-t border-line-strong">
         {FEATURED.map((f, i) => {
           const item = bySlug(f.slug)
           const stat = item.stats.find((s) => s.label === f.statLabel)
@@ -76,7 +76,7 @@ export default function SelectedWork() {
               key={f.slug}
               as="li"
               delay={i * 0.07}
-              className="border-b border-line-strong py-14 md:py-20"
+              className="border-b border-line-strong py-10 md:py-14"
             >
               <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-16">
                 <div className="max-w-3xl">
@@ -90,7 +90,7 @@ export default function SelectedWork() {
                   <p className="mt-4 max-w-xl text-body-lg text-muted">{item.summary}</p>
 
                   {stat && (
-                    <dl className="mt-9">
+                    <dl className="mt-7">
                       <dt className="sr-only">{stat.label}</dt>
                       <dd>
                         <Counter
@@ -107,7 +107,7 @@ export default function SelectedWork() {
 
                   <Link
                     to={`/work/${item.slug}`}
-                    className="group mt-9 inline-flex items-center gap-2 py-2 text-button uppercase text-ink underline decoration-gold-dark underline-offset-4 transition-colors hover:decoration-ink"
+                    className="group mt-7 inline-flex items-center gap-2 py-2 text-button uppercase text-ink underline decoration-gold-dark underline-offset-4 transition-colors hover:decoration-ink"
                   >
                     Read the case study
                     <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -131,7 +131,7 @@ export default function SelectedWork() {
 
       <Link
         to="/work"
-        className="group mt-14 inline-flex items-center gap-2 py-2 text-button uppercase text-ink underline decoration-gold-dark underline-offset-4 transition-colors hover:decoration-ink"
+        className="group mt-10 inline-flex items-center gap-2 py-2 text-button uppercase text-ink underline decoration-gold-dark underline-offset-4 transition-colors hover:decoration-ink"
       >
         See all {work.length} case studies
         <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

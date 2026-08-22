@@ -69,7 +69,7 @@ export default function WorkDetail() {
           <ArchTrio drawProgress={drawProgress} className="h-full w-auto" />
         </div>
 
-        <div className="relative mx-auto max-w-[1400px] px-[6vw] py-28 md:px-[8vw] md:py-36">
+        <div className="relative mx-auto max-w-[1400px] px-[6vw] py-20 md:px-[8vw] md:py-24">
           <Link
             to="/work"
             className="text-label uppercase text-muted-on-ink transition-colors hover:text-cream"
