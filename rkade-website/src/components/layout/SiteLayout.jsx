@@ -62,7 +62,13 @@ export default function SiteLayout() {
               <Link
                 key={l.label}
                 to={l.href}
-                className={`text-sm font-medium transition-colors ${header.link}`}
+                // inline-flex + min-h-[44px], matching the Free Audit button
+                // beside it. 14px on a 20px line box is a 20px hit area, under
+                // WCAG 2.5.8's 24px. The audit only caught the footer version
+                // of this, because at 390px the header nav is behind the
+                // mobile menu and never measured; these four only appear from
+                // md up. Vertical centring means nothing moves visually.
+                className={`inline-flex min-h-[44px] items-center text-sm font-medium transition-colors ${header.link}`}
               >
                 {l.label}
               </Link>
