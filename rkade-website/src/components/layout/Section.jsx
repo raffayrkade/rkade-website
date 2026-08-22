@@ -27,11 +27,17 @@ const TONES = {
   },
 }
 
+// Tightened 22-08-2026, audit pass 2 item S1. `default` was py-28 md:py-36,
+// which is 144px of padding above AND below four of the homepage's sections:
+// 1,152px of a 9,306px page in section padding alone, and the single largest
+// contributor to a homepage that measured 10.1 screens on desktop and 13.0 on
+// mobile. 96px on desktop is still generous, and the mobile figure comes down
+// with it because mobile was the worse of the two.
 const PADDING = {
   none: '',
-  tight: 'py-16 md:py-20',
-  default: 'py-28 md:py-36',
-  loose: 'py-32 md:py-44',
+  tight: 'py-14 md:py-16',
+  default: 'py-20 md:py-24',
+  loose: 'py-24 md:py-32',
 }
 
 // Development-time only. Two sections of the same tone must not touch: the

@@ -25,7 +25,7 @@ export default function CTASection() {
         <ArchTrio drawProgress={drawProgress} className="h-auto w-[min(140%,1500px)]" />
       </div>
 
-      <div className="relative mx-auto max-w-[1400px] px-[6vw] py-32 text-center md:px-[8vw] md:py-44">
+      <div className="relative mx-auto max-w-[1400px] px-[6vw] py-24 text-center md:px-[8vw] md:py-32">
         <h2 className="mx-auto max-w-[18ch] font-display text-section text-cream">
           Stop losing hours to work <em className="italic text-gold">a system should be doing.</em>
         </h2>

@@ -69,7 +69,7 @@ export default function About() {
         path="/about"
       />
       <section ref={ref} data-header-tone="dark" className="relative isolate overflow-hidden bg-ink pt-[72px] text-cream">
-        <div className="relative mx-auto max-w-[1400px] px-[6vw] py-28 md:px-[8vw] md:py-36">
+        <div className="relative mx-auto max-w-[1400px] px-[6vw] py-20 md:px-[8vw] md:py-24">
           <div className="grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
             <div>
               <p className="text-label uppercase text-muted-on-ink">About RKade</p>

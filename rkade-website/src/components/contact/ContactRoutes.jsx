@@ -56,7 +56,7 @@ export default function ContactRoutes({ onOpenBooking }) {
         <h3 className="font-display text-card text-cream">Prefer email?</h3>
         <a
           href={`mailto:${CONTACT_EMAIL}`}
-          className="mt-1 inline-block text-button text-cream underline decoration-gold underline-offset-4 hover:decoration-cream"
+          className="mt-1 inline-block py-1.5 text-button text-cream underline decoration-gold underline-offset-4 hover:decoration-cream"
         >
           {CONTACT_EMAIL}
         </a>

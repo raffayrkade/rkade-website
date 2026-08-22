@@ -137,3 +137,15 @@ an automated check on 18-08-2026 and confirmed by hand. The replacement link
 was checked in a clean, signed-out browser session before being wired in.
 Before trusting any third-party link that gates a CTA, load it in a private or
 incognito window, signed out, not just the owner's own logged-in browser.
+
+## An animated number reads low if scraped mid-animation
+
+`Counter.jsx` counts each stat up from zero over 1,400ms on first view. Scrape
+the DOM before that lands and you get a real-looking number slightly under the
+true one. Audit pass 2 did this and reported three of the four homepage stats
+as silently edited down; they had never been touched.
+
+The tell: every wrong value is *under* the right one, and small targets look
+correct because they finish counting almost instantly. Read the `sr-only` span
+beside it, which always carries the final value, or set
+`prefers-reduced-motion`, which skips the animation.

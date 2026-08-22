@@ -1,7 +1,48 @@
 {
+  "$comment": [
+    "SAFETY FLOOR for this project. Copied into every new project.",
+    "",
+    "Changed 19-08-2026. Previously this file carried an `ask` list. Ask rules",
+    "still prompt you even when the session is started with prompts switched off,",
+    "which is why overnight runs kept stalling. The ask list is gone. The old",
+    "version is in RKADE/_backups/permissions-19-08-2026/ if it is ever needed.",
+    "",
+    "defaultMode is set here rather than relying on the `rkade` launcher, so the",
+    "project behaves the same however it is opened: launcher, plain terminal, or",
+    "the VS Code panel.",
+    "",
+    "DENY is now the only thing that can stop a run. It survives bypass mode.",
+    "It covers exactly two categories and nothing else:",
+    "  1. Destroying work that cannot be recovered (force push, hard reset, clean).",
+    "  2. Writing production secrets or wiping a live database.",
+    "",
+    "NOT on this list any more, on purpose: deploying, pushing, merging, Stripe,",
+    "Vercel, Wrangler. Those are governed by the written rule in the global",
+    "CLAUDE.md (nothing goes live until Raffay types `deploy`), not by a prompt.",
+    "",
+    "This file is shared and committed. Personal one-off approvals belong in",
+    "settings.local.json next to it, which is not committed."
+  ],
   "permissions": {
+    "defaultMode": "bypassPermissions",
     "allow": [
       "Bash(curl -s \"https://api.github.com/*)"
+    ],
+    "deny": [
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean -fdx:*)",
+      "Write(./.env)",
+      "Edit(./.env)",
+      "Write(./.env.production)",
+      "Edit(./.env.production)",
+      "Write(./.env.production.local)",
+      "Edit(./.env.production.local)",
+      "Bash(supabase db reset:*)",
+      "Bash(npx supabase db reset:*)",
+      "Bash(rm -rf /:*)",
+      "Bash(rm -rf ~:*)"
     ]
   }
 }

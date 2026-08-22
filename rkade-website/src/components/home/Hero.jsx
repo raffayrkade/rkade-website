@@ -50,21 +50,31 @@ export default function Hero() {
         <div className="absolute left-1/2 top-[38%] h-[420px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/[0.10] blur-[120px]" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[86vh] max-w-[1400px] flex-col justify-center px-[6vw] py-24 md:px-[8vw] md:py-32">
+      {/* svh, not vh: on iOS Safari vh measures the screen with the toolbars
+          hidden, so the two buttons below sat under Safari's own chrome on a
+          phone. svh is the toolbar-visible height, so the hero fits as drawn
+          and does not resize as the toolbar slides away.
+
+          76svh, down from 86svh, and py-20/24 down from py-24/32. Audit pass 2
+          measured 571px of empty space in an 880px hero holding 309px of
+          content, the worst ratio on the page. It still opens on a near-full
+          screen with both CTAs above the fold, which is the only thing the
+          height was ever protecting. */}
+      <div className="relative mx-auto flex min-h-[76svh] max-w-[1400px] flex-col justify-center px-[6vw] py-20 md:px-[8vw] md:py-24">
         <p className="text-label uppercase text-muted-on-ink">
           AI Consultants <span className="text-gold">·</span> Dubai
         </p>
 
-        <h1 className="mt-7 max-w-[16ch] font-display text-hero text-cream">
+        <h1 className="mt-6 max-w-[16ch] font-display text-hero text-cream">
           We build the systems your business <em className="italic text-gold">runs on.</em>
         </h1>
 
-        <p className="mt-8 max-w-xl text-body-lg text-muted-on-ink">
+        <p className="mt-7 max-w-xl text-body-lg text-muted-on-ink">
           Custom systems built around how your business actually operates. Less time lost to
           repetitive work, more time on what grows revenue.
         </p>
 
-        <div className="mt-11 flex flex-wrap items-center gap-4">
+        <div className="mt-10 flex flex-wrap items-center gap-4">
           <FreeAuditLink
         className="inline-flex min-h-[52px] items-center rounded bg-gold px-7 text-button uppercase text-ink transition-transform duration-300 ease-passage hover:-translate-y-0.5"
       >

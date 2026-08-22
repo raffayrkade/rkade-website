@@ -5,6 +5,7 @@ import ArchTrio from '@/components/arch/ArchTrio';
 import Wordmark from '@/components/brand/Wordmark';
 import useArchDraw from '@/hooks/useArchDraw';
 import Seo from '@/components/common/Seo';
+import { navLinks } from '@/components/layout/SiteLayout';
 
 /**
  * 404. Not inside SiteLayout (see routes.jsx: it is a sibling of the
@@ -24,7 +25,7 @@ export default function NotFound() {
     // landmark-one-main audit flags any page with none at all.
     <main
       ref={ref}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-ink-deep px-[6vw] py-24 text-cream"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-ink-deep px-[6vw] py-24 text-cream"
     >
       <Seo
         title="Page Not Found"
@@ -35,7 +36,7 @@ export default function NotFound() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center text-gold opacity-[0.14]"
       >
-        <ArchTrio drawProgress={drawProgress} className="h-[80vh] w-auto" />
+        <ArchTrio drawProgress={drawProgress} className="h-[80svh] w-auto" />
       </div>
 
       <div className="relative w-full max-w-lg text-center">
@@ -58,6 +59,27 @@ export default function NotFound() {
           Back through the arch
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
         </Link>
+
+        {/* The four real destinations, so someone who mistyped /servicse can
+            go straight there instead of landing home and re-navigating.
+            Audit pass 2, item S6. Not the header component itself: that is
+            fixed, scroll-aware and tone-switching, and this page deliberately
+            sits outside SiteLayout with nothing above it. The list is the
+            only part worth sharing, so it is imported rather than copied. */}
+        <nav aria-label="Site" className="mt-12 border-t border-cream/15 pt-8">
+          <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-1">
+            {navLinks.map(({ label, href }) => (
+              <li key={href}>
+                <Link
+                  to={href}
+                  className="inline-block py-1.5 text-label uppercase text-muted-on-ink transition-colors hover:text-gold"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </main>
   );

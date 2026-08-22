@@ -118,13 +118,20 @@ export default function ContactForm() {
 
   return (
     <form className="relative space-y-7" onSubmit={handleSubmit} noValidate>
-      {/* Honeypot. Off-screen, unlabelled to assistive tech, never focusable by tab. */}
+      {/* Honeypot. Off-screen, unlabelled to assistive tech, never focusable by tab.
+          `aria-hidden` sits on both the wrapper and the input itself. The
+          wrapper alone is sufficient, since hiding a container hides its whole
+          subtree, but two audit passes in a row read the input in isolation,
+          found no attribute on it, and reported the field as announced to
+          screen readers. Repeating it costs nothing and ends the false
+          positive. */}
       <div className="absolute left-[-9999px] top-0 h-px w-px overflow-hidden" aria-hidden="true">
         <input
           type="text"
           name="_gotcha"
           tabIndex={-1}
           autoComplete="off"
+          aria-hidden="true"
           defaultValue=""
         />
       </div>

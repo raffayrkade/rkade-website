@@ -542,3 +542,79 @@ live and real people can use it:
 4. ~~Click the booking link yourself, signed into your own browser.~~ **Done,
    18-08-2026.** Raffay supplied a new schedule, verified signed out before
    being wired in. See "The site went live" above.
+
+## 22-08-2026, audit pass 2
+
+- **[22-08-2026] N1, the four stat values, was reported as urgent and is a
+  measurement artefact. No change made.** Kushan's pass 2 reported that three
+  of the four homepage stats had silently dropped: 28 to 27, 170 to 167, 90,048
+  to 88,420, with "systems live in production" alone unchanged at 3. Checked
+  against source before touching anything: `ProofStrip.jsx` still reads
+  3 / 28 / 170 / 90,048, and `git log -p` shows those four values were written
+  once in commit 85d72f7 and never edited since. Nothing was recounted.
+  What happened is that `Counter.jsx` animates each figure up from zero over
+  1,400ms on first view, and the audit scraped the DOM before the animation
+  landed. Every reported value is slightly *under* the real one, and the only
+  one that matched is the only one small enough to finish counting almost
+  immediately. That is the signature of an early read, not of an edit.
+  Reverse: nothing to reverse. If a future audit reports the same thing, the
+  answer is to read the `sr-only` span, which always carries the final value,
+  or to set `prefers-reduced-motion`, under which the counter renders the
+  target immediately with no animation.
+
+- **[22-08-2026] S3, the honeypot, was already hidden from screen readers. The
+  attribute was added anyway.** `aria-hidden="true"` was on the wrapper `<div>`
+  at `ContactForm.jsx`, not on the `<input>`, and hiding a container hides its
+  entire subtree, so the field was never announced. Both pass 1 and pass 2 read
+  the input in isolation, found no attribute on it, and reported the same false
+  positive. The attribute now sits on both. It is redundant by the spec and it
+  costs nothing, and ending a finding that has now been raised twice is worth
+  more than the redundancy costs. Reverse: drop it from the input, the wrapper
+  still does the work.
+
+- **[22-08-2026] S1 was fixed by tightening the shared padding scale, not the
+  homepage.** `Section.jsx`'s `default` was `py-28 md:py-36`: 144px above and
+  below four homepage sections, 1,152px of a 9,306px page. Six other components
+  hard-coded the identical values rather than going through `Section`, so
+  changing only the homepage would have left the site visibly inconsistent
+  between pages. The whole scale came down instead, and the six hard-coded
+  copies with it. Measured after, at the same viewports the audit used:
+  desktop 9,306px to 8,386px (10.1 screens to 9.1), mobile 10,883px to
+  10,153px (13.0 to 12.0), empty space 34% to 23%. That clears the audit's
+  "close to 9 screens" target on desktop. Reverse: the scale is four lines in
+  `Section.jsx` plus a `py-20 md:px-[8vw] md:py-24` string in six files.
+
+- **[22-08-2026] S5 was bigger than reported, and the real leak was a build
+  artefact.** The audit found two developer comments in the prerendered
+  `<head>` naming `Seo.jsx` and `scripts/generate-apple-touch-icon.mjs`. Fixing
+  that turned up `dist/.vite/ssr-manifest.json`, a 29KB file naming every
+  source path in the project, published at `/.vite/ssr-manifest.json` and
+  reachable by anyone. Same trap as the unreferenced files found in `public/`
+  on 18-08-2026: Netlify serves whatever is in `dist/`, linked or not.
+  The comments are stripped at build time by a plugin rather than deleted from
+  `index.html`, so the explanation stays where the next person editing that
+  file will read it, and `scripts/strip-build-artifacts.mjs` removes `.vite`
+  from `dist/` as the last step of `npm run build`. Reverse: drop the plugin
+  from `vite.config.js` and the script from the `build` chain.
+
+- **[22-08-2026] The unshipped iPhone work is bundled into the same preview.**
+  Branch `iphone-scroll-and-viewport-fixes` held one commit, 253575d, that
+  never went to a preview or to production. Rather than run two approval
+  cycles, `audit-pass-2-fixes` branches off it so Raffay checks both on one
+  Netlify preview, on the phone the first commit was written for. The two
+  changes also pull the same direction: a page that is a full screen shorter is
+  less to scroll on a phone. Reverse: the commits are separate, so
+  `git revert 253575d` drops the phone work and leaves the audit fixes.
+
+- **[22-08-2026] Tier 2's service list on `/services` was brought in line with
+  the homepage. Not requested, and the only copy change in this batch.**
+  Kushan's copy document changed the homepage tier 2 list to "CRMs, websites,
+  outreach engines, internal tools" because the old list named things we do not
+  sell and omitted the two things we have actually built. That document scoped
+  itself to the homepage explicitly, because it was the only page he could
+  read. `/services` still described the same tier as "Outreach engines, data
+  pipelines, internal tools", so the two pages contradicted each other on the
+  same product, with the stale version on the page a buyer reads to decide.
+  Applied his reasoning one page over rather than leaving a contradiction we
+  introduced. Reverse: two strings in `src/pages/Services.jsx`. This does not
+  pre-empt the full `/services` copy pass, which still needs Kushan.

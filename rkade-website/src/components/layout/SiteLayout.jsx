@@ -21,7 +21,10 @@ const ORGANIZATION_JSON_LD = organizationJsonLd({
 // Work, Services, About, Contact, then the Free Audit button. "Process" used
 // to sit between About and Contact, linking to the homepage's How It Works
 // section; dropped so the primary nav matches the settled order exactly.
-const navLinks = [
+// Exported so the 404 page can render the same four destinations without
+// keeping a second copy of them. NotFound sits outside SiteLayout (see
+// routes.jsx), so it cannot inherit the header, only the list.
+export const navLinks = [
   { label: 'Work', href: '/work' },
   { label: 'Services', href: '/services' },
   { label: 'About', href: '/about' },
@@ -59,7 +62,13 @@ export default function SiteLayout() {
               <Link
                 key={l.label}
                 to={l.href}
-                className={`text-sm font-medium transition-colors ${header.link}`}
+                // inline-flex + min-h-[44px], matching the Free Audit button
+                // beside it. 14px on a 20px line box is a 20px hit area, under
+                // WCAG 2.5.8's 24px. The audit only caught the footer version
+                // of this, because at 390px the header nav is behind the
+                // mobile menu and never measured; these four only appear from
+                // md up. Vertical centring means nothing moves visually.
+                className={`inline-flex min-h-[44px] items-center text-sm font-medium transition-colors ${header.link}`}
               >
                 {l.label}
               </Link>
@@ -128,12 +137,17 @@ export default function SiteLayout() {
               <h2 className="mb-4 text-label uppercase text-muted">
                 Company
               </h2>
-              <ul className="space-y-3 text-sm">
-                <li><Link className="text-muted hover:text-ink transition-colors" to="/work">Work</Link></li>
-                <li><Link className="text-muted hover:text-ink transition-colors" to="/services">Services</Link></li>
-                <li><Link className="text-muted hover:text-ink transition-colors" to="/about">About</Link></li>
-                <li><Link className="text-muted hover:text-ink transition-colors" to="/contact">Contact</Link></li>
-                <li><Link className="text-muted hover:text-ink transition-colors" to="/#how-it-works">How It Works</Link></li>
+              {/* py-1 on an inline-block, not bare text: 14px on a 20px line
+                  box is a 20px tap target, under WCAG 2.5.8's 24px minimum.
+                  Padding on a plain inline element does not enlarge the hit
+                  area, so the display matters as much as the padding. space-y
+                  comes down from 3 to 0.5 to keep the rhythm where it was. */}
+              <ul className="space-y-0.5 text-sm">
+                <li><Link className="inline-block py-1 text-muted hover:text-ink transition-colors" to="/work">Work</Link></li>
+                <li><Link className="inline-block py-1 text-muted hover:text-ink transition-colors" to="/services">Services</Link></li>
+                <li><Link className="inline-block py-1 text-muted hover:text-ink transition-colors" to="/about">About</Link></li>
+                <li><Link className="inline-block py-1 text-muted hover:text-ink transition-colors" to="/contact">Contact</Link></li>
+                <li><Link className="inline-block py-1 text-muted hover:text-ink transition-colors" to="/#how-it-works">How It Works</Link></li>
               </ul>
             </div>
             <div>
@@ -146,14 +160,14 @@ export default function SiteLayout() {
               <h2 className="mb-4 text-label uppercase text-muted">
                 Get in touch
               </h2>
-              <ul className="space-y-3 text-sm">
+              <ul className="space-y-0.5 text-sm">
                 <li>
-                  <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex items-center gap-2 text-muted hover:text-ink transition-colors">
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex items-center gap-2 py-1 text-muted hover:text-ink transition-colors">
                     <Mail className="h-4 w-4" /> {CONTACT_EMAIL}
                   </a>
                 </li>
                 <li>
-                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-ink transition-colors">
+                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="inline-block py-1 text-muted hover:text-ink transition-colors">
                     WhatsApp
                   </a>
                 </li>
@@ -179,8 +193,8 @@ export default function SiteLayout() {
           <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-line-strong pt-6 text-xs text-muted sm:flex-row">
             <p>© 2026 RKade. All rights reserved.</p>
             <div className="flex items-center gap-6">
-              <Link className="transition-colors hover:text-ink" to="/privacy">Privacy</Link>
-              <Link className="transition-colors hover:text-ink" to="/terms">Terms</Link>
+              <Link className="inline-block py-1.5 transition-colors hover:text-ink" to="/privacy">Privacy</Link>
+              <Link className="inline-block py-1.5 transition-colors hover:text-ink" to="/terms">Terms</Link>
               <p>Systems, not hype.</p>
             </div>
           </div>

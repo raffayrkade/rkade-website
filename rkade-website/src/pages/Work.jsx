@@ -150,7 +150,7 @@ export default function Work() {
           <ArchTrio drawProgress={drawProgress} className="h-full w-auto" />
         </div>
 
-        <div className="relative mx-auto max-w-[1400px] px-[6vw] py-28 md:px-[8vw] md:py-36">
+        <div className="relative mx-auto max-w-[1400px] px-[6vw] py-20 md:px-[8vw] md:py-24">
           <p className="text-label uppercase text-muted-on-ink">Selected work</p>
           <h1 className="mt-5 max-w-[18ch] font-display text-hero text-cream">
             Five systems. <em className="italic text-gold">All of them real.</em>

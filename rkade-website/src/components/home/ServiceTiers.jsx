@@ -5,6 +5,7 @@ import { ArrowUpRight } from 'lucide-react'
 import { ArchShape } from '@/components/arch/Arch'
 import { REFERENCE } from '@/components/arch/geometry'
 import usePrefersReducedMotion from '@/hooks/usePrefersReducedMotion'
+import useMediaQuery, { MD_UP } from '@/hooks/useMediaQuery'
 
 /**
  * The centrepiece.
@@ -63,6 +64,12 @@ const WINDOWS = [
 export default function ServiceTiers() {
   const ref = useRef(null)
   const reducedMotion = usePrefersReducedMotion()
+  // Below md this section behaves exactly as it does under reduced motion:
+  // the mark arrives drawn and all three tiers are simply readable. The
+  // scroll-scrubbed version is desktop's, where there is room for the sticky
+  // column beside the copy and the budget to repaint it.
+  const wideEnough = useMediaQuery(MD_UP)
+  const stillMark = reducedMotion || !wideEnough
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
 
   const outerRadius = REFERENCE.spans[0] + REFERENCE.strokeWidth / 2
@@ -84,7 +91,7 @@ export default function ServiceTiers() {
 
   return (
     <section id="services" ref={ref} data-header-tone="dark" className="bg-ink text-cream">
-      <div className="mx-auto max-w-[1400px] px-[6vw] py-28 md:px-[8vw] md:py-36">
+      <div className="mx-auto max-w-[1400px] px-[6vw] py-20 md:px-[8vw] md:py-24">
         <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
           {/* The mark, building. Sticky on desktop so it stays beside whichever
               tier you are reading, and deliberately shorter than the viewport:
@@ -106,13 +113,13 @@ export default function ServiceTiers() {
                   cx={outerRadius}
                   cy={outerRadius}
                   taper={i === 0}
-                  drawProgress={reducedMotion ? 1 : draw[i]}
+                  drawProgress={stillMark ? 1 : draw[i]}
                 />
               ))}
             </svg>
           </div>
 
-          <div className="mt-16 lg:mt-0 lg:pb-[10vh] lg:pt-[10vh]">
+          <div className="mt-16 lg:mt-0 lg:pb-[4vh] lg:pt-[4vh]">
             <p className="text-label uppercase text-muted-on-ink">What we do</p>
             <h2 className="mt-3 font-display text-section text-cream">
               Three arches. <em className="italic text-gold">Three tiers.</em>
@@ -122,7 +129,7 @@ export default function ServiceTiers() {
               inward, or take only the part you need.
             </p>
 
-            <ol className="mt-14 space-y-[8vh]">
+            <ol className="mt-12 space-y-[6vh]">
               {tiers.map((t, i) => (
                 <motion.li
                   key={t.name}
@@ -137,7 +144,7 @@ export default function ServiceTiers() {
                   // permanently, hiding all three tiers' copy. Found
                   // 18-08-2026 by walking the page in reduced motion end to
                   // end rather than trusting the token.
-                  style={{ opacity: reducedMotion ? 1 : fade[i] }}
+                  style={{ opacity: stillMark ? 1 : fade[i] }}
                   className="border-l-2 border-gold/30 pl-6"
                 >
                   <div className="flex flex-wrap items-baseline gap-x-3">
@@ -157,7 +164,7 @@ export default function ServiceTiers() {
 
             <Link
               to="/services"
-              className="group mt-20 inline-flex items-center gap-2 py-2 text-button uppercase text-gold"
+              className="group mt-14 inline-flex items-center gap-2 py-2 text-button uppercase text-gold"
             >
               Full services breakdown
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
