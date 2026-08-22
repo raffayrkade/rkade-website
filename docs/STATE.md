@@ -9,24 +9,19 @@ Last updated: 22-08-2026
 ## Status
 
 ```
-Right now:     LIVE, with one branch in flight. rkade.co serves the site as
-               of 19-08-2026. Branch `audit-pass-2-fixes` holds the fixes for
-               Kushan's audit pass 2 plus the unshipped iPhone commit, built
-               and verified locally, waiting on a Netlify preview and
-               Raffay's yes.
+Right now:     LIVE. rkade.co serves the audit pass 2 fixes and the iPhone
+               work. Nothing is in flight and no branch is open.
 To see it:     https://rkade.co, or cd rkade-website && npm run dev for local
                changes
 Local link:    http://localhost:5173
 Live link:     https://rkade.co  (Netlify, repo raffayrkade/rkade-website)
-Last deployed: 19-08-2026, commit e601ae2, merged from
-               cofounder-copy-pass-and-audit-fixes (PR #10)
-Since you last looked: Kushan's audit pass 2 was worked through against the
-               code. Its one urgent item (N1, four stat values said to have
-               silently changed) is a measurement artefact and needed no
-               change, and S3 was already correct. The rest are fixed: the
-               homepage is a full screen shorter on both desktop and mobile,
-               internal paths no longer ship in the HTML, footer tap targets
-               clear WCAG, and the 404 has nav. See docs/DECISIONS.md.
+Last deployed: 22-08-2026, commit 5a99ce1, merged from
+               audit-pass-2-fixes (PR #12)
+Since you last looked: audit pass 2 shipped, PR #12, and so did the iPhone
+               work that had been sitting unshipped since 19-08-2026. Two of
+               Kushan's findings were checked and dropped rather than
+               actioned, including the one he called urgent. Three problems no
+               document had found were fixed on the way. See docs/DECISIONS.md.
 ```
 
 ## Progress
@@ -88,6 +83,14 @@ missing `GITHUB_TOKEN`, which turned out not to matter because the `gh` CLI
 is still authenticated and opened the PR directly.
 
 ## Things that are true and were not last session
+
+- **Audit pass 2 is live**, commit 5a99ce1 (PR #12), merged `--no-ff` after
+  Raffay approved the preview in chat. Both branches deleted, locally and
+  remotely. Verified on rkade.co after the deploy: 12 routes 200 with a bad
+  URL returning a real 404, `/.vite/ssr-manifest.json` now a 404, the stats
+  serving 3 / 28 / 170 / 90,048, zero elements under 24px at 390 and 1440,
+  no horizontal scroll, no console errors, and the header still 73px so the
+  `/#how-it-works` offset is intact.
 
 - **Two of the audit's findings were wrong, and checking first is why we know.**
   N1, reported as the only urgent item, claimed three stat values had silently

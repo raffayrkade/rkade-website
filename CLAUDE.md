@@ -183,3 +183,25 @@ Checkpoint-style, one entry per meaningful change — not a full transcript. New
   `docs/DECISIONS.md`. Two things stay open and neither is code: the same copy pass on the other
   four pages, which needs Kushan, and one screenshot for the lead-sourcing case study, which needs
   Raffay. Both are rows in `docs/BLOCKED.md`.
+
+- **22-08-2026**: Kushan's audit pass 2 (of production, not a preview) worked through and shipped as
+  PR #12, merged `--no-ff` as 5a99ce1, both branches deleted. **Two of its findings were checked
+  against source and deliberately not actioned.** N1, the only item the report called urgent,
+  claimed three homepage stat values had silently dropped: they had not. `ProofStrip.jsx` still
+  reads 3 / 28 / 170 / 90,048 and git shows those were written once and never edited. `Counter.jsx`
+  animates each figure up from zero over 1,400ms and the audit scraped the DOM mid-animation, which
+  is why every reported value was under the real one and the only match was the only number small
+  enough to finish counting instantly. S3, the honeypot, already had `aria-hidden` on its wrapper,
+  and hiding a container hides its subtree; the attribute was added to the input anyway to stop a
+  third pass reporting it. What was real is fixed: the homepage is a full screen shorter on both
+  desktop (10.1 to 9.1 screens) and mobile (13.0 to 12.0), empty space 34% to 23%, achieved by
+  tightening `Section.jsx`'s padding scale and the six components that were hard-coding it instead
+  of importing it. **Three problems no document had found** were fixed on the way:
+  `dist/.vite/ssr-manifest.json`, 29KB naming every source path in the project, was publicly
+  downloadable and is now stripped by `scripts/strip-build-artifacts.mjs`; the header nav links were
+  20px tall, missed by the audit because it measured at phone width where they sit behind the mobile
+  menu; and `/services` still described tier 2 with the list the homepage had already retired, so
+  the two pages contradicted each other on the same product. This release also carried 253575d, the
+  iPhone scroll and viewport work written on 19-08-2026 and never shipped, bundled so it got checked
+  on a real phone in the same preview. Still open, neither is code: the lead-sourcing screenshot
+  (Raffay) and the copy pass on the other four pages (Kushan). Full detail in `docs/DECISIONS.md`.
