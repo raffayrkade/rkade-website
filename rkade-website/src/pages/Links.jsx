@@ -83,7 +83,7 @@ export default function Links() {
           )}
 
           <a href={WHATSAPP_CARD} target="_blank" rel="noopener noreferrer" className={rowClass}>
-            <RowBody icon={MessageCircle} title="Message the team" sub="WhatsApp, the fastest way to reach us" />
+            <RowBody icon={MessageCircle} title="Message the team" sub="WhatsApp us directly" />
           </a>
 
           <FreeAuditLink className={rowClass}>
