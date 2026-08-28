@@ -5,8 +5,7 @@ import Wordmark from '@/components/brand/Wordmark';
 import Seo from '@/components/common/Seo';
 import FreeAuditLink from '@/components/common/FreeAuditLink';
 import {
-  WHATSAPP_KUSHAN,
-  WHATSAPP_RAFFAY,
+  WHATSAPP_CARD,
   DEMO_LINK,
   CONTACT_EMAIL,
 } from '@/components/common/CTAButtons';
@@ -83,12 +82,8 @@ export default function Links() {
             </a>
           )}
 
-          <a href={WHATSAPP_KUSHAN} target="_blank" rel="noopener noreferrer" className={rowClass}>
-            <RowBody icon={MessageCircle} title="WhatsApp Kushan" sub="The fastest way to reach us" />
-          </a>
-
-          <a href={WHATSAPP_RAFFAY} target="_blank" rel="noopener noreferrer" className={rowClass}>
-            <RowBody icon={MessageCircle} title="WhatsApp Raffay" sub="Or message Raffay directly" />
+          <a href={WHATSAPP_CARD} target="_blank" rel="noopener noreferrer" className={rowClass}>
+            <RowBody icon={MessageCircle} title="Message the team" sub="WhatsApp, the fastest way to reach us" />
           </a>
 
           <FreeAuditLink className={rowClass}>
