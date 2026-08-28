@@ -5,6 +5,7 @@ import Services from '@/pages/Services';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
 import NotFound from '@/pages/NotFound';
+import Links from '@/pages/Links';
 import Privacy from '@/pages/Privacy';
 import Terms from '@/pages/Terms';
 import Kit from '@/pages/Kit';
@@ -31,6 +32,10 @@ const routes = [
           ...(import.meta.env.DEV ? [{ path: '/kit', element: <Kit /> }] : []),
         ],
       },
+      // The business card QR destination. A sibling of SiteLayout, not a
+      // child, so it renders as one clean screen with no header or footer.
+      // Its URL is printed on physical cards and must never change.
+      { path: '/links', element: <Links /> },
       { path: '*', element: <NotFound /> },
     ],
   },

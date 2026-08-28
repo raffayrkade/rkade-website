@@ -41,6 +41,11 @@ const hasTitle = (html) => /<title[^>]*>[^<]+<\/title>/i.test(headOf(html))
 
 const MIN_TEXT = 400 // a real page, not a shell
 
+// Routes that are genuinely terse by design, with their own floor. /links is
+// one screen of buttons for a phone that just scanned a business card; its
+// ~320 chars are all real content, not a failed render.
+const MIN_TEXT_BY_ROUTE = { '/links': 250 }
+
 let failed = 0
 const pad = (s, n) => String(s).padEnd(n)
 console.log('\n  Route prerender check\n')
@@ -54,7 +59,8 @@ for (const route of routes) {
   } else {
     const html = readFileSync(file, 'utf8')
     const text = textOf(html)
-    if (text.length < MIN_TEXT) problems.push(`only ${text.length} chars of text`)
+    const minText = MIN_TEXT_BY_ROUTE[route] ?? MIN_TEXT
+    if (text.length < minText) problems.push(`only ${text.length} chars of text`)
     if (!/<h1[\s>]/i.test(html)) problems.push('no <h1>')
     if (!hasTitle(html)) problems.push('no <title>')
     if (/data-server-rendered-error|Application error/i.test(html)) problems.push('render error marker')

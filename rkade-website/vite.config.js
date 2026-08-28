@@ -38,6 +38,11 @@ export default defineConfig({
       '/contact',
       '/privacy',
       '/terms',
+      // The business card QR destination. Prerendered so a scan gets a real
+      // 200 with its own OG tags (WhatsApp's link preview never runs JS).
+      // Deliberately absent from generate-sitemap.mjs and noindexed: it is
+      // for people holding a card, not for search.
+      '/links',
       // Not a route in routes.jsx: '/404' falls through to the '*' catch-all
       // and so prerenders NotFound to dist/404.html. public/_redirects then
       // serves that file with a real 404 status for any unknown URL. Without
