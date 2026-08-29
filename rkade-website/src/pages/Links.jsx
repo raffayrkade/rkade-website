@@ -78,7 +78,7 @@ export default function Links() {
         <nav aria-label="RKade links" className="mt-10 flex flex-col gap-3">
           {DEMO_LINK !== 'PLACEHOLDER' && (
             <a href={DEMO_LINK} target="_blank" rel="noopener noreferrer" className={rowClass}>
-              <RowBody icon={Monitor} title="See the system" sub="A live CRM, running on fake data" solid />
+              <RowBody icon={Monitor} title="Demos" sub="Live systems you can try" solid />
             </a>
           )}
 

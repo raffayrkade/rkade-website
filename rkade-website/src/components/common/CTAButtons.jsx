@@ -11,11 +11,12 @@ export const WHATSAPP_LINK =
 export const WHATSAPP_CARD =
   "https://wa.me/971505502465?text=Hi%20RKade%2C%20I%20scanned%20your%20card";
 
-// The jewellery CRM demo, seeded with fake data, safe to hand to anyone.
-// While this is PLACEHOLDER the /links page renders no demo button at all,
-// same rule as the social icons below: no button beats a dead button.
-// It must NEVER point at a live client instance holding real customer data.
-export const DEMO_LINK = "PLACEHOLDER";
+// The demo hub, live since 29-08-2026: fake-data systems anyone can play
+// with, starting with the jewellery CRM. While this is PLACEHOLDER the
+// /links page renders no demo button at all, same rule as the social icons
+// below: no button beats a dead button. It must NEVER point at a live
+// client instance holding real customer data.
+export const DEMO_LINK = "https://demo.rkade.co";
 
 export const CALENDAR_LINK = "https://calendar.app.google/waHYAngJttZ25BbL7";
 
