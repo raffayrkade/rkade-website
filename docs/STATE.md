@@ -2,26 +2,25 @@
 
 **Hard cap: 8 KB.** Read this first, every session.
 
-Last updated: 22-08-2026
+Last updated: 29-08-2026
 
 ---
 
 ## Status
 
 ```
-Right now:     LIVE. rkade.co serves the audit pass 2 fixes and the iPhone
-               work. Nothing is in flight and no branch is open.
-To see it:     https://rkade.co, or cd rkade-website && npm run dev for local
-               changes
+Right now:     LIVE. rkade.co serves the site plus /links, the business card
+               QR destination. Nothing is in flight and no branch is open.
+To see it:     https://rkade.co/links, or cd rkade-website && npm run dev for
+               local changes
 Local link:    http://localhost:5173
 Live link:     https://rkade.co  (Netlify, repo raffayrkade/rkade-website)
-Last deployed: 22-08-2026, commit 5a99ce1, merged from
-               audit-pass-2-fixes (PR #12)
-Since you last looked: audit pass 2 shipped, PR #12, and so did the iPhone
-               work that had been sitting unshipped since 19-08-2026. Two of
-               Kushan's findings were checked and dropped rather than
-               actioned, including the one he called urgent. Three problems no
-               document had found were fixed on the way. See docs/DECISIONS.md.
+Last deployed: 29-08-2026, commit 4a7a57b, merged from links-page (PR #13)
+Since you last looked: /links shipped: one shared QR on both business cards
+               now lands on a card-style page (WhatsApp, booking link,
+               website, email, hallmark footer). A second, separate project,
+               the demo CRM (folder Jewelry-Demo, demo.rkade.co), was scoped
+               the same day, see Next up.
 ```
 
 ## Progress
@@ -31,35 +30,32 @@ PHASE    [████████████████████]  Phase 7
 TASKS    [████████████████████]  87 of 87 done          (100%)
 ```
 
-Build time left: not enough history yet, I have 6 units measured. There is
-nothing left to build. Phase 7 (branch, PR, preview, merge, live-site
-verification) took under an hour with no debug rounds, `docs/history/timings.md`
-row 6.
+Build time left: not enough history yet for `rkade-website`, I have 7 units
+measured. There is nothing left to build in this repo. The /links unit took
+roughly 1.5 hours with no debug rounds, `docs/history/timings.md` row 7.
 
-Realistically: nothing left to build. Because: the two things still open are
-Raffay's to do himself, not building, see Blockers below.
+Realistically: nothing left to build in `rkade-website` itself. Because: the
+next real work is the demo CRM, which is a separate project (see Next up),
+plus the two items still open on Raffay's side, see Blockers below.
 
-`docs/history/timings.md` has all six entries.
+`docs/history/timings.md` has all seven entries.
 
 ## Next up
 
-There is no phase 8 planned. What comes after launch:
-
-0. **Read /privacy and /terms on the preview, then approve or reject the PR.**
-   They are the only pages on the site written as legal text rather than
-   marketing, so they are the only ones nobody else can sign off.
-1. **Get Formspree's delivery address repointed to `contact@rkade.co`.** This
-   is now the one thing that actually matters, see Blockers.
-2. **Get the LinkedIn company page URL** once it exists, paste it into
+1. **Build the demo CRM**, a new, separate project: folder `Jewelry-Demo`,
+   lives at `demo.rkade.co` as a hub listing one card per industry demo, with
+   the jewellery demo at `demo.rkade.co/jewelry`. Not part of this repo. When
+   it is live, set `DEMO_LINK` in `CTAButtons.jsx` and the hidden demo button
+   on `/links` appears on its own.
+2. **Get Formspree's delivery address repointed to `contact@rkade.co`.** Still
+   the one thing that actually matters here, see Blockers.
+3. **Get the LinkedIn company page URL** once it exists, paste it into
    `CTAButtons.jsx`'s `LINKEDIN_LINK`.
-3. **Watch the live site for real-world issues** now that real visitors are on
-   it: the contact form actually reaching an inbox, the booking link staying
-   up, any route returning something other than 200.
-4. **No further phases are currently planned.** Wait for Raffay's direction on
-   what the site needs next before starting anything new.
+4. **Watch the live site for real-world issues**: the contact form reaching an
+   inbox, the booking link staying up, `/links` actually getting scanned off a
+   printed card, any route returning something other than 200.
 5. **Keep logging new work units to `docs/history/timings.md`** as they
-   happen, so a future estimate has real history behind it rather than a
-   guess.
+   happen, so estimates keep being real history, not a guess.
 
 ## Blockers
 
@@ -73,9 +69,13 @@ The only other open item, and it blocks nothing: paste the LinkedIn company
 page URL into `CTAButtons.jsx` once that page exists. The footer simply shows
 no LinkedIn icon until then, Instagram already renders on its own.
 
-Two new rows in `docs/BLOCKED.md`, neither of them code: the copy review for
+Two rows stand in `docs/BLOCKED.md`, neither of them code: the copy review for
 the other four pages has to come from Kushan, and the lead-sourcing case study
 still needs one screenshot before it has any image at all.
+
+**The demo CRM is a separate project and blocks nothing here.** `/links`'s
+demo button ("See the system") ships hidden by design until `DEMO_LINK` stops
+being `PLACEHOLDER`. That is expected, not a fault.
 
 Resolved 18-08-2026: the dead Google booking link, replaced with a working
 schedule and verified signed out. Instagram, now live in the footer. The
@@ -84,41 +84,31 @@ is still authenticated and opened the PR directly.
 
 ## Things that are true and were not last session
 
-- **Audit pass 2 is live**, commit 5a99ce1 (PR #12), merged `--no-ff` after
-  Raffay approved the preview in chat. Both branches deleted, locally and
-  remotely. Verified on rkade.co after the deploy: 12 routes 200 with a bad
-  URL returning a real 404, `/.vite/ssr-manifest.json` now a 404, the stats
-  serving 3 / 28 / 170 / 90,048, zero elements under 24px at 390 and 1440,
-  no horizontal scroll, no console errors, and the header still 73px so the
-  `/#how-it-works` offset is intact.
+- **`/links` is live**, commit 4a7a57b (PR #13), merged `--no-ff` after Raffay
+  approved the preview in chat. Branch `links-page` deleted both sides.
+  Verified live: `https://rkade.co/links` returns HTTP 200 with the
+  prerendered page, one WhatsApp button ("Message the team", to Kushan's
+  number), the Google booking link, website and email buttons, the hallmark
+  footer. Noindexed, excluded from the sitemap, on purpose: it is for someone
+  holding a card, not for search. Full detail, including the mid-preview
+  correction from two WhatsApp buttons to one, in `docs/DECISIONS.md`.
 
-- **Two of the audit's findings were wrong, and checking first is why we know.**
-  N1, reported as the only urgent item, claimed three stat values had silently
-  dropped. Source says otherwise: those four numbers were written once and
-  never edited. The counter animates them up over 1.4 seconds and the audit
-  read the DOM mid-animation, which is why every reported value was slightly
-  under the real one and the only one that matched was the only one small
-  enough to finish counting instantly. S3 was the same shape: the honeypot's
-  `aria-hidden` was on the wrapper, not the input, and hiding a container
-  hides its subtree. Both are written up in `docs/DECISIONS.md`.
+- **The QR code itself is generated and verified, not just linked to.**
+  `docs/brand/qr/rkade-links-qr.svg` and `-2000px.png`, error correction M,
+  decoded back and confirmed to read exactly `https://rkade.co/links` before
+  anything went to print. Do not drop below M for a printed card.
 
-- **The homepage is a full screen shorter, measured not assumed.** Desktop
-  9,306px to 8,386px, 10.1 screens to 9.1. Mobile 10,883px to 10,153px, 13.0
-  to 12.0. Empty space 34% to 23%. The lever was `Section.jsx`'s padding
-  scale, which six other components were hard-coding rather than importing;
-  all six now match.
+- **The demo CRM was scoped the same day, 29-08-2026, as a new, separate
+  project.** Folder `Jewelry-Demo`, hub at `demo.rkade.co` listing one card
+  per industry demo, jewellery demo at `demo.rkade.co/jewelry`, no
+  "coming soon" tiles ever. Each visitor gets a private seed-data copy in
+  their own browser (`localStorage`), no shared database, 24h reset. Nothing
+  in this repo depends on it existing yet; `/links`'s demo button just stays
+  hidden until it does.
 
-- **`dist/.vite/ssr-manifest.json` was being published.** 29KB naming every
-  source path in the project, reachable at `/.vite/ssr-manifest.json`. Found
-  while fixing the audit's smaller version of the same problem. `npm run
-  build` now strips it. Third time this trap has bitten: anything in `dist/`
-  or `public/` is a live URL whether or not the site links to it.
-
-- **The site is live and has been since 19-08-2026**, commit e601ae2 (PR #10),
-  on top of the 18-08-2026 launch (6cb9429, PR #9). Both go-lives verified on
-  rkade.co at the time. The detail of what each one shipped and what it fixed
-  has moved to `docs/history/state-go-live-entries.md`, so this file stays
-  under its cap.
+- **Audit pass 2 and the earlier go-lives are still true, just moved out of
+  this file to stay under the 8 KB cap.** Full detail in
+  `docs/history/state-go-live-entries.md` and `docs/DECISIONS.md`.
 
 ## Known, still open
 

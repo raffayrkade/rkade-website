@@ -205,3 +205,23 @@ Checkpoint-style, one entry per meaningful change — not a full transcript. New
   iPhone scroll and viewport work written on 19-08-2026 and never shipped, bundled so it got checked
   on a real phone in the same preview. Still open, neither is code: the lead-sourcing screenshot
   (Raffay) and the copy pass on the other four pages (Kushan). Full detail in `docs/DECISIONS.md`.
+
+- **29-08-2026**: `/links` shipped, the permanent destination behind the QR code printed on RKade's
+  business cards. Built on branch `links-page`, opened as PR #13, Raffay approved the Netlify
+  preview in chat, merged `--no-ff` to `main` as commit 4a7a57b, branch deleted both sides. Verified
+  live: `https://rkade.co/links` returns HTTP 200 with the prerendered page, one WhatsApp button
+  ("Message the team", wa.me/971505502465, routed to Kushan since he is the one in the field), the
+  Google booking link, website and email buttons, and the hallmark footer. One mid-preview
+  correction from Raffay: the page shipped with two WhatsApp buttons and he asked for one, logged in
+  `docs/PREFERENCES-INBOX.md`. New files: `src/pages/Links.jsx`, a route in `routes.jsx`, two new
+  constants in `CTAButtons.jsx` (`WHATSAPP_CARD`, `DEMO_LINK`), the route added to the vite
+  prerender list, and a per-route text-length floor in `scripts/verify-routes.mjs` since the page is
+  terse by design. The QR files themselves live at `docs/brand/qr/`, error correction M, decoded and
+  verified to read exactly `https://rkade.co/links` before anything went to print. The page is
+  noindexed and left out of the sitemap: it is for someone holding a card, not for search. Also
+  scoped the same day, as a new and separate project: the demo CRM, folder `Jewelry-Demo`, will live
+  at `demo.rkade.co` as a hub listing one card per industry demo, jewellery demo at
+  `demo.rkade.co/jewelry`, private per-visitor seed data in `localStorage`, no shared database, 24h
+  reset, no "coming soon" tiles ever. Nothing in this repo depends on it existing yet: `/links`'s
+  demo button ("See the system") stays hidden until `DEMO_LINK` in `CTAButtons.jsx` stops being
+  `PLACEHOLDER`. Full detail in `docs/DECISIONS.md` and `docs/STATE.md`.

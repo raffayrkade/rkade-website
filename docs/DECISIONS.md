@@ -618,3 +618,79 @@ live and real people can use it:
   Applied his reasoning one page over rather than leaving a contradiction we
   introduced. Reverse: two strings in `src/pages/Services.jsx`. This does not
   pre-empt the full `/services` copy pass, which still needs Kushan.
+
+## 28-08-2026 to 29-08-2026, /links: the business card QR destination
+
+- **[28-08-2026] One shared QR code on both business cards, pointing at
+  `https://rkade.co/links`.** Raffay's call. The URL is the permanent
+  commitment printed and laminated on physical cards; the page it resolves to
+  stays fully editable, so the content behind the code can change forever
+  without a reprint. Reverse: printing a new code is the only way to change
+  the destination URL itself; the page can be edited freely without touching
+  the cards.
+
+- **[29-08-2026] One WhatsApp button on `/links`, "Message the team", routed
+  to Kushan's number `971505502465`, replacing an earlier two-button
+  version.** Raffay, after seeing the preview: Kushan is the one in the
+  field handing out the cards, so the WhatsApp route should reach him
+  directly rather than offering a choice of two people. Logged to
+  `docs/PREFERENCES-INBOX.md` as a general lesson. Reverse: restore the
+  second button with Raffay's number in `CTAButtons.jsx` and `Links.jsx`.
+
+- **[29-08-2026] The `/links` Free Audit button uses the site's proven Google
+  booking link (`calendar.app.google/waHYAngJttZ25BbL7`), not the unverified
+  Calendly URL in Kushan's original brief.** That Calendly link has never
+  been checked signed out, and the house rule since 18-08-2026 is that no
+  third-party booking link ships untested (see the Gotchas entry on this).
+  The site already has one working, monitored schedule; reusing it avoids
+  standing up and verifying a second one. Reverse: verify the Calendly link
+  signed out, then point `Links.jsx`'s Free Audit button at it instead.
+
+- **[29-08-2026] `/links` is noindexed and excluded from the sitemap.** The
+  page exists for someone holding a physical card, not for search traffic.
+  Indexing it would put a terse, card-shaped page into results for people who
+  never asked for it. Reverse: drop the `noindex` meta and add the route back
+  into `scripts/generate-sitemap.mjs`.
+
+- **[29-08-2026] The demo button ("See the system") ships hidden until
+  `DEMO_LINK` in `CTAButtons.jsx` stops being `PLACEHOLDER`. Socials stay off
+  `/links` until the Instagram and LinkedIn accounts actually post.** Same
+  pattern as the site-wide `PLACEHOLDER` convention from 18-08-2026: no dead
+  button ships, ever. Reverse: paste a real URL into `DEMO_LINK` and the
+  button appears on its own, no other change needed.
+
+- **[29-08-2026] Demo architecture, decided by Raffay.** `demo.rkade.co` will
+  be a hub listing one card per industry demo, not a single-purpose page. The
+  jewellery demo lives at `demo.rkade.co/jewelry`. The `/links` demo button
+  points at the hub, not directly at any one industry demo, so new demos can
+  be added without ever touching `rkade-website` again. No "coming soon"
+  tiles ever: a card appears on the hub only once its demo actually works.
+  Each visitor gets a private copy of seed data in their own browser
+  (`localStorage`), not a shared database, resetting every 24 hours, so one
+  visitor cannot see or break another's session and nothing needs a backend.
+  This is a new, separate project (folder `Jewelry-Demo`), not part of this
+  repo. Reverse: none needed here, this decision lives in the new project;
+  `rkade-website` only carries the single `DEMO_LINK` pointer.
+
+- **[29-08-2026] `scripts/verify-routes.mjs` gained `MIN_TEXT_BY_ROUTE`, with
+  `/links` set to 250 characters.** The script's single global text-length
+  floor assumed every page is copy-heavy; `/links` is deliberately terse, a
+  handful of buttons and short labels, and would have failed the check by
+  design rather than by accident. Reverse: delete the `/links` entry from
+  `MIN_TEXT_BY_ROUTE`, the route falls back to the global floor.
+
+- **[29-08-2026] The QR files in `docs/brand/qr/` are generated at error
+  correction level M, and print production must never drop below M.** M
+  survives lamination glare and normal handling wear on a physical card at
+  the size RKade prints; L does not carry enough redundancy for a printed
+  card that gets handled and re-scanned repeatedly. Both files were decoded
+  back and verified to read exactly `https://rkade.co/links` before shipping.
+  Reverse: regenerate at L only if a specific printer requires it, and
+  re-verify by decoding before sending to print.
+
+- **[29-08-2026] `/links` shipped, PR #13, merged `--no-ff` to `main` as
+  4a7a57b.** Branch `links-page` deleted both sides after Raffay approved the
+  Netlify preview in chat. Verified live: `https://rkade.co/links` returns
+  HTTP 200 with the prerendered page, one WhatsApp button, the booking link,
+  website and email buttons, and the hallmark footer. Reverse: there is no
+  reverse for a live merge, a regression is a new fix forward.
