@@ -6,7 +6,9 @@
 // Deliberately excludes /kit: it is dev-only (see routes.jsx and
 // docs/plan/phase-02.md) and was never in ssgOptions.includedRoutes either.
 // Also excludes /404, which vite.config.js does prerender but which must
-// never be offered to a crawler as a real page.
+// never be offered to a crawler as a real page. And excludes /links, the
+// business card QR destination: prerendered and live, but noindexed on
+// purpose, it is for people holding a card, not for search.
 
 import { writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'

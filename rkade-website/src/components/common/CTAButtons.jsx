@@ -4,6 +4,19 @@
 export const WHATSAPP_LINK =
   "https://wa.me/971563061331?text=Hi%20RKade%2C%20I%27d%20like%20to%20talk%20about%20automation";
 
+// The /links page (the business card QR destination) offers one WhatsApp
+// button for the whole team. It goes to Kushan's number: he is the one in
+// the field handing out cards. Decided by Raffay in chat, 28-08-2026,
+// replacing an earlier two-button version.
+export const WHATSAPP_CARD =
+  "https://wa.me/971505502465?text=Hi%20RKade%2C%20I%20scanned%20your%20card";
+
+// The jewellery CRM demo, seeded with fake data, safe to hand to anyone.
+// While this is PLACEHOLDER the /links page renders no demo button at all,
+// same rule as the social icons below: no button beats a dead button.
+// It must NEVER point at a live client instance holding real customer data.
+export const DEMO_LINK = "PLACEHOLDER";
+
 export const CALENDAR_LINK = "https://calendar.app.google/waHYAngJttZ25BbL7";
 
 // Is the booking page above actually working?
