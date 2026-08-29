@@ -225,3 +225,14 @@ Checkpoint-style, one entry per meaningful change — not a full transcript. New
   reset, no "coming soon" tiles ever. Nothing in this repo depends on it existing yet: `/links`'s
   demo button ("See the system") stays hidden until `DEMO_LINK` in `CTAButtons.jsx` stops being
   `PLACEHOLDER`. Full detail in `docs/DECISIONS.md` and `docs/STATE.md`.
+
+  Later the same day: the Jewelry-Demo project was built and checked in full, all three phases in
+  one day, and deployed to `demo.rkade.co` as a Cloudflare Worker (custom domain route, DNS
+  auto-managed since rkade.co's zone is already on Cloudflare). With the demo live, `DEMO_LINK`
+  stopped being `PLACEHOLDER`, so the previously hidden primary button on `/links` now renders,
+  relabelled "Demos" ("Live systems you can try") since it points at the hub rather than one
+  system. Built on branch `demos-button`, opened as PR #14, Raffay approved the Netlify preview in
+  chat, merged `--no-ff` to `main` as commit 782d58f, branch deleted both sides. Verified live:
+  `https://rkade.co/links` serves the Demos button, linking to `https://demo.rkade.co`. The card
+  chain is now complete end to end: QR on both business cards to `rkade.co/links` to the Demos
+  button to `demo.rkade.co/jewelry`. Full detail in `docs/DECISIONS.md` and `docs/STATE.md`.

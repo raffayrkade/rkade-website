@@ -168,3 +168,15 @@ ever deleted, only moved. Newest at the bottom of each phase.
       "Page Not Found | RKade"
 
 **Phases 1 to 7 are all done. The site is live.**
+
+## Post-launch: the business card QR chain
+
+- [x] `/links` built and shipped: page, route, WhatsApp/booking/website/email
+      buttons, hallmark footer, QR generated at error correction M and
+      decoded-verified. PR #13, merged `--no-ff` as 4a7a57b, 29-08-2026
+- [x] Demo CRM (separate project, `Jewelry-Demo`) built, checked and deployed
+      to `demo.rkade.co` as a Cloudflare Worker, 29-08-2026
+- [x] `DEMO_LINK` set to `https://demo.rkade.co`, the previously hidden Demos
+      button on `/links` turned on and relabelled. PR #14, merged `--no-ff`
+      as 782d58f, 29-08-2026. Card chain now complete end to end: QR to
+      `rkade.co/links` to Demos to `demo.rkade.co/jewelry`

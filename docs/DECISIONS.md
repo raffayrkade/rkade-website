@@ -694,3 +694,25 @@ live and real people can use it:
   HTTP 200 with the prerendered page, one WhatsApp button, the booking link,
   website and email buttons, and the hallmark footer. Reverse: there is no
   reverse for a live merge, a regression is a new fix forward.
+
+- **[29-08-2026] The demo CRM deployed as a Cloudflare Worker with a
+  `custom_domain` route, not Netlify.** rkade.co's DNS zone is already on
+  Cloudflare and `wrangler` was already authenticated on this machine
+  (account raffay@rkade.co), so pointing `demo.rkade.co` at the Worker needed
+  no manual DNS step, Cloudflare manages the record automatically once the
+  route is declared. This is a decision about the separate `Jewelry-Demo`
+  project, recorded here too because it directly unblocks this repo's
+  `DEMO_LINK`. Reverse: build `dist/` and deploy it anywhere else, then
+  repoint the `demo.rkade.co` record by hand in the Cloudflare dashboard.
+
+- **[29-08-2026] The Demos button on `/links` shipped, PR #14, merged
+  `--no-ff` to `main` as 782d58f.** Branch `demos-button` deleted both sides
+  after Raffay approved the Netlify preview in chat. `DEMO_LINK` in
+  `CTAButtons.jsx` now points at `https://demo.rkade.co`, so the button that
+  shipped hidden with `/links` on 29-08-2026 now renders, relabelled "Demos"
+  / "Live systems you can try" since it opens the hub, not one system.
+  Verified live: `https://rkade.co/links` serves the button linking to
+  `demo.rkade.co`. This completes the card chain end to end: QR on both
+  business cards to `rkade.co/links` to Demos to `demo.rkade.co/jewelry`.
+  Reverse: there is no reverse for a live merge, a regression is a new fix
+  forward.

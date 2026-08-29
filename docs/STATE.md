@@ -9,18 +9,18 @@ Last updated: 29-08-2026
 ## Status
 
 ```
-Right now:     LIVE. rkade.co serves the site plus /links, the business card
-               QR destination. Nothing is in flight and no branch is open.
+Right now:     LIVE. rkade.co serves the site, and the full card chain now
+               works end to end: QR -> /links -> Demos -> demo.rkade.co
+               /jewelry. Nothing is in flight and no branch is open.
 To see it:     https://rkade.co/links, or cd rkade-website && npm run dev for
                local changes
 Local link:    http://localhost:5173
 Live link:     https://rkade.co  (Netlify, repo raffayrkade/rkade-website)
-Last deployed: 29-08-2026, commit 4a7a57b, merged from links-page (PR #13)
-Since you last looked: /links shipped: one shared QR on both business cards
-               now lands on a card-style page (WhatsApp, booking link,
-               website, email, hallmark footer). A second, separate project,
-               the demo CRM (folder Jewelry-Demo, demo.rkade.co), was scoped
-               the same day, see Next up.
+Last deployed: 29-08-2026, commit 782d58f, merged from demos-button (PR #14)
+Since you last looked: the demo CRM (separate project, folder Jewelry-Demo)
+               was built and deployed the same day it was scoped, live at
+               demo.rkade.co. The Demos button on /links, which shipped
+               hidden, now renders and links to it.
 ```
 
 ## Progress
@@ -30,30 +30,28 @@ PHASE    [████████████████████]  Phase 7
 TASKS    [████████████████████]  87 of 87 done          (100%)
 ```
 
-Build time left: not enough history yet for `rkade-website`, I have 7 units
-measured. There is nothing left to build in this repo. The /links unit took
-roughly 1.5 hours with no debug rounds, `docs/history/timings.md` row 7.
+Build time left: not enough history yet for `rkade-website`, I have 8 units
+measured. There is nothing left to build in this repo. The demos-button unit
+took roughly 30 minutes with no debug rounds, `docs/history/timings.md` row 8.
 
 Realistically: nothing left to build in `rkade-website` itself. Because: the
-next real work is the demo CRM, which is a separate project (see Next up),
-plus the two items still open on Raffay's side, see Blockers below.
+whole card chain is live end to end. What remains is the two items still open
+on Raffay's side, see Blockers below.
 
-`docs/history/timings.md` has all seven entries.
+`docs/history/timings.md` has all eight entries.
 
 ## Next up
 
-1. **Build the demo CRM**, a new, separate project: folder `Jewelry-Demo`,
-   lives at `demo.rkade.co` as a hub listing one card per industry demo, with
-   the jewellery demo at `demo.rkade.co/jewelry`. Not part of this repo. When
-   it is live, set `DEMO_LINK` in `CTAButtons.jsx` and the hidden demo button
-   on `/links` appears on its own.
-2. **Get Formspree's delivery address repointed to `contact@rkade.co`.** Still
+1. **Get Formspree's delivery address repointed to `contact@rkade.co`.** Still
    the one thing that actually matters here, see Blockers.
-3. **Get the LinkedIn company page URL** once it exists, paste it into
+2. **Get the LinkedIn company page URL** once it exists, paste it into
    `CTAButtons.jsx`'s `LINKEDIN_LINK`.
-4. **Watch the live site for real-world issues**: the contact form reaching an
-   inbox, the booking link staying up, `/links` actually getting scanned off a
-   printed card, any route returning something other than 200.
+3. **Watch the live site for real-world issues**: the contact form reaching an
+   inbox, the booking link staying up, `/links` and the Demos button actually
+   getting used off a printed card, `demo.rkade.co` staying up, any route
+   returning something other than 200.
+4. **Action Kushan's copy pass and the lead-sourcing screenshot** as soon as
+   either arrives, both rows in `docs/BLOCKED.md`.
 5. **Keep logging new work units to `docs/history/timings.md`** as they
    happen, so estimates keep being real history, not a guess.
 
@@ -72,10 +70,6 @@ no LinkedIn icon until then, Instagram already renders on its own.
 Two rows stand in `docs/BLOCKED.md`, neither of them code: the copy review for
 the other four pages has to come from Kushan, and the lead-sourcing case study
 still needs one screenshot before it has any image at all.
-
-**The demo CRM is a separate project and blocks nothing here.** `/links`'s
-demo button ("See the system") ships hidden by design until `DEMO_LINK` stops
-being `PLACEHOLDER`. That is expected, not a fault.
 
 Resolved 18-08-2026: the dead Google booking link, replaced with a working
 schedule and verified signed out. Instagram, now live in the footer. The
@@ -98,13 +92,20 @@ is still authenticated and opened the PR directly.
   decoded back and confirmed to read exactly `https://rkade.co/links` before
   anything went to print. Do not drop below M for a printed card.
 
-- **The demo CRM was scoped the same day, 29-08-2026, as a new, separate
-  project.** Folder `Jewelry-Demo`, hub at `demo.rkade.co` listing one card
-  per industry demo, jewellery demo at `demo.rkade.co/jewelry`, no
-  "coming soon" tiles ever. Each visitor gets a private seed-data copy in
-  their own browser (`localStorage`), no shared database, 24h reset. Nothing
-  in this repo depends on it existing yet; `/links`'s demo button just stays
-  hidden until it does.
+- **The demo CRM (separate project, folder `Jewelry-Demo`) was scoped, built,
+  checked and deployed all in one day, 29-08-2026.** Live at `demo.rkade.co`,
+  a hub listing one card per industry demo, jewellery demo at
+  `demo.rkade.co/jewelry`, no "coming soon" tiles ever. Each visitor gets a
+  private seed-data copy in their own browser (`localStorage`), no shared
+  database, 24h reset. Deployed as a Cloudflare Worker with a custom domain
+  route, not Netlify, see `docs/DECISIONS.md`.
+
+- **The Demos button on `/links` is live, PR #14, merged `--no-ff` as
+  782d58f.** `DEMO_LINK` in `CTAButtons.jsx` now reads
+  `https://demo.rkade.co`, so the button that shipped hidden with `/links`
+  now renders, relabelled "Demos" / "Live systems you can try". The card
+  chain is complete end to end: QR on both business cards, to
+  `rkade.co/links`, to Demos, to `demo.rkade.co/jewelry`. Verified live.
 
 - **Audit pass 2 and the earlier go-lives are still true, just moved out of
   this file to stay under the 8 KB cap.** Full detail in
