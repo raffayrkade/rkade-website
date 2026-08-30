@@ -68,6 +68,23 @@ went live, the user disliked it, and it had to be reverted live. Follow this eve
    branch** both remotely and locally without asking — this is pre-approved cleanup.
 7. If the user rejects the preview: delete the branch without merging, `main` was never touched.
 
+### Copy-only fast lane (added 30-08-2026)
+
+For changes that touch only words or copy, no layout, no new pages, no dependencies, no config,
+the full PR ceremony above is overkill. Use this instead:
+
+1. Edit on a branch, commit, push the branch. No PR.
+2. Get a preview: Netlify builds branch deploys automatically, or `netlify deploy` from the CLI
+   gives a draft URL in under a minute. Verify the change rendered.
+3. Hand Raffay the preview link. Wait for his yes in chat. This approval step is the one part of
+   the old workflow that is never skipped.
+4. On yes: fast-forward merge to `main`, push (that is the deploy), update `docs/STATE.md` in the
+   same merge rather than a separate commit, delete the branch both sides.
+
+Total: one wait instead of two, about 2 minutes instead of ten steps. Anything structural still
+takes the full PR workflow above. If in doubt whether a change is copy-only, it is not: use the
+full workflow.
+
 ## Standing preferences (from explicit user feedback)
 
 - **No em dashes anywhere in site copy.** The user considers them a tell for AI-generated writing
