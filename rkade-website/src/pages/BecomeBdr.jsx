@@ -6,28 +6,30 @@ import Seo from '@/components/common/Seo';
 import ApplyForm from '@/components/bdr/ApplyForm';
 import { WHATSAPP_LINK } from '@/components/common/CTAButtons';
 
-// Copy note: the BDR deck (claude.ai artifact) could not be read when this
-// page was written, so the copy below is written from the brief. Check it
-// against the deck. See docs/BLOCKED.md.
+// Copy note: checked against the BDR deck (role, promise and "How you get
+// paid" slides) on 08-10-2026. No prices on this page: rates only, and every
+// project is quoted by the founders after a call.
 
 const STEPS = [
   {
     title: 'Find',
-    body: 'You look for owner-run businesses in Dubai that lose hours every week to work a computer could do.',
+    body: 'You pick owner-run businesses in Dubai on Google Maps that look busy and lose hours every week to admin.',
   },
   {
     title: 'Reach out',
-    body: 'You message or call the owner, usually on WhatsApp. A short, friendly conversation, in your own words.',
+    body: 'You message or call the owner from your own phone, one business at a time, using the scripts we give you.',
   },
   {
     title: 'Qualify',
-    body: 'You find out whether the owner has a real problem and is the person who decides.',
+    body: 'You ask four short questions to find out whether the owner has a real problem and is the person who decides.',
   },
   {
     title: 'Hand over',
-    body: 'You pass the conversation to the RKade founders. They take it from there.',
+    body: "You book a short call with Kushan, or simply pass on the owner's number. Raffay and Kushan take it from there.",
   },
 ];
+
+const SELLS = ['Websites', 'Custom systems', 'Office Autopilot', 'Restaurant systems'];
 
 const FITS = [
   'You are comfortable starting a conversation with a business owner.',
@@ -42,13 +44,13 @@ export default function BecomeBdr() {
     <>
       <Seo
         title="Become a Business Development Representative"
-        description="Apply to become a Business Development Representative (BDR) at RKade. Introduce owner-run Dubai businesses to the founders and earn commission, paid when the client has paid in full."
+        description="Apply to become a Business Development Representative (BDR) at RKade. Introduce owner-run Dubai businesses to the founders and earn commission on the one-off build fee, paid when the client has paid in full."
         path="/become-a-bdr"
       />
       <PageHeader
         label="Join RKade"
         title="Become a Business Development Representative"
-        description="RKade builds AI systems for owner-run businesses in Dubai. We are looking for people who can open the right conversations, and you earn commission when one turns into a client."
+        description="RKade builds custom AI systems for owner-run businesses in Dubai. We are looking for people who can open the right conversations, and you earn commission when one becomes a client."
       />
 
       <Section tone="ink" padding="loose">
@@ -60,12 +62,27 @@ export default function BecomeBdr() {
                 You open the door. <em className="italic text-gold">We close the deal.</em>
               </h2>
               <p className="mt-5 max-w-md text-body text-muted-on-ink">
-                A Business Development Representative, or BDR, is an outside representative of
-                RKade. You never have to negotiate, quote or explain the technical side. Only the
-                RKade founders close deals.
+                A Business Development Representative, or BDR, finds the right businesses and opens
+                the conversation. You never have to close a deal, negotiate or explain the
+                technology. Only Raffay and Kushan, the RKade founders, close deals.
               </p>
               <p className="mt-4 max-w-md text-body text-muted-on-ink">
-                You earn commission, paid when the client has paid in full.
+                You earn 5% to 20% of the one-off build fee for every new client you bring us. Your
+                level sets the rate and it never drops. You are paid when the client has paid us in
+                full, not before and not in parts. Monthly fees do not count.
+              </p>
+              <p className="mt-4 max-w-md text-body text-muted-on-ink">
+                Even a phone number counts. If the founders close the deal, you get your full
+                commission, even if you never spoke to the owner yourself.
+              </p>
+              <p className="mt-6 text-label uppercase text-muted-on-ink">What RKade sells</p>
+              <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-body text-cream">
+                {SELLS.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <p className="mt-3 max-w-md text-body text-muted-on-ink">
+                Every project is quoted by the founders after a call. You never give a price.
               </p>
             </div>
           </Reveal>
@@ -109,8 +126,7 @@ export default function BecomeBdr() {
               </h2>
               <p className="mt-5 max-w-md text-body-lg text-muted">
                 The RKade team reads every application. We reply to each one personally, whether
-                or not it is a fit right now. We do not send automatic emails, so check your
-                WhatsApp as well as your inbox.
+                or not it is a fit right now. Keep an eye on your WhatsApp as well as your email.
               </p>
               <p className="mt-4 max-w-md text-body text-muted">
                 If it looks like a good match, we will talk, explain how the role works day to day
