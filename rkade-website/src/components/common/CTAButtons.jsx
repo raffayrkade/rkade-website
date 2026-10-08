@@ -45,3 +45,11 @@ export const CONTACT_EMAIL = "contact@rkade.co";
 // unfinished profile never ships as a dead link.
 export const INSTAGRAM_LINK = "https://www.instagram.com/rkade.co";
 export const LINKEDIN_LINK = "PLACEHOLDER";
+
+// Where the "Become a BDR" form posts. The RKade CRM owns this endpoint, see
+// rkade-crm/docs/plan/phase-10.md, "The public applicant endpoint". In
+// development it points at localhost:3000, which is either the CRM or the
+// stand-in at scripts/mock-bdr-endpoint.mjs. No environment variable.
+export const BDR_APPLY_ENDPOINT = import.meta.env.DEV
+  ? "http://localhost:3000/api/public/applicants"
+  : "https://crm.rkade.co/api/public/applicants";

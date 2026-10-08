@@ -31,6 +31,7 @@ One line each. Newest at the top. Dates dd-mm-yyyy.
 
 | Date | Phase / unit | What is blocked | What is needed to unblock it |
 |---|---|---|---|
+| 08-10-2026 | Phase 8, unit A | The BDR deck (claude.ai artifact) could not be read, so the /become-a-bdr copy is written from the CRM brief | Raffay or Kushan to check the page copy against the deck and correct wording in src/pages/BecomeBdr.jsx. |
 | 19-08-2026 | Copy review, other pages | The same copy pass on /about, /services, /work and /contact | Kushan's review of those four pages. His document covers the homepage only, and names /about as the one to do first. |
 | 19-08-2026 | Site audit, item 5 | The lead-sourcing case study still has no image, on the /work grid and its detail page | One screenshot of the cost-estimate screen. It is RKade's own tool, so this is a screenshot, not a shoot. `work.js` has the empty `images` array ready. |
 | 22-08-2026 | Audit pass 2, S2 | Same as the row above, re-confirmed on production. It is now the only item from either audit pass that is still open and actionable. | Unchanged: one screenshot from Raffay. |
@@ -39,3 +40,6 @@ One line each. Newest at the top. Dates dd-mm-yyyy.
 
 recorder clears a row once the blocker is gone. Nothing is deleted, resolved
 rows move to `docs/history/`.
+| 08-10-2026 | Phase 8, BDR apply page | The page cannot go live until the CRM endpoint exists | CRM Lane B1 (`rkade-crm/docs/plan/phase-10.md`) must ship `https://crm.rkade.co/api/public/applicants`. Until then every real submission fails. |
+| 08-10-2026 | Phase 8, BDR apply page | Page copy was written from the CRM brief, not the BDR deck | Check it against the deck source in `rkade-crm/docs/bdr-deck-source/` before deploy. |
+| 08-10-2026 | Phase 8, BDR apply page | Error statuses 400/413/415/429/403/500 were never exercised in the UI | Run each against `scripts/mock-bdr-endpoint.mjs` (`?mock=NNN`) before deploy. No test script exists in this repo, a gap. |

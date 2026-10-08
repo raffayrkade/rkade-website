@@ -192,9 +192,10 @@ export default function SiteLayout() {
           </div>
           <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-line-strong pt-6 text-xs text-muted sm:flex-row">
             <p>© 2026 RKade. All rights reserved.</p>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1">
               <Link className="inline-block py-1.5 transition-colors hover:text-ink" to="/privacy">Privacy</Link>
               <Link className="inline-block py-1.5 transition-colors hover:text-ink" to="/terms">Terms</Link>
+              <Link className="inline-block py-1.5 transition-colors hover:text-ink" to="/become-a-bdr">Become a BDR</Link>
               <p>Systems, not hype.</p>
             </div>
           </div>

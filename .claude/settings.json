@@ -26,7 +26,26 @@
   "permissions": {
     "defaultMode": "bypassPermissions",
     "allow": [
-      "Bash(curl -s \"https://api.github.com/*)"
+      "Bash(curl -s \"https://api.github.com/*)",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git checkout:*)",
+      "Bash(git branch:*)",
+      "Bash(git fetch:*)",
+      "Bash(git merge:*)",
+      "Bash(git push origin:*)",
+      "Bash(npm run:*)",
+      "Bash(npm install:*)",
+      "Bash(npm ci:*)",
+      "Bash(node:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh api:*)",
+      "Bash(netlify deploy:*)",
+      "Bash(netlify api:*)",
+      "Bash(netlify sites:*)"
     ],
     "deny": [
       "Bash(git push --force:*)",

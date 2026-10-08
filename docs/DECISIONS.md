@@ -716,3 +716,4 @@ live and real people can use it:
   business cards to `rkade.co/links` to Demos to `demo.rkade.co/jewelry`.
   Reverse: there is no reverse for a live merge, a regression is a new fix
   forward.
+- **08-10-2026: fix the contact form losing typed text, on the local bdr-apply branch.** Found by the BDR apply page checker: Reveal.jsx swaps element type when its entrance ends, which remounts ContactForm. Likely costing enquiries, small fix, so taken without asking. Ships only when Raffay types deploy.

@@ -27,6 +27,7 @@ const routes = [
   { path: '/contact', priority: '0.8', changefreq: 'monthly' },
   { path: '/privacy', priority: '0.3', changefreq: 'yearly' },
   { path: '/terms', priority: '0.3', changefreq: 'yearly' },
+  { path: '/become-a-bdr', priority: '0.5', changefreq: 'monthly' },
 ]
 
 const urlEntry = ({ path, priority, changefreq }) => `  <url>

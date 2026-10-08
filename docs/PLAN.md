@@ -29,6 +29,7 @@ green light.
 | 5 | [Services, About, Contact](plan/phase-05.md) | The three inner pages, plus inline booking | 4 | ~1 session |
 | 6 | [Polish and proof](plan/phase-06.md) | Contrast, reduced motion, performance, SEO, real-browser checks | 3 | ~1 session |
 | 7 | [Deploy](plan/phase-07.md) | Branch, PR, Netlify preview, approval, merge. **Only on the word `deploy`** | 1 | ~30 min |
+| 8 | [Become a BDR (apply page)](plan/phase-08.md) | `/become-a-bdr` page and form posting to the CRM applicant endpoint. Local branch `bdr-apply`, no push, no prices on the page. Added 08-10-2026. **Built on branch, not deployed, waits on CRM endpoint** | 1 | ~1 session |
 
 Estimates are ranges with no measured history behind them, because this project
 has never had `docs/history/timings.md`. Treat them as shape, not schedule.

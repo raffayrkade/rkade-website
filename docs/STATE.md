@@ -2,58 +2,50 @@
 
 **Hard cap: 8 KB.** Read this first, every session.
 
-Last updated: 29-08-2026
+Last updated: 08-10-2026
 
 ---
 
 ## Status
 
 ```
-Right now:     LIVE. rkade.co serves the site, and the full card chain now
-               works end to end: QR -> /links -> Demos -> demo.rkade.co
-               /jewelry. Nothing is in flight and no branch is open.
-To see it:     https://rkade.co/links, or cd rkade-website && npm run dev for
-               local changes
-Local link:    http://localhost:5173
+Right now:     LIVE at rkade.co (unchanged). In flight, local only: branch
+               bdr-apply, two commits, not pushed, not deployed.
+To see it:     git checkout bdr-apply, then npm run dev. To try the form
+               without the CRM: node scripts/mock-bdr-endpoint.mjs
+Local link:    http://localhost:5173/become-a-bdr
 Live link:     https://rkade.co  (Netlify, repo raffayrkade/rkade-website)
 Last deployed: 29-08-2026, commit 782d58f, merged from demos-button (PR #14)
-Since you last looked: the demo CRM (separate project, folder Jewelry-Demo)
-               was built and deployed the same day it was scoped, live at
-               demo.rkade.co. The Demos button on /links, which shipped
-               hidden, now renders and links to it.
+Since you last looked: the Become a BDR apply page and form are built on a
+               local branch. A bug that wiped typed text in the contact form
+               is fixed on the same branch. Neither is live yet.
 ```
 
 ## Progress
 
 ```
-PHASE    [████████████████████]  Phase 7 of 7 done      (100%)
-TASKS    [████████████████████]  87 of 87 done          (100%)
+PHASE    [█████████████████░░░]  Phase 7 of 8 done      (87%)
+TASKS    [█████████████████░░░]  92 of 93 done          (98%)
 ```
 
-Build time left: not enough history yet for `rkade-website`, I have 8 units
-measured. There is nothing left to build in this repo. The demos-button unit
-took roughly 30 minutes with no debug rounds, `docs/history/timings.md` row 8.
+Build time left: not enough history yet, I have 9 units measured (the BDR unit
+had no time recorded). The code for phase 8 is done, what remains is waiting.
 
-Realistically: nothing left to build in `rkade-website` itself. Because: the
-whole card chain is live end to end. What remains is the two items still open
-on Raffay's side, see Blockers below.
-
-`docs/history/timings.md` has all eight entries.
+Realistically: ready as soon as the CRM endpoint exists and Raffay types
+`deploy`. Because: CRM Lane B1 has not built `crm.rkade.co/api/public/applicants`
+yet, so a live form would fail for every applicant.
 
 ## Next up
 
-1. **Get Formspree's delivery address repointed to `contact@rkade.co`.** Still
-   the one thing that actually matters here, see Blockers.
-2. **Get the LinkedIn company page URL** once it exists, paste it into
-   `CTAButtons.jsx`'s `LINKEDIN_LINK`.
-3. **Watch the live site for real-world issues**: the contact form reaching an
-   inbox, the booking link staying up, `/links` and the Demos button actually
-   getting used off a printed card, `demo.rkade.co` staying up, any route
-   returning something other than 200.
-4. **Action Kushan's copy pass and the lead-sourcing screenshot** as soon as
-   either arrives, both rows in `docs/BLOCKED.md`.
-5. **Keep logging new work units to `docs/history/timings.md`** as they
-   happen, so estimates keep being real history, not a guess.
+1. **Wait for the CRM endpoint** (CRM Lane B1), then run CRM Unit Z once end to
+   end with a photo against this branch.
+2. **Check the page copy against the BDR deck** in
+   `rkade-crm/docs/bdr-deck-source/`. It came from the CRM brief.
+3. **Exercise the error statuses in the UI** (400/413/415/429/403/500) via the
+   mock's `?mock=` switch. Add a test script if cheap, none exists.
+4. **Raffay types `deploy`** for bdr-apply (commits b789049 and 69ba5d9). It
+   also ships the contact-form fix. Needs a Netlify preview first.
+5. **Formspree repoint to `contact@rkade.co`** and the LinkedIn URL, as below.
 
 ## Blockers
 
