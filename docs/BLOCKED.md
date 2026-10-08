@@ -31,6 +31,7 @@ One line each. Newest at the top. Dates dd-mm-yyyy.
 
 | Date | Phase / unit | What is blocked | What is needed to unblock it |
 |---|---|---|---|
+| 08-10-2026 | Phase 8, unit A | The BDR deck (claude.ai artifact) could not be read, so the /become-a-bdr copy is written from the CRM brief | Raffay or Kushan to check the page copy against the deck and correct wording in src/pages/BecomeBdr.jsx. |
 | 19-08-2026 | Copy review, other pages | The same copy pass on /about, /services, /work and /contact | Kushan's review of those four pages. His document covers the homepage only, and names /about as the one to do first. |
 | 19-08-2026 | Site audit, item 5 | The lead-sourcing case study still has no image, on the /work grid and its detail page | One screenshot of the cost-estimate screen. It is RKade's own tool, so this is a screenshot, not a shoot. `work.js` has the empty `images` array ready. |
 | 22-08-2026 | Audit pass 2, S2 | Same as the row above, re-confirmed on production. It is now the only item from either audit pass that is still open and actionable. | Unchanged: one screenshot from Raffay. |

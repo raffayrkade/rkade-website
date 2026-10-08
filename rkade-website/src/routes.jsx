@@ -11,6 +11,7 @@ import Terms from '@/pages/Terms';
 import Kit from '@/pages/Kit';
 import Work from '@/pages/Work';
 import WorkDetail from '@/pages/WorkDetail';
+import BecomeBdr from '@/pages/BecomeBdr';
 
 const routes = [
   {
@@ -27,6 +28,7 @@ const routes = [
           { path: '/contact', element: <Contact /> },
           { path: '/privacy', element: <Privacy /> },
           { path: '/terms', element: <Terms /> },
+          { path: '/become-a-bdr', element: <BecomeBdr /> },
           // Dev only. Never built, so it cannot ship as a page or reach
           // the sitemap. See docs/plan/phase-02.md.
           ...(import.meta.env.DEV ? [{ path: '/kit', element: <Kit /> }] : []),

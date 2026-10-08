@@ -38,6 +38,7 @@ export default defineConfig({
       '/contact',
       '/privacy',
       '/terms',
+      '/become-a-bdr',
       // The business card QR destination. Prerendered so a scan gets a real
       // 200 with its own OG tags (WhatsApp's link preview never runs JS).
       // Deliberately absent from generate-sitemap.mjs and noindexed: it is
