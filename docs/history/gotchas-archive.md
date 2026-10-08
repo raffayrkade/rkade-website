@@ -105,3 +105,35 @@ per frame and Lenis is easing the position underneath. This shows up as "the
 counter is broken" when it is not. To capture a screenshot, scroll each
 triggering element into view with `scrollIntoView({ block: 'center' })` and
 wait, rather than stepping past it.
+
+---
+
+Moved 08-10-2026:
+
+## `aria-label` on a bare `<span>` fails `aria-prohibited-attr`
+
+A `<span>` has no role that supports author naming. `Counter.jsx` used
+`aria-label` on its wrapper span to announce the finished number over the
+animated digits; axe flags it even though every screen reader tested it fine.
+Fix: a visually-hidden (`sr-only`) sibling span with the real text instead.
+
+## Decorative low-opacity text still needs 3:1 contrast
+
+`aria-hidden="true"` on the site's faint background numerals stops a screen
+reader announcing them, but a sighted low-vision user still sees the pixels,
+and axe's `color-contrast` audit measures those, not the ARIA tree. Ink at
+10% opacity on cream measures roughly 1.2:1; it takes about 55 to 60% to clear
+the 3:1 large-text minimum. No attribute exempts visible text from contrast.
+
+## `currentColor` does not survive an `<img>` tag
+
+`public/brand/arch-mark.svg` paints from `currentColor` so one file can serve
+both cream and ink backgrounds. That only works when the SVG is **inlined into
+the DOM**. Referenced as `<img src="/brand/arch-mark.svg">` it renders solid
+black, because the image is its own document and inherits nothing from the
+page.
+
+This was caught on 18-08-2026 while rendering the trace next to its reference,
+where it showed up as a black logo on ink. `ArchMark.jsx` therefore carries the
+paths inline rather than pointing at the file. The file in `public/` exists for
+handoff (rkade-crm needs it) and for anywhere an explicit fill is set.

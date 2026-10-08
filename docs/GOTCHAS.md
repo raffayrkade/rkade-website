@@ -32,19 +32,6 @@ inside the Formspree account itself. Changing `CONTACT_EMAIL` in
 repoint where Formspree delivers a form submission. That is a manual step,
 written up in `docs/SETUP.md`.
 
-## `currentColor` does not survive an `<img>` tag
-
-`public/brand/arch-mark.svg` paints from `currentColor` so one file can serve
-both cream and ink backgrounds. That only works when the SVG is **inlined into
-the DOM**. Referenced as `<img src="/brand/arch-mark.svg">` it renders solid
-black, because the image is its own document and inherits nothing from the
-page.
-
-This was caught on 18-08-2026 while rendering the trace next to its reference,
-where it showed up as a black logo on ink. `ArchMark.jsx` therefore carries the
-paths inline rather than pointing at the file. The file in `public/` exists for
-handoff (rkade-crm needs it) and for anywhere an explicit fill is set.
-
 ## A bare `margin: '-60px'` on useInView insets all four sides
 
 framer-motion's `useInView` and `whileInView` pass `margin` straight through to
@@ -97,21 +84,6 @@ child's own className straight on `Reveal`, dropping the inner wrapper. Broke
 silently across five case study pages and both homepage stat lists, caught
 18-08-2026.
 
-## `aria-label` on a bare `<span>` fails `aria-prohibited-attr`
-
-A `<span>` has no role that supports author naming. `Counter.jsx` used
-`aria-label` on its wrapper span to announce the finished number over the
-animated digits; axe flags it even though every screen reader tested it fine.
-Fix: a visually-hidden (`sr-only`) sibling span with the real text instead.
-
-## Decorative low-opacity text still needs 3:1 contrast
-
-`aria-hidden="true"` on the site's faint background numerals stops a screen
-reader announcing them, but a sighted low-vision user still sees the pixels,
-and axe's `color-contrast` audit measures those, not the ARIA tree. Ink at
-10% opacity on cream measures roughly 1.2:1; it takes about 55 to 60% to clear
-the 3:1 large-text minimum. No attribute exempts visible text from contrast.
-
 ## A file sitting in `public/` but referenced by nothing still deploys
 
 Vite copies `public/` into `dist/` verbatim. Nothing checks whether a file in
@@ -149,3 +121,12 @@ The tell: every wrong value is *under* the right one, and small targets look
 correct because they finish counting almost instantly. Read the `sr-only` span
 beside it, which always carries the final value, or set
 `prefers-reduced-motion`, which skips the animation.
+
+## Never swap element types or wrappers based on animation state
+
+`Reveal.jsx` used to change its element type when its entrance settled. React
+treats a different type as a different component, so every child remounted and
+wiped its state. `ContactForm` lost whatever a visitor had typed, a live bug
+found 08-10-2026 and fixed in 69ba5d9 on `bdr-apply`. Never switch element
+types or wrapper components on animation state. Clear the animation styles
+through a ref instead, and the tree stays the same shape.

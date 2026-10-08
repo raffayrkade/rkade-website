@@ -40,3 +40,6 @@ One line each. Newest at the top. Dates dd-mm-yyyy.
 
 recorder clears a row once the blocker is gone. Nothing is deleted, resolved
 rows move to `docs/history/`.
+| 08-10-2026 | Phase 8, BDR apply page | The page cannot go live until the CRM endpoint exists | CRM Lane B1 (`rkade-crm/docs/plan/phase-10.md`) must ship `https://crm.rkade.co/api/public/applicants`. Until then every real submission fails. |
+| 08-10-2026 | Phase 8, BDR apply page | Page copy was written from the CRM brief, not the BDR deck | Check it against the deck source in `rkade-crm/docs/bdr-deck-source/` before deploy. |
+| 08-10-2026 | Phase 8, BDR apply page | Error statuses 400/413/415/429/403/500 were never exercised in the UI | Run each against `scripts/mock-bdr-endpoint.mjs` (`?mock=NNN`) before deploy. No test script exists in this repo, a gap. |

@@ -180,3 +180,16 @@ ever deleted, only moved. Newest at the bottom of each phase.
       button on `/links` turned on and relabelled. PR #14, merged `--no-ff`
       as 782d58f, 29-08-2026. Card chain now complete end to end: QR to
       `rkade.co/links` to Demos to `demo.rkade.co/jewelry`
+
+## Phase 8: Become a BDR (local branch `bdr-apply`, not deployed)
+
+- [x] 8.1 to 8.4: `/become-a-bdr` page, `ApplyForm.jsx`, client-side photo
+      shrink to under 500 KB, `BDR_APPLY_ENDPOINT` constant, honeypot, footer
+      link, sitemap entry, `scripts/mock-bdr-endpoint.mjs`. Commit b789049,
+      08-10-2026
+- [ ] 8.5 partly: checker PASS (build and lint exit 0, 8 unused-import
+      warnings). Error paths 400/413/415/429/403/500 not exercised in the UI.
+      No test script exists in this repo
+- [x] Pre-existing bug fixed on the same branch: `Reveal.jsx` remounted
+      `ContactForm` and wiped typed text. Commit 69ba5d9, verified in
+      Chromium, build and verify:routes pass, 08-10-2026
