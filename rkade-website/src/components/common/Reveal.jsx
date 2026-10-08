@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import usePrefersReducedMotion from '@/hooks/usePrefersReducedMotion'
 
@@ -20,13 +20,9 @@ const EASE = [0.16, 1, 0.3, 1]
 
 export default function Reveal({ children, delay = 0, className = '', as = 'div' }) {
   const reducedMotion = usePrefersReducedMotion()
-  // Once the entrance is over the clip path is dropped entirely rather than
-  // left at a 2px round. A resting clip path still creates a clipping context,
-  // which shifted antialiasing on images and made otherwise untouched pages
-  // render very slightly differently.
-  const [settled, setSettled] = useState(false)
+  const ref = useRef(null)
 
-  if (reducedMotion || settled) {
+  if (reducedMotion) {
     const Tag = as
     return <Tag className={className}>{children}</Tag>
   }
@@ -35,6 +31,7 @@ export default function Reveal({ children, delay = 0, className = '', as = 'div'
 
   return (
     <MotionTag
+      ref={ref}
       className={className}
       initial={{
         opacity: 0,
@@ -48,7 +45,14 @@ export default function Reveal({ children, delay = 0, className = '', as = 'div'
       }}
       viewport={{ once: true, margin: '-80px 0px' }}
       transition={{ duration: 0.6, delay, ease: EASE }}
-      onAnimationComplete={() => setSettled(true)}
+      onAnimationComplete={() => {
+        // Once the entrance is over the clip path is dropped entirely rather
+        // than left at a 2px round. A resting clip path still creates a
+        // clipping context, which shifted antialiasing on images. It is
+        // cleared on the live element, never by swapping element types:
+        // a swap remounts children and wipes anything typed into a form.
+        if (ref.current) ref.current.style.clipPath = 'none'
+      }}
     >
       {children}
     </MotionTag>
