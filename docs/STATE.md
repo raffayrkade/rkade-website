@@ -9,16 +9,16 @@ Last updated: 08-10-2026
 ## Status
 
 ```
-Right now:     LIVE at rkade.co (unchanged). In flight, local only: branch
-               bdr-apply, two commits, not pushed, not deployed.
+Right now:     LIVE at rkade.co, including /become-a-bdr and the contact
+               form fix, deployed 08-10-2026 (PR #15, merge 27d4218).
 To see it:     git checkout bdr-apply, then npm run dev. To try the form
                without the CRM: node scripts/mock-bdr-endpoint.mjs
 Local link:    http://localhost:5173/become-a-bdr
 Live link:     https://rkade.co  (Netlify, repo raffayrkade/rkade-website)
 Last deployed: 29-08-2026, commit 782d58f, merged from demos-button (PR #14)
-Since you last looked: the Become a BDR apply page and form are built on a
-               local branch. A bug that wiped typed text in the contact form
-               is fixed on the same branch. Neither is live yet.
+Since you last looked: The Become a BDR page and form are live and post to
+               https://crm.rkade.co/api/public/applicants. The contact form
+               typing bug is fixed. No real application was submitted.
 ```
 
 ## Progress
