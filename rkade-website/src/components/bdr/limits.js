@@ -16,15 +16,19 @@ export const LIMITS = {
   why_join: { min: 10, max: 1000 },
 };
 
+export const GENDERS = ['male', 'female', 'prefer_not_to_say'];
+export const GENDER_LABELS = { male: 'Male', female: 'Female', prefer_not_to_say: 'Prefer not to say' };
+
 export const ACTIVITIES = ['studying', 'working', 'other'];
 
 // The server rejects a photo over 524288 bytes and never resizes. We aim
 // under this so there is room to spare.
 export const PHOTO_SERVER_MAX_BYTES = 524288;
-export const PHOTO_TARGET_BYTES = 500 * 1024;
-export const PHOTO_MAX_SIDE = 800;
+// Sources under 400x400 are refused. The crop is always exported as 800x800.
+export const PHOTO_MIN_SOURCE_PX = 400;
+export const PHOTO_OUTPUT_PX = 800;
 // A picker can hand us a huge original. Refuse only the absurd.
 export const PHOTO_PICK_MAX_BYTES = 40 * 1024 * 1024;
 
-export const EXAMPLE_WHATSAPP = '+44 7700 900123';
+export const EXAMPLE_WHATSAPP = '+971 50 123 4567';
 export const EXAMPLE_LINKEDIN = 'https://www.linkedin.com/in/your-name';

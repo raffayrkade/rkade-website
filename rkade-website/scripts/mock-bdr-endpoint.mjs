@@ -59,6 +59,7 @@ function validate(f) {
       e.linkedin_url = 'LinkedIn links need to start with https:// and be on linkedin.com.';
     }
   }
+  if (!['male', 'female', 'prefer_not_to_say'].includes(t('gender'))) e.gender = 'Choose one of the three options.';
   if (!t('languages') || t('languages').length > 200) e.languages = 'List the languages you speak.';
   if (t('why_join').length < 10 || t('why_join').length > 1000) e.why_join = 'Tell us a little more about why you want to join.';
   return e;
