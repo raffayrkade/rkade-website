@@ -27,13 +27,19 @@ export default function SmoothScroll({ children }) {
   const reducedMotion = usePrefersReducedMotion();
   const finePointer = useMediaQuery(POINTER_FINE);
 
-  if (reducedMotion || !finePointer) {
-    return children;
-  }
+  // Lenis is a sibling of the children, never their parent. Wrapping the
+  // children only once the pointer query resolves changed their element type
+  // in the tree, so React remounted the whole page right after first paint.
+  // Any framer-motion entrance that had already started (a Reveal in view on
+  // load) lost its element mid-animation and threw "Cannot read properties of
+  // null (reading '0')" in mixObject. `root` mode needs no children to scroll
+  // the window, so the page stays mounted in place.
+  const enabled = !reducedMotion && finePointer;
 
   return (
-    <ReactLenis root options={{ lerp: 0.1, duration: 1.2 }}>
+    <>
+      {enabled && <ReactLenis root options={{ lerp: 0.1, duration: 1.2 }} />}
       {children}
-    </ReactLenis>
+    </>
   );
 }

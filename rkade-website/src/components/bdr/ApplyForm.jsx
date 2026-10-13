@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AlertCircle, ArrowUpRight, Check } from 'lucide-react';
 import { BDR_APPLY_ENDPOINT, WHATSAPP_LINK } from '@/components/common/CTAButtons';
 import { LIMITS, ACTIVITIES, GENDERS, GENDER_LABELS, EXAMPLE_WHATSAPP, EXAMPLE_LINKEDIN } from './limits';

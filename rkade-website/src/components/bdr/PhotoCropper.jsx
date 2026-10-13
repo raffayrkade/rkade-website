@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { renderCrop } from './photo';
 
 // Hand-rolled square crop with a circle overlay. Drag to move, slider or
