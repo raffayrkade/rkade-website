@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AlertCircle, ArrowUpRight, Check } from 'lucide-react';
 import { BDR_APPLY_ENDPOINT, WHATSAPP_LINK } from '@/components/common/CTAButtons';
-import { LIMITS, ACTIVITIES, EXAMPLE_WHATSAPP, EXAMPLE_LINKEDIN } from './limits';
-import { preparePhoto } from './photo';
+import { LIMITS, ACTIVITIES, GENDERS, GENDER_LABELS, EXAMPLE_WHATSAPP, EXAMPLE_LINKEDIN } from './limits';
+import { openPhoto, release } from './photo';
+import PhotoCropper from './PhotoCropper';
 
 // Field names are the contract's, exactly. See limits.js.
 const initialValues = {
   full_name: '',
+  gender: '',
   email: '',
   whatsapp_number: '',
   city: '',
@@ -20,6 +22,7 @@ const initialValues = {
 
 const FIELD_ORDER = [
   'full_name',
+  'gender',
   'email',
   'whatsapp_number',
   'city',
@@ -54,6 +57,8 @@ function validate(values) {
   const name = values.full_name.trim();
   if (!name) errors.full_name = 'Tell us your full name.';
   else if (name.length < L.full_name.min) errors.full_name = 'Your name needs at least two letters.';
+
+  if (!GENDERS.includes(values.gender)) errors.gender = 'Pick one of the three options.';
 
   const email = values.email.trim();
   if (!email) errors.email = 'Add your email so we can reply.';
@@ -91,7 +96,7 @@ function validate(values) {
 const PHOTO_MESSAGES = {
   type: 'That file is not a photo we can read. Choose a JPEG, PNG or WebP image, or skip the photo.',
   big: 'That file is too large to open here. Choose a smaller photo, or skip the photo.',
-  shrink: 'We could not make that photo small enough. You can send your application without a photo.',
+  small: 'That photo is too small. Choose one that is at least 400 by 400 pixels.',
 };
 
 const inputClass =
@@ -150,6 +155,7 @@ export default function ApplyForm() {
   const [errors, setErrors] = useState({});
   const [photo, setPhoto] = useState(null); // { blob, url, name }
   const [photoBusy, setPhotoBusy] = useState(false);
+  const [cropping, setCropping] = useState(null); // { file, source, width, height }
   const [photoError, setPhotoError] = useState('');
   const [serverErrors, setServerErrors] = useState({});
   const [notice, setNotice] = useState(''); // 429 message
@@ -163,6 +169,10 @@ export default function ApplyForm() {
       if (photo?.url) URL.revokeObjectURL(photo.url);
     };
   }, [photo]);
+
+  useEffect(() => {
+    return () => release(cropping?.source);
+  }, [cropping]);
 
   useEffect(() => {
     if (status === 'sent') sentRef.current?.focus();
@@ -201,7 +211,7 @@ export default function ApplyForm() {
     setServerErrors((s) => ({ ...s, headshot: undefined }));
     if (!file) return;
     setPhotoBusy(true);
-    const result = await preparePhoto(file);
+    const result = await openPhoto(file);
     setPhotoBusy(false);
     input.value = '';
     if (!result.ok) {
@@ -209,7 +219,12 @@ export default function ApplyForm() {
       setPhotoError(PHOTO_MESSAGES[result.reason]);
       return;
     }
-    setPhoto({ blob: result.blob, url: URL.createObjectURL(result.blob), name: file.name });
+    setCropping({ file, source: result.source, width: result.width, height: result.height });
+  };
+
+  const finishCrop = (blob) => {
+    setPhoto({ blob, url: URL.createObjectURL(blob), name: cropping.file.name });
+    setCropping(null);
   };
 
   const focusFirstError = (errs) => {
@@ -224,7 +239,7 @@ export default function ApplyForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (sendingRef.current || photoBusy) return;
+    if (sendingRef.current || photoBusy || cropping) return;
 
     // Honeypot. A person never sees this field. A bot that fills it gets the
     // success panel and nothing is sent. The server does the same on its side.
@@ -314,8 +329,8 @@ export default function ApplyForm() {
         </div>
         <h3 className="mt-5 font-display text-card text-cream">Thank you. Your application is in.</h3>
         <p className="mt-2 text-sm text-muted-on-ink">
-          The RKade team reads every application, and we reply to each one personally. Keep an eye
-          on your WhatsApp and your email.
+          We&apos;ll be in touch within 3 working days. The RKade team reads every application, and
+          we reply to each one personally. Keep an eye on your WhatsApp and your email.
         </p>
       </div>
     );
@@ -341,6 +356,31 @@ export default function ApplyForm() {
       </p>
 
       <TextField name="full_name" label="Full name" required autoComplete="name" maxLength={LIMITS.full_name.max} placeholder="Your full name" values={values} errors={shownErrors} onChange={handleChange} onBlur={handleBlur} />
+      <fieldset aria-describedby={shownErrors.gender ? 'gender-error' : undefined}>
+        <legend className={labelClass}>
+          Gender <span aria-hidden="true">*</span>
+        </legend>
+        <div className="flex flex-col gap-3 sm:flex-row">
+          {GENDERS.map((g) => (
+            <label key={g} className="relative flex-1">
+              <input
+                type="radio"
+                name="gender"
+                value={g}
+                checked={values.gender === g}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className="peer sr-only"
+              />
+              <span className="flex min-h-[48px] cursor-pointer items-center justify-center rounded border border-cream/25 px-4 text-sm text-cream transition-colors peer-checked:border-gold peer-checked:bg-gold/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-gold">
+                {GENDER_LABELS[g]}
+              </span>
+            </label>
+          ))}
+        </div>
+        <FieldError id="gender-error" message={shownErrors.gender} />
+      </fieldset>
+
       <TextField name="email" label="Email" required type="email" autoComplete="email" maxLength={LIMITS.email.max} placeholder="Your email" values={values} errors={shownErrors} onChange={handleChange} onBlur={handleBlur} />
       <TextField name="whatsapp_number" label="WhatsApp number" required type="tel" inputMode="tel" autoComplete="tel" maxLength={LIMITS.whatsapp_number.maxInput} placeholder={EXAMPLE_WHATSAPP} hint="Start with the country code." values={values} errors={shownErrors} onChange={handleChange} onBlur={handleBlur} />
 
@@ -407,12 +447,21 @@ export default function ApplyForm() {
           Photo <span className="normal-case tracking-normal">(optional)</span>
         </label>
         <p id="headshot-hint" className="mb-3 text-xs text-muted-on-ink">
-          A clear photo of your face helps us put a name to you. We shrink it on your device before
-          it is sent.
+          Head and shoulders, face the camera, good light, plain background. No sunglasses, no
+          group photos, no logos. You crop it to a square on your device before it is sent.
         </p>
-        {photo ? (
+        {cropping ? (
+          <PhotoCropper
+            file={cropping.file}
+            source={cropping.source}
+            width={cropping.width}
+            height={cropping.height}
+            onDone={finishCrop}
+            onCancel={() => setCropping(null)}
+          />
+        ) : photo ? (
           <div className="flex items-center gap-4">
-            <img src={photo.url} alt="" className="h-20 w-20 rounded border border-cream/25 object-cover" />
+            <img src={photo.url} alt="Your cropped headshot" className="h-20 w-20 rounded-full border border-cream/25 object-cover" />
             <div className="min-w-0">
               <p className="truncate text-sm text-cream">{photo.name}</p>
               <button
@@ -473,7 +522,7 @@ export default function ApplyForm() {
 
       <button
         type="submit"
-        disabled={sending || photoBusy}
+        disabled={sending || photoBusy || Boolean(cropping)}
         className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded bg-gold px-6 text-button uppercase text-ink transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream disabled:opacity-60 sm:w-auto"
       >
         {sending ? 'Sending...' : 'Send my application'}

@@ -67,8 +67,9 @@ export default function BecomeBdr() {
                 technology. Only Raffay and Kushan, the RKade founders, close deals.
               </p>
               <p className="mt-4 max-w-md text-body text-muted-on-ink">
-                You earn 5% to 20% of the one-off build fee for every new client you bring us. Your
-                level sets the rate and it never drops. You are paid when the client has paid us in
+                You earn 10% from your first deal, rising to 20%. It is a share of the one-off build
+                fee for every new client you bring us. There are three levels: Silver at 10%, Gold at 15% after
+                3 paid deals, and Platinum at 20% after 5. Your level never drops. You are paid when the client has paid us in
                 full, not before and not in parts. Monthly fees do not count.
               </p>
               <p className="mt-4 max-w-md text-body text-muted-on-ink">
